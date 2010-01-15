@@ -12,7 +12,7 @@ h1. <%= @page.title %>
 
 One of the first things you should do after bootstrapping a new Webby is tighten its security. Many hacking attempts are successful because users choose weak passwords and leave common ports open and listening. 
 
-In this guide we'll walk you through how to install and configure an easy-to-use firewall package called ufw (Uncomplicated Firewall for Ubuntu) that is available through <code>apt-get</code>.
+In this guide we'll walk you through how to install and configure an easy-to-use firewall package called ufw (Uncomplicated Firewall) that is available through <code>apt-get</code>.
 
 h2. Requirements
 
