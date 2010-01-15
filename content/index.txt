@@ -1,0 +1,25 @@
+---
+title:       Guides Beta
+created_at:  2008-08-02 14:06:40.000000 -06:00
+filter:
+  - erb
+  - textile
+---
+h1. <%= @page.title %>
+
+Follow our step by step guides on a wide range of different subjects. From basic tasks like Redeploying your Webby to complex subject like Linux administration, security, etc.
+
+h2. Featured Article
+
+h3. <a href="articles/readystacks/rapid-apps.html">Rapid App Deployment</a>
+
+Learn how to prepare your Webby so you can deploy your Rails or Rack application from the comfort of your command line and with nothing more than a few commands, tightly integrated to your everyday git workflow:
+
+<% coderay( :lang => "bash", :line_numbers => "inline" ) do -%>
+$ sudo gem install webbynode
+$ cd /path/to/app
+$ webbynode init [webby_ip]
+$ webbynode push
+<% end -%>
+
+<a href="articles/readystacks/rapid-apps.html">Read more...</a>

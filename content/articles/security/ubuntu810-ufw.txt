@@ -1,0 +1,119 @@
+---
+title:      Installing and Configuring <code>ufw</code> Firewall in Ubuntu 8.10
+created_at: 2010-01-14 00:36:35.278020 -02:00
+layout:     article
+filter:
+  - erb
+  - textile
+---
+h1. <%= @page.title %>
+
+<img src="images/lock.jpg" align="right">
+
+One of the first things you should do after bootstrapping a new Webby is to tighten its security. Many of the hacking attempts are successful because users choose weak passwords and leave common ports opened and listening. 
+
+On this guide we'll walk you through on how to install and configure an easy-to-use firewall package called ufw (Ubuntu Firewall) that is available through <code>apt-get</code>.
+
+h2. Requirements
+
+This guide was written with Ubuntu 8.10 but should work without changes for Ubuntu 8.04 and 9.04.
+
+h2. Installation
+
+To install <code>ufw</code> you just have to use apt-get, it's that simple:
+
+<% coderay(:lang => "bash") do -%>
+$ apt-get update
+$ apt-get install ufw
+<% end -%>
+
+Note that if you're not logged with <code>root</code> user you'll need to use <code>sudo apt-get install ufw</code>.
+
+h2. Configuration
+
+Configuring <code>ufw</code> is almost as simple as installing it. It's a very intuitive tool.
+
+Ufw comes disabled by default, so the first thing you want to do is enabling it and answer <code>y</code> to the prompt:
+
+<% coderay(:lang => "bash") do -%>
+$ ufw enable
+Command may disrupt existing ssh connections. Proceed with operation (y|n)? y
+Firewall is active and enabled on system startup
+<% end -%>
+
+Alright, now it's enabled and will be executed upon server startup as well. This way, even if you reboot your Webby, <code>ufw</code> will continue to run.
+
+h3. Denying connections by default
+
+When installed, <code>ufw</code> acts very unobtrusively: it won't close access to any ports. However, in order to really secure our system, we should take the inverse approach. This approach is deny any connections, except the ones we explicitly find we need.
+
+Before changing the default <code>ufw</code> operation mode, let's make sure we allow connections to the <code>ssh</code> port we're connected to:
+
+<% coderay(:lang => "bash") do -%>
+$ ufw allow 22
+Rule added
+<% end -%>
+
+You can now check that this rule was properly added:
+
+<% coderay(:lang => "bash") do -%>
+$ ufw status  
+Status: active
+
+To                         Action  From
+--                         ------  ----
+22                         ALLOW   Anywhere
+<% end -%>
+
+Now that <code>ssh</code> is good to go, let's shut everything else down:
+
+<% coderay(:lang => "bash") do -%>
+$ ufw default deny
+Default policy changed to 'deny'
+(be sure to update your rules accordingly)
+<% end -%>
+
+Now you have to start allowing all the ports you plan on using on this Webby. For instance, if you are serving html pages from Apache or running a Rails application, you should open port 80:
+
+<% coderay(:lang => "bash") do -%>
+$ ufw allow 80
+Rule added
+<% end -%>
+
+In case you're in doubt about which port a service uses by default, you can check <a href="http://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers">this link in Wikipedia</a>.
+
+h3. Fine grained security
+
+If you want to be even more secure, there's another tip to improve security.
+
+Let's say you're running a MySQL Database Server on your Webby and your app has grown and you want to have another  Webby to server Web requests. In order to allow that other Webby to connect to MySQL Server that is running locally, you could simply allow 3306 (MySQL default listening port), or you could only allow this other Webby to connect.
+
+The way you do this is very simple as well. Let's say <code>webby_mysql</code> is (obviously) where MySQL is and the new Webby goes by the name of <code>webby_appserver</code> and has an internal IP of <code>172.16.0.94</code>. All you have to do is find <code>webby_appserver</code>'s IP (preferably the internal one) and add it to the allowed list of IPs for port 3306.
+
+Here's how we achieve it:
+
+<% coderay(:lang => "bash") do -%>
+$ ufw allow from 172.16.0.94 to any port 3306
+Rule added
+<% end -%>
+
+And you can double check it:
+
+<% coderay(:lang => "bash") do -%>
+$ ufw status
+Status: active
+
+To                         Action  From
+--                         ------  ----
+22                         ALLOW   Anywhere
+3306                       ALLOW   172.16.0.94
+<% end -%>
+
+h3. Further reference
+
+You can do a lot more with <code>ufw</code>: things like allowing an IP range, allowing only tcp or only udp connections, etc. 
+
+For further reference, you can visit:
+
+* <a href="https://help.ubuntu.com/8.10/serverguide/C/firewall.html">Ubuntu Firewall</a> article on Ubuntu Official Documentation;
+* <a href="https://wiki.ubuntu.com/UncomplicatedFirewall?action=show&redirect=UbuntuFirewall">Uncomplicated Firewall</a> on Ubuntu Wiki;

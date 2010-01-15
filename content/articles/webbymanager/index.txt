@@ -1,0 +1,16 @@
+---
+title:       Webbymanager Articles
+created_at:  2008-08-02 14:06:40.000000 -06:00
+filter:
+  - erb
+  - haml
+---
+%h1= @page.title
+
+%p
+  Learn how to take advantage of our Webbymanager and unleash the power within your Webby.
+
+#articles
+  %ul
+    %li
+      %a{ :href => "dns-setup.html" } Setting up DNS for your domain

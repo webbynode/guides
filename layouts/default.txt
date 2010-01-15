@@ -1,0 +1,67 @@
+---
+extension: html
+filter:
+  - haml
+---
+!!! Strict
+%html{ "xml:lang" => "en", :lang => "en-us", :xmlns => "http://www.w3.org/1999/xhtml" }
+  %head
+    %meta{ :content => "text/html; charset=utf-8", "http-equiv" => "content-type" }
+    %title
+      = @page.title
+    %meta{ :name => "author", :content => "<%= @page.author %>" }
+    %link{ :href => "/css/blueprint/screen.css", :rel => "stylesheet", :type => "text/css", :media => "screen, projection" }
+    /[if IE]
+      %link{ :href => "/css/blueprint/print.css", :rel => "stylesheet", :type => "text/css", :media => "print" }
+    %link{ :href => "/css/blueprint/ie.css", :type => "text/css", :media => "screen, projection" }
+    %link{ :href => "/css/coderay.css", :rel => "stylesheet", :type => "text/css" }
+    %link{ :href => "/css/site.css", :rel => "stylesheet", :type => "text/css", :media => "screen, projection" }
+  %body
+    #main
+      #header
+        .inner
+          %p.right
+            Search:
+            %br/
+            %input{ :name => "search" }
+          %p.title
+            Webbynode Guides
+
+      #content
+        .inner
+          .column.span-15.first
+            :preserve
+              #{@content}
+
+          #sidebar.column.span-6.prepend-1.last
+            %h4
+              Categories
+
+            %ul
+              %li <a href="/articles/quickstart/index.html">Quick Start</a>
+              %li <a href="/articles/webbymanager/index.html">Webbymanager</a>
+              %li <a href="/articles/readystacks/index.html">ReadyStacks</a>
+              %li <a href="/articles/security/index.html">Security</a>
+
+            .box
+              %p.title
+                %b Win a free month!
+
+              %p.last
+                We are looking for people like you to give us a hand on writing
+                good articles about anything that improves how other users 
+                experience Webbynode.
+
+              %p.last
+                You can write about anything, from a tutorial on how to setup
+                a DNS for a Website to how to tighten the security of your Webby.
+
+              %p.last
+                We'll be giving out great prizes!
+
+              %p.last
+                <a href="/contribute/index.html">Read more...</a>
+
+    #footer
+      .inner
+        Copyright &copy; 2010-2020 Webbynode 

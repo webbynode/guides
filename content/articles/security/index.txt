@@ -1,0 +1,16 @@
+---
+title:       Security Articles
+created_at:  2008-08-02 14:06:40.000000 -06:00
+filter:
+  - erb
+  - haml
+---
+%h1= @page.title
+
+%p
+  Here's the list of articles that teach you how to tighten security to prevent Hacking attempts:
+
+#articles
+  %ul
+    %li
+      %a{ :href => "ubuntu810-ufw.html" } Installing and Configuring Uncomplicated Firewall (<code>ufw</code>) on Ubuntu 8.10

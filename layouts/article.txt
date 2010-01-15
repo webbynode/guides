@@ -1,0 +1,61 @@
+---
+extension: html
+filter:
+  - haml
+---
+!!! Strict
+%html{ "xml:lang" => "en", :lang => "en-us", :xmlns => "http://www.w3.org/1999/xhtml" }
+  %head
+    %meta{ :content => "text/html; charset=utf-8", "http-equiv" => "content-type" }
+    %title
+      = @page.title
+    %meta{ :name => "author", :content => "<%= @page.author %>" }
+    %link{ :href => "/css/blueprint/screen.css", :rel => "stylesheet", :type => "text/css", :media => "screen, projection" }
+    /[if IE]
+      %link{ :href => "/css/blueprint/print.css", :rel => "stylesheet", :type => "text/css", :media => "print" }
+    %link{ :href => "/css/blueprint/ie.css", :type => "text/css", :media => "screen, projection" }
+    %link{ :href => "/css/coderay.css", :rel => "stylesheet", :type => "text/css" }
+    %link{ :href => "/css/site.css", :rel => "stylesheet", :type => "text/css", :media => "screen, projection" }
+  %body
+    #main
+      #header
+        .inner
+          %p.right
+            Search:
+            %br/
+            %input{ :name => "search" }
+          %p.title
+            Webbynode Guides
+
+      #content.article
+        .inner
+          :preserve
+            #{@content}
+          #disqus_thread
+          %script{ :src => "http://disqus.com/forums/webbynodeguides/embed.js", :type => "text/javascript" }
+          %noscript
+            %a{ :href => "http://disqus.com/forums/webbynodeguides/?url=ref" }
+              View the discussion thread.
+          %a.dsq-brlink{ :href => "http://disqus.com" }
+            blog comments powered by
+            %span.logo-disqus
+              Disqus
+
+    #force
+    #footer
+      .inner
+        Copyright &copy; 2010-2020 Webbynode 
+
+    %script{ :type => "text/javascript" }
+      :cdata
+        (function() {
+        var links = document.getElementsByTagName('a');
+        var query = '?';
+        for(var i = 0; i < links.length; i++) {
+        if(links[i].href.indexOf('#disqus_thread') >= 0) {
+        query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&amp;';
+        }
+        }
+        document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/webbynodeguides/get_num_replies.js' + query + '"></' + 'script>');
+        })();
+

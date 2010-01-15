@@ -1,0 +1,30 @@
+---
+title:       QuickStart Articles
+created_at:  2008-08-02 14:06:40.000000 -06:00
+filter:
+  - erb
+  - haml
+---
+%h1= @page.title
+
+%p
+  Here's a meta-roadmap of things to do after you activate your first Webby:
+
+#articles
+  %h2 Security
+
+  %ul
+    %li
+      %a{ :href => "/articles/security/ubuntu810-ufw.html" } Installing and Configuring Uncomplicated Firewall (<code>ufw</code>) on Ubuntu 8.10
+
+  %h2 Webbymanager
+
+  %ul
+    %li
+      %a{ :href => "/articles/webbymanager/dns-setup.html" } Setup DNS for Your Domain
+
+  %h2 Rails and Rack Frameworks
+
+  %ul
+    %li
+      %a{ :href => "/articles/readystacks/rapid-apps.html" } Rapid Application Deployment with Git
