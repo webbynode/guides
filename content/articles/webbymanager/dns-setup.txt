@@ -12,11 +12,11 @@ A simple illustrated walkthrough of what's necessary to make your domain work wi
 
 h2. Requirements
 
-* Setup of Name Servers on your registrars to <code>NS1.DNSWEBBY.COM</code> and <code>NS2.DNSWEBBY.COM</code>
+* Setup Name Servers on your registrar to point to <code>NS1.DNSWEBBY.COM</code> and <code>NS2.DNSWEBBY.COM</code>
 
 h2. Preparation
 
-In order to execute this tutorial is necessary that you visit your registrar's page (GoDaddy, eNom, Network Solutions, etc.) and set your domain's Name Server 1 (NS1) and Name Server 2 (NS) to point to <code>NS1.DNSWEBBY.COM</code> and <code>NS2.DNSWEBBY.COM</code>, respectively.
+In order to execute this tutorial it is necessary that you visit your registrar's webpage (GoDaddy, eNom, Network Solutions, etc.) and set your domain's Name Server 1 (NS1) and Name Server 2 (NS2) to point to <code>NS1.DNSWEBBY.COM</code> and <code>NS2.DNSWEBBY.COM</code>, respectively.
 
 Here's one example of that setting in GoDaddy's DNS Manager:
 
@@ -32,7 +32,7 @@ h3. A little background
 
 _DISCLAIMER: This is a high level abstraction of how DNS works. Actual DNS specification is much more complex than what's outlined here_
 
-Domain Naming Servers are servers that receives inquiries from the internet about where are "areas" of your domain located. Each domain is a _zone_. For instance, when you visit http://www.webbynode.com, the "zone" part of the domain (or the Top Level Domain - TLD) is <code>webbynode.com</code>.
+Domain Name Servers are servers that receive inquiries from the internet about where "areas" of your domain are located. Each domain is a _zone_. For instance, when you visit http://www.webbynode.com, the "zone" part of the domain (or the Top Level Domain - TLD) is <code>webbynode.com</code>.
 
 Each DNS Zone has any number of _records_. The simplest way to handle domains and subdomains is to create records of the types A (primary) and CNAME (redirection) records.
 
@@ -42,7 +42,7 @@ Before getting started, let's see what DNS entries we need.
 
 For this tutorial, pretend we have registered the <code>dnskings.com</code> domain. We want <a href="http://www.dnskings.com">http://www.dnskings.com</a> to point to our Webby, along with <a href="http://dnskings.com">http://dnskings.com</a>.
 
-Before starting the proper configuration, we need to obtain the IP Address of our Webby. That can be obtained on the _Webbies_ tab on Webbymanager:
+Before starting the proper configuration, we need to get the IP Address of our Webby. That can be obtained on the _Webbies_ tab in the Webbymanager:
 
 <img src="images/mywebbies-ip.jpg">
 
@@ -51,7 +51,7 @@ So, now that we know our Webby's IP is <code>208.88.125.207</code>, let's create
 h3. Zone configuration
 
 <img src="images/manager-step2.png">
-Enter *dnskings.com* on the _Domain_ field and click the _Save zone_ button. Do not worry about the other settings here, they are advanced settings and are out of the scope of this tutorial. If all went fine, you should see something like the page below:
+Enter *dnskings.com* in the _Domain_ field and click the _Save zone_ button. Don't worry about the other settings here, they are advanced settings and are out of the scope of this tutorial. If all went well, you should see something like the page below:
 
 <img src="images/manager-step3.png">
 
@@ -59,15 +59,15 @@ Now click on the _Records_ link.
 
 h3. Records configuration
 
-When you click Records, you should see an empty records list like the one below. Click the _New record_ button to add our first record:
+When you click Records, you should see an empty records list like the one below. Click the _New record_ button to add your first record:
 
 <img src="images/manager-step4.png">
 
-On the new page, you should make sure *A* is selected on the _Type_ field (1), enter *www* on the _Name_ field (2), your Webby's IP (in our case <code>208.88.125.207</code>) (3) and then click _Save record_ (4). This should be enough for <a href="http://www.dnskings.com">http://www.dnskings.com</a> to work.
+On the new page, you should make sure *A* is selected for the _Type_ field (1), enter *www* in the _Name_ field (2), your Webby's IP (in our case <code>208.88.125.207</code>) (3) and then click _Save record_ (4). This should be enough for <a href="http://www.dnskings.com">http://www.dnskings.com</a> to work.
 
 <img src="images/manager-step5.png">
 
-Again, don't mind the other options for now. If you did everything right, you should see something like the picture below. Once you confirm everything's fine, let's add another record by clicking the _New record_ button again.
+Again, don't mind the other options for now. If you did everything right, you should see something like the picture below. Once you confirm everything is fine, let's add another record by clicking the _New record_ button again.
 
 <img src="images/manager-step6.png">
 
@@ -79,6 +79,6 @@ And how things should look when properly setup:
 
 <img src="images/manager-step8.png">
 
-At this point, once registrar's settings are propagated, your should be able to visit both your addresses and get them to point to your Webby.
+At this point, once your registrar's settings are propagated, you should be able to visit both of your addresses and get to your Webby.
 
 Happy coding!
