@@ -48,13 +48,13 @@ filter:
                 %b Win a free month!
 
               %p.last
-                We are looking for people like you to give us a hand on writing
+                We are looking for people like you to give us a hand with writing
                 good articles about anything that improves how other users 
                 experience Webbynode.
 
               %p.last
                 You can write about anything, from a tutorial on how to setup
-                a DNS for a Website to how to tighten the security of your Webby.
+                DNS records for a Website to how to tighten the security of your Webby.
 
               %p.last
                 We'll be giving out great prizes!
