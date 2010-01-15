@@ -10,7 +10,7 @@ h1. <%= h(@page.title) %>
 
 Our _Rapid Application Deployment_ stack allows you to deploy any Rails or Rack application as easy as pushing a git change you made. You just have to install Webbynode's gem and run a couple of commands, based on the same git workflow you're used it.
 
-Once you submit your app for deployment, all the dirty work will is behinds the scenes for you.
+Once you submit your app for deployment, all the dirty work will be done behind the scenes for you.
 
 h2. Requirements
 
@@ -21,7 +21,7 @@ h2. Requirements
 
 h2. Preparation
 
-In order to use the Rapid App Deployment, you have to redeploy your Webby with this stack. But that just have to be done once. After that, you'll be able to add new apps on the fly, without loosing what's already configured on your Webby.
+In order to use the Rapid App Deployment, you have to redeploy your Webby with this stack, but this just has to be done once. After that, you'll be able to add new apps on the fly, without loosing what's already configured on your Webby.
 
 Here's a step-by-step guide of the options you need to choose:
 
@@ -62,11 +62,11 @@ Successfully installed webbynode-0.1.1
 1 gem installed
 <% end -%>
 
-Once it's done, you have to initialize your app. The first information you'll need for that is your Webby's IP. If you don't know it yet, go to Webbymanager and, once you login, you'll find it next to your Webby's name:
+Once it's done, you have to initialize your app. The first piece of information you'll need for that is your Webby's IP. If you don't know it yet, go to Webbymanager and, once you login, you'll find it next to your Webby's name:
 
 <img src="images/mywebbies-ip.jpg">
 
-Now that you know the IP, you have to know weather you want this application's virtual host to respond to an already registered and configured domain or if you want to get a webbyapp.com subdomain (if you are in doubt, go with the second option). If you don't have a domain, leave the second parameter blank below.
+Now that you know the IP, you need to know weather you want this application's virtual host to respond to an already registered and configured domain or if you want to get a *.webbyapp.com subdomain (if you are in doubt, go with the second option). If you don't have a domain, leave the second parameter blank below.
 
 Let's say you have created a Rails app called <code>myapp</code>. If you don't specify the domain name during initialization, your app will respond to http://myapp.webbyapp.com.
 
@@ -122,7 +122,7 @@ To git@208.88.125.207:myapp
  * [new branch]      master -> master
 <% end %>
 
-At this point you should be able to just open up your browser and visit http://myapp.webbyapp.com and get your Rails app default page.
+At this point you should be able to open your browser and visit http://myapp.webbyapp.com and get your Rails app default page.
 
 h3. Updating
 
