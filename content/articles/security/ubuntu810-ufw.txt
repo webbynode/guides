@@ -10,13 +10,13 @@ h1. <%= @page.title %>
 
 <img src="images/lock.jpg" align="right">
 
-One of the first things you should do after bootstrapping a new Webby is to tighten its security. Many of the hacking attempts are successful because users choose weak passwords and leave common ports opened and listening. 
+One of the first things you should do after bootstrapping a new Webby is tighten its security. Many hacking attempts are successful because users choose weak passwords and leave common ports open and listening. 
 
-On this guide we'll walk you through on how to install and configure an easy-to-use firewall package called ufw (Ubuntu Firewall) that is available through <code>apt-get</code>.
+In this guide we'll walk you through how to install and configure an easy-to-use firewall package called ufw (Uncomplicated Firewall for Ubuntu) that is available through <code>apt-get</code>.
 
 h2. Requirements
 
-This guide was written with Ubuntu 8.10 but should work without changes for Ubuntu 8.04 and 9.04.
+This guide was written using Ubuntu 8.10 but should work without changes for Ubuntu 8.04 and 9.04.
 
 h2. Installation
 
@@ -27,13 +27,13 @@ $ apt-get update
 $ apt-get install ufw
 <% end -%>
 
-Note that if you're not logged with <code>root</code> user you'll need to use <code>sudo apt-get install ufw</code>.
+Note: If you're not logged in as the <code>root</code> user you'll need to use <code>sudo apt-get install ufw</code>.
 
 h2. Configuration
 
 Configuring <code>ufw</code> is almost as simple as installing it. It's a very intuitive tool.
 
-Ufw comes disabled by default, so the first thing you want to do is enabling it and answer <code>y</code> to the prompt:
+Ufw comes disabled by default, so the first thing you want to do is enable it and answer <code>y</code> to the prompt:
 
 <% coderay(:lang => "bash") do -%>
 $ ufw enable
@@ -84,11 +84,11 @@ In case you're in doubt about which port a service uses by default, you can chec
 
 h3. Fine grained security
 
-If you want to be even more secure, there's another tip to improve security.
+If you want to be even more secure, here's another tip to improve security.
 
-Let's say you're running a MySQL Database Server on your Webby and your app has grown and you want to have another  Webby to server Web requests. In order to allow that other Webby to connect to MySQL Server that is running locally, you could simply allow 3306 (MySQL default listening port), or you could only allow this other Webby to connect.
+Let's say you're running a MySQL Database Server on your Webby and your app has grown and you want to have another  Webby to server Web requests. In order to allow the other Webby to connect to the MySQL Server that is running locally, you could simply allow 3306 (MySQL default listening port), or you could only allow the other Webby to connect.
 
-The way you do this is very simple as well. Let's say <code>webby_mysql</code> is (obviously) where MySQL is and the new Webby goes by the name of <code>webby_appserver</code> and has an internal IP of <code>172.16.0.94</code>. All you have to do is find <code>webby_appserver</code>'s IP (preferably the internal one) and add it to the allowed list of IPs for port 3306.
+This is very simple as well. Let's say <code>webby_mysql</code> is (obviously) where MySQL is and the new Webby goes by the name of <code>webby_appserver</code> and has an internal IP of <code>172.16.0.94</code>. All you have to do is find <code>webby_appserver</code>'s IP (preferably the internal one) and add it to the allowed list of IPs for port 3306.
 
 Here's how we achieve it:
 
