@@ -110,7 +110,7 @@ $ webbynode init 208.88.125.207
 Initializing deployment descriptor for myapp...
 Creating .gitignore file...
 Initializing git repository...
-<% end %>
+<% end -%>
 
 And your app is now ready to be published.
 
@@ -222,18 +222,17 @@ nothing to commit (working directory clean)
 
 Another <code>webbynode push</code> should take care of your problem.
 
+<% coderay(:lang => "bash") do %>
+$ /etc/init.d/apache2 stop
+* Stopping web server apache2
+... waiting
+
+$ /etc/init.d/apache2 start
+* Starting web server apache2 
+<% end %>
+
 However, sometimes Apache can choke upon restarting. This problem is usually solved by logging into your Webby and manually restarting Apache:
 
-<% coderay(:lang => "bash") do -%>
-$ ssh root@208.88.125.207
-root@67.23.79.32's password: 
-...
-$ /etc/init.d/apache2 stop
- * Stopping web server apache2                                                                                                                     ... waiting                                                    [ OK ]
-$ /etc/init.d/apache2 start
- * Starting web server apache2                                 [ OK ]
-<% end -%>
- 
 If none of the above approaches solve your problem, log into your Webby, delete the app and start over (see next section for information about how to do it).
  
 h2. Deleting apps
