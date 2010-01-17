@@ -185,7 +185,9 @@ h2. <a name="troubleshooting"> </a>Troubleshooting
 
 *Resolution:* 
 
-Most of the times, you'll find out that you didn't commit your additions. In order to make sure, try issuing the <code>git status</code> command. If you have made no changes since your last commit, here's what you should see:
+Sometimes you may have forgotten to commit your changes and try a <code>webbynode push</code>. 
+
+In order to make sure, try issuing the <code>git status</code> command. If you have made no changes since your last commit, here's what you should see:
 
 <% coderay(:lang => "bash") do -%>
 $ git status
