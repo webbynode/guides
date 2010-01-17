@@ -215,12 +215,14 @@ $ git commit -m "Added this_new_file"
  1 files changed, 1 insertions(+), 0 deletions(-)
  create mode 100644 this_is_a_new_file.txt
  
-$ git st
+$ git status
 # On branch master
 nothing to commit (working directory clean)
 <% end -%>
 
 Another <code>webbynode push</code> should take care of your problem.
+
+However, sometimes Apache can choke upon restarting. This problem is usually solved by logging into your Webby and manually restarting Apache:
 
 <% coderay(:lang => "bash") do %>
 $ /etc/init.d/apache2 stop
@@ -230,8 +232,6 @@ $ /etc/init.d/apache2 stop
 $ /etc/init.d/apache2 start
 * Starting web server apache2 
 <% end %>
-
-However, sometimes Apache can choke upon restarting. This problem is usually solved by logging into your Webby and manually restarting Apache:
 
 If none of the above approaches solve your problem, log into your Webby, delete the app and start over (see next section for information about how to do it).
  
