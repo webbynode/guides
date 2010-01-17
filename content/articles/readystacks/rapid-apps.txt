@@ -25,21 +25,53 @@ In order to use the Rapid App Deployment, you have to redeploy your Webby with t
 
 Here's a step-by-step guide of the options you need to choose:
 
-h3. Choose the Rails ReadyStack
+h4. Choose the Rails ReadyStack
 
 <img src="images/rapidapp-step1.jpg">
 
-h3. Choose Apache2 and Passenger and MySQL or PostgreSQL
+h4. Choose Apache2 and Passenger and MySQL or PostgreSQL
 
 <img src="images/rapidapp-step2.jpg">
 
 * During this beta phase, the environment still doesn't work with Nginx.
 
-h3. Choose Rapid App Deployment option
+h4. Choose Rapid App Deployment option
 
 <img src="images/rapidapp-step3.jpg">
 
-h2. Bootstrap
+h2. Configuration
+
+There are a couple of configuration settings you can choose before deploying:
+
+<img src="images/rapidapp-step4.jpg">
+
+h4. App Base Path
+
+That's the directory where all your apps will be deployed. 
+
+Let's say you deploy 3 applications, called <code>blog</code>, <code>todo</code> and <code>shopping_list</code>. Here's how your Base Path folder structure will look like, assuming you kept the default value of <code>/var/rails</code>:
+
+<% coderay(:lang => "bash") do -%>
+var
+ `- rails
+     |- blog
+     |- todo
+     `- shopping_list
+<% end -%>
+
+h4. Password for deploy user
+
+This is the password you'll have to type when deploying.
+
+An user called <code>git</code> is always created when installing the Rapid App stack. This option let's you pick a password for this user.
+
+h4. Rack frameworks
+
+Pick what Rack Frameworks RubyGems you want to install.
+
+If you're planning on deploying some Sinatra, Ramaze, Rango or Merb apps, it may be a good idea to bootstrap your Webby with the corresponding gems. This way you avoid having to log into your Webby to install them. Choose as many as you want.
+
+h2. Bootstrapping
 
 To bootstrap your first application, first you need to install Webbynode's RubyGem:
 
@@ -58,7 +90,7 @@ Commands:
     webbynode init    Initializes the current app for deployment to a Webby
     webbynode push    Deploys the current committed code to a Webby
 
-Successfully installed webbynode-0.1.1
+Successfully installed webbynode-0.1.2
 1 gem installed
 <% end -%>
 
@@ -124,7 +156,7 @@ To git@208.88.125.207:myapp
 
 At this point you should be able to open your browser and visit http://myapp.webbyapp.com and get your Rails app default page.
 
-h3. Updating
+h2. Updating
 
 To update an already published app, you just have to follow the git workflow. After your changes have been saved, you'll have to commit them:
 
@@ -147,5 +179,75 @@ And that's it. The same process will happen again.
 
 This very same process can be done for Rack applications, as long as you have the necessary gems installed during the preparation of your Webby.
 
-What you're waiting for? Get on the deploy early bandwagon.
+h2. <a name="troubleshooting"> </a>Troubleshooting
+
+*Problem:* I have deployed my application just fine but when I make changes and do a <code>webbynode push</code> nothing changes on the website.
+
+*Resolution:* 
+
+Most of the times, you'll find out that you didn't commit your additions. In order to make sure, try issuing the <code>git status</code> command. If you have made no changes since your last commit, here's what you should see:
+
+<% coderay(:lang => "bash") do -%>
+$ git status
+# On branch master
+nothing to commit (working directory clean)
+<% end -%>
+
+However, if you find that you still have changes - and specially new files:
+
+<% coderay(:lang => "bash") do -%>
+$ git status
+# On branch master
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#       this_is_a_new_file.txt
+nothing added to commit but untracked files present (use "git add" to track)
+<% end -%>
+
+If that's your case, it's just a matter of adding the new file and committing the change. You'll see that after that you'll <code>get nothing to commit</code>:
+
+<% coderay(:lang => "bash") do -%>
+$ git add .  
+
+$ git commit -m "Added this_new_file"
+[master d30cb5b] Added this_new_file
+ 1 files changed, 1 insertions(+), 0 deletions(-)
+ create mode 100644 this_is_a_new_file.txt
+ 
+$ git st
+# On branch master
+nothing to commit (working directory clean)
+<% end -%>
+
+Another <code>webbynode push</code> should take care of your problem.
+
+However, sometimes Apache can choke upon restarting. This problem is usually solved by logging into your Webby and manually restarting Apache:
+
+<% coderay(:lang => "bash") do -%>
+$ ssh root@208.88.125.207
+root@67.23.79.32's password: 
+...
+$ /etc/init.d/apache2 stop
+ * Stopping web server apache2                                                                                                                     ... waiting                                                    [ OK ]
+$ /etc/init.d/apache2 start
+ * Starting web server apache2                                 [ OK ]
+<% end -%>
+ 
+If none of the above approaches solve your problem, log into your Webby, delete the app and start over (see next section for information about how to do it).
+ 
+h2. Deleting apps
+
+If by any chance you want to remove a running app, it's just a matter of logging into your Webby and using the <code>delete_app</code> script, as illustrated here:
+
+<% coderay(:lang => "bash") do -%>
+$ delete_app myapp
+This will delete your app myapp and restart Apache.
+Are you sure? (y/n) y
+Deleting app at /var/rails/myapp...
+Removing vHost for myapp (myapp.webbyapp.com)...
+Restarting Apache...
+<% end -%>
+
+And now, what you're waiting for? Get on the deploy early bandwagon.
 
