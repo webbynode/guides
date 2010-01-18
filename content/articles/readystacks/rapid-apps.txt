@@ -31,7 +31,7 @@ h4. Choose the Rails ReadyStack
 
 h4. Choose _WebServer and Proxy_ and _Database Server_
 
-Right now both _Apache2_ and _nginx_ with _Passenger_ is supported. Both databases - _MySQL_ and _PostgreSQL_ - are also supported.
+Right now both _Apache2_ and _nginx_ with _Passenger_ are supported. Both databases - _MySQL_ and _PostgreSQL_ - are also supported.
 
 <img src="images/rapidapp-step2.jpg">
 
