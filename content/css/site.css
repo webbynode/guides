@@ -193,3 +193,26 @@ p.title
   
   h4
     margin-bottom: 0.75em
+
+.master-separator 
+  width: 100%
+  clear: both
+  border-bottom: 2px dashed #cdcdcd
+  margin-bottom: 20px
+  margin-top: 20px
+
+
+.master-separator .separator-wrapper 
+  width: 90px
+  background-color: white
+  padding: 0px 0px
+  position: relative
+  top: 15px
+  left: 20px
+
+
+.master-separator .separator-label 
+  color: #cdcdcd
+  font-weight: bold
+  padding: 2px 10px
+  font-size: 14px

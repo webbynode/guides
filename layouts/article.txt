@@ -31,6 +31,11 @@ filter:
         .inner
           :preserve
             #{@content}
+
+          .master-separator
+            .separator-wrapper
+              .separator-label Comments
+
           #disqus_thread
           %script{ :src => "http://disqus.com/forums/webbynodeguides/embed.js", :type => "text/javascript" }
           %noscript
