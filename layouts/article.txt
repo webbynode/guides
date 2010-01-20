@@ -25,7 +25,8 @@ filter:
             %br/
             %input{ :name => "search" }
           %p.title
-            Webbynode Guides
+            %a{ :href => "/" }
+              Webbynode Guides
 
       #content.article
         .inner
