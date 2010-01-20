@@ -20,10 +20,17 @@ filter:
     #main
       #header
         .inner
-          %p.right
-            Search:
-            %br/
-            %input{ :name => "search" }
+          .right
+            %form#cse-search-box{ :action => "http://www.google.com/cse", :target => "_blank" }
+              Search:
+              %br/
+              %input{ :name => "cx", :type => "hidden", :value => "012923036574958016342:li5hnoda-l4" }
+              %input{ :name => "ie", :type => "hidden", :value => "UTF-8" }
+              %input{ :name => "q", :size => "28" }
+              %input{ :name => "sa", :type => "submit", :value => "Go" }
+
+              %input{ :name => "siteurl", :type => "hidden", :value => "www.gmodules.com/ig/ifr?url=http://www.google.com/cse/api/012923036574958016342/cse/li5hnoda-l4/gadget&amp;synd=open&amp;w=294&amp;h=41&amp;title=Webbynode+Guides&amp;border=%23ffffff%7C3px%2C1px+solid+%23999999&amp;source=http%3A%2F%2Fwww.gmodules.com%2Fig%2Fcreator%3Fhl%3Den%26url%3Dhttp%253A%252F%252Fwww.google.com%252Fcse%252Fapi%252F012923036574958016342%252Fcse%252Fli5hnoda-l4%252Fgadget" }
+
           %p.title
             Webbynode Guides
 

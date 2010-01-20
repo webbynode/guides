@@ -184,6 +184,11 @@ p.title
   color: <%= @page.color['toplinks'] %>
   padding-right: 10px
 
+.right
+  float: right
+  color: <%= @page.color['toplinks'] %>
+  padding-right: 10px
+
 #content
   margin-top: 20px
   
