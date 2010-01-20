@@ -42,6 +42,7 @@ filter:
               %li <a href="/articles/webbymanager/index.html">Webbymanager</a>
               %li <a href="/articles/readystacks/index.html">ReadyStacks</a>
               %li <a href="/articles/security/index.html">Security</a>
+              %li <a href="/articles/api/index.html">API</a>
 
             .box
               %p.title
