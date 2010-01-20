@@ -5,9 +5,56 @@ filter:      erb
 layout:
 ---
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+<url>
   <loc>http://guides.webbynode.com/</loc>
-  <lastmod><%= Time.now.strftime("%Y-%m-%d") %></lastmod>
-  <changefreq>monthly</changefreq>
-  <priority>0.8</priority>
+  <lastmod>2010-01-20T13:10:06+00:00</lastmod>
+  <changefreq>hourly</changefreq>
+</url>
+<url>
+  <loc>http://guides.webbynode.com/articles/readystacks/rapid-apps.html</loc>
+  <lastmod>2010-01-20T13:10:06+00:00</lastmod>
+  <changefreq>hourly</changefreq>
+</url>
+<url>
+  <loc>http://guides.webbynode.com/articles/quickstart/index.html</loc>
+  <lastmod>2010-01-20T13:10:06+00:00</lastmod>
+  <changefreq>hourly</changefreq>
+</url>
+<url>
+  <loc>http://guides.webbynode.com/articles/webbymanager/index.html</loc>
+  <lastmod>2010-01-20T13:10:06+00:00</lastmod>
+  <changefreq>hourly</changefreq>
+</url>
+<url>
+  <loc>http://guides.webbynode.com/articles/readystacks/index.html</loc>
+  <lastmod>2010-01-20T13:10:06+00:00</lastmod>
+  <changefreq>hourly</changefreq>
+</url>
+<url>
+  <loc>http://guides.webbynode.com/articles/security/index.html</loc>
+  <lastmod>2010-01-20T13:10:06+00:00</lastmod>
+  <changefreq>hourly</changefreq>
+</url>
+<url>
+  <loc>http://guides.webbynode.com/articles/security/ubuntu810-ufw.html</loc>
+  <lastmod>2010-01-20T13:10:06+00:00</lastmod>
+  <changefreq>hourly</changefreq>
+</url>
+<url>
+  <loc>http://guides.webbynode.com/articles/webbymanager/dns-setup.html</loc>
+  <lastmod>2010-01-20T13:10:06+00:00</lastmod>
+  <changefreq>hourly</changefreq>
+</url>
+<url>
+  <loc>http://guides.webbynode.com/articles/webbymanager/api.html</loc>
+  <lastmod>2010-01-20T13:10:06+00:00</lastmod>
+  <changefreq>hourly</changefreq>
+</url>
 </urlset>
