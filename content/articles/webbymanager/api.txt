@@ -8,7 +8,7 @@ filter:
 ---
 h1. <%= h(@page.title) %>
 
-This guide is based on version RC1 of Webbynode API. During this guide we will discuss three different areas that this version provides:
+This guide is based on version RC1 of the Webbynode API. During this guide we will discuss three different areas that this version provides:
 
 * basic Client information access;
 * Webby actions and status;
@@ -109,7 +109,7 @@ h2. My Webbies
 https://manager.webbynode.com/api/xml/webbies
 <% end -%>
 
-Data retuned for each Webby:
+Data returned for each Webby:
 
 * name
 * plan
@@ -190,7 +190,7 @@ curl -F "email=myemail@example.com" -F "token=mytokengoeshere"
 </hash>
 <% end -%>
 
-As you can see, it is now on. So let's now reboot it:
+As you can see, it is on. So let's reboot it now:
 
 <% coderay( :lang => "bash", :line_numbers => "inline" ) do -%>
 curl -F "email=myemail@example.com" -F "token=mytokengoeshere"
@@ -232,7 +232,7 @@ h2. List all DNS zones
 https://manager.webbynode.com/api/xml/dns
 <% end -%>
 
-Data retuned for each DNS zone:
+Data returned for each DNS zone:
 
 * id
 * domain
@@ -269,7 +269,7 @@ h2. Fetch information about a given zone (by passing its id)
 https://manager.webbynode.com/api/xml/dns/:id
 <% end -%>
 
-Data retuned:
+Data returned:
 
 * id
 * domain
@@ -360,7 +360,7 @@ Parameters (* = required)
 * zone[id]
 * zone[domain]*
 * zone[ttl]*
-* zone[status]=Active|Inactive
+* zone[status]=Active | Inactive
 
 Examples:
 
@@ -432,7 +432,7 @@ curl -F "email=myemail@example.com" -F "token=mytokengoeshere"
 </hash>
 <% end -%>
 
-And to update, we do the very same thing, passing parameters we want to change:
+And to update, we do the very same thing, passing the parameters we want to change:
 
 <% coderay( :lang => "bash", :line_numbers => "inline" ) do -%>
 curl -F "email=myemail@example.com" -F "token=mytokengoeshere"
