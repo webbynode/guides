@@ -8,7 +8,9 @@ filter:
 %h1= @page.title
 
 %p
-  Here's a meta-roadmap of things to do after you activate your first Webby:
+  Here's a 
+  %i meta-roadmap 
+  of things to do after you activate your first Webby:
 
 #articles
   %h2 Security
