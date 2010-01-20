@@ -14,3 +14,5 @@ filter:
   %ul
     %li
       %a{ :href => "dns-setup.html" } Setting up DNS for your domain
+    %li
+      %a{ :href => "api.html" } Webbynode API Guide RC2
