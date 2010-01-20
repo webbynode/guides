@@ -1,0 +1,570 @@
+---
+title:      Webbynode API Guide RC2
+created_at: 2010-01-14 00:36:35.278020 -02:00
+layout:     article
+filter:
+  - erb
+  - textile
+---
+h1. <%= h(@page.title) %>
+
+This guide is based on version RC1 of Webbynode API. During this guide we will discuss three different areas that this version provides:
+
+* basic Client information access;
+* Webby actions and status;
+* DNS Zones and Records maintenance.
+
+h2. API Access Guidelines
+
+Each API request should be done in the following format (curl is used here for illustration purposes, but any HTTPS compliant tool can be used):
+
+<% coderay( :lang => "bash", :line_numbers => "inline" ) do -%>
+curl -F "email=myemail@example.com" -F "token=mytokengoeshere"
+  https://manager.webbynode.com/api/[format]/[module][[/opt1]..[/optN]]
+<% end -%>
+
+The accepted formats are xml, yaml and json.
+
+h2. Client Information Access
+
+This is a very straightforward way to get information about the client account:
+
+<% coderay( :lang => "bash", :line_numbers => "inline" ) do -%>
+curl -F "email=myemail@example.com" -F "token=mytokengoeshere"
+  https://manager.webbynode.com/api/xml/client
+<% end -%>
+
+Would return something similar to:
+
+<% coderay( :lang => "bash", :line_numbers => "inline" ) do -%>
+<?xml version="1.0" encoding="UTF-8"?>
+<hash>
+  <client>
+    <status>Active</status>
+    <city>My City</city>
+    <address1>145 Wow Street</address1>
+    <companyname>Webbynode</companyname>
+    <postcode>9090010</postcode>
+    <credit type="decimal">10.0</credit>
+    <country>US</country>
+    <phonenumber>555-1902</phonenumber>
+    <lastname>Coury</lastname>
+    <firstname>Felipe</firstname>
+    <datecreated type="date">2008-11-16</datecreated>
+    <state>SP</state>
+    <email>felipe@webbynode.com</email>
+  </client>
+</hash>
+<% end -%>
+
+Of course you can use JSON or YAML, with similar results:
+
+<% coderay( :lang => "bash", :line_numbers => "inline" ) do -%>
+curl -F "email=myemail@example.com" -F "token=mytokengoeshere"
+  https://manager.webbynode.com/api/xml/client | jsonpretty
+
+{
+  "client": {
+    "address1": "145 Wow Street",
+    "city": "My City",
+    "status": "Active",
+    "companyname": "Webbynode",
+    "postcode": "9090010",
+    "credit": 10.0,
+    "country": "US",
+    "firstname": "Felipe",
+    "lastname": "Coury",
+    "phonenumber": "555-1902",
+    "datecreated": "2008-11-16",
+    "email": "fcoury@me.com",
+    "state": "SP"
+  }
+}
+
+curl -F "email=myemail@example.com" -F "token=mytokengoeshere"
+  https://manager.webbynode.com/api/yaml/client
+
+ ---
+  client:
+    status: Active
+    city: My City
+    address1: 145 Wow Street
+    companyname: Webbynode
+    postcode: "9090010"
+    credit: 10.0
+    country: US
+    phonenumber: 555-1902
+    lastname: Coury
+    firstname: Felipe
+    datecreated: 2008-11-16
+    state: SP
+    email: fcoury@me.com
+<% end -%>
+
+h1. Webbies Management
+
+h2. My Webbies
+
+<% coderay( :lang => "bash", :line_numbers => "inline" ) do -%>
+https://manager.webbynode.com/api/xml/webbies
+<% end -%>
+
+Data retuned for each Webby:
+
+* name
+* plan
+* ip
+* node
+* notes
+* status
+
+You can get a list of all Webbies under your account (or get the "My Webbies" list). As an example, you can do:
+
+<% coderay( :lang => "bash", :line_numbers => "inline" ) do -%>
+curl -F "email=myemail@example.com" -F "token=mytokengoeshere"
+  https://manager.webbynode.com/api/xml/webbies
+<% end -%>
+
+And get a list of your Webbies in the following format:
+
+<% coderay( :lang => "bash", :line_numbers => "inline" ) do -%>
+<?xml version="1.0" encoding="UTF-8"?>
+<hash>
+  <webbies type="array">
+    <webby>
+      <ip>208.0.0.30</ip>
+      <status>Redeploying</status>
+      <name>sandbox</name>
+      <notes>my sandbox</notes>
+      <plan>Webby_256</plan>
+      <node>miami-a02</node>
+    </webby>
+    <webby>
+      <ip>208.64.71.27</ip>
+      <status>on</status>
+      <name>hasmany.info</name>
+      <notes nil="true"></notes>
+      <plan>Webby_384</plan>
+      <node>miami-a04</node>
+    </webby>
+  </webbies>
+</hash>
+<% end -%>
+
+h2. Executing Webby actions
+
+<% coderay( :lang => "bash", :line_numbers => "inline" ) do -%>
+https://manager.webbynode.com/api/xml/webby/:hostname/:action
+<% end -%>
+
+In a similar way, you can also execute actions on your Webbies using the API. The current actions are	start, shutdown and	reboot. Aside from those, you can also ask for Webby status. Let's play with a Webby as an example:
+
+<% coderay( :lang => "bash", :line_numbers => "inline" ) do -%>
+curl -F "email=myemail@example.com" -F "token=mytokengoeshere"
+  https://manager.webbynode.com/api/xml/webby/webby555/status
+<?xml version="1.0" encoding="UTF-8"?>
+<hash>
+  <status>off</status>
+</hash>
+<% end -%>
+
+As you can see, the webby is off. Let's start it:
+
+<% coderay( :lang => "bash", :line_numbers => "inline" ) do -%>
+curl -F "email=myemail@example.com" -F "token=mytokengoeshere"
+  https://manager.webbynode.com/api/xml/webby/webby555/start
+<?xml version="1.0" encoding="UTF-8"?>
+<hash>
+  <job-id type="integer">1044</job-id>
+</hash>
+<% end -%>
+
+The job-id indicates that the starting job was scheduled to run. In future releases of the API we'll be able to poll a given Job Id for status. In this version, you have to take a look at the status of the Webby again:
+
+<% coderay( :lang => "bash", :line_numbers => "inline" ) do -%>
+curl -F "email=myemail@example.com" -F "token=mytokengoeshere"
+  https://manager.webbynode.com/api/xml/webby/webby555/status
+<?xml version="1.0" encoding="UTF-8"?>
+<hash>
+  <status>on</status>
+</hash>
+<% end -%>
+
+As you can see, it is now on. So let's now reboot it:
+
+<% coderay( :lang => "bash", :line_numbers => "inline" ) do -%>
+curl -F "email=myemail@example.com" -F "token=mytokengoeshere"
+  https://manager.webbynode.com/api/xml/webby/webby555/reboot
+<hash>
+  <job-id type="integer">1045</job-id>
+</hash>
+<% end -%>
+
+If we quickly run a status, right after submitting the reboot command, we'll have something like this:
+
+<% coderay( :lang => "bash", :line_numbers => "inline" ) do -%>
+curl -F "email=myemail@example.com" -F "token=mytokengoeshere"
+  https://manager.webbynode.com/api/xml/webby/webby555/status
+<?xml version="1.0" encoding="UTF-8"?>
+<hash>
+  <status>Rebooting</status>
+</hash>
+<% end -%>
+
+Eventually, when rebooting completes we'll be back to "on" status. So, to wrap this up, let's shut it down:
+
+<% coderay( :lang => "bash", :line_numbers => "inline" ) do -%>
+curl -F "email=myemail@example.com" -F "token=mytokengoeshere"
+  https://manager.webbynode.com/api/xml/webby/webby555/shutdown
+<?xml version="1.0" encoding="UTF-8"?>
+<hash>
+  <job-id type="integer">1046</job-id>
+</hash>
+<% end -%>
+
+h2. DNS management
+
+The final feature of this first version of the API is DNS management. You can add, update and remove DNS Zones and Records using this API area. Here is a summary of the commands:
+
+h2. List all DNS zones
+
+<% coderay( :lang => "bash", :line_numbers => "inline" ) do -%>
+https://manager.webbynode.com/api/xml/dns
+<% end -%>
+
+Data retuned for each DNS zone:
+
+* id
+* domain
+* status
+* ttl
+
+Example:
+
+<% coderay( :lang => "bash", :line_numbers => "inline" ) do -%>
+curl -F "email=myemail@example.com" -F "token=mytokengoeshere"
+  https://manager.webbynode.com/api/xml/dns
+<?xml version="1.0" encoding="UTF-8"?>
+<hash>
+  <zones type="array">
+    <zone>
+      <domain>agreatdomain.com.</domain>
+      <status>Active</status>
+      <id type="integer">14</id>
+      <ttl type="integer">86400</ttl>
+    </zone>
+    <zone>
+      <domain>awesomedomain.net.</domain>
+      <status>Active</status>
+      <id type="integer">48</id>
+      <ttl type="integer">86400</ttl>
+    </zone>
+  </zones>
+</hash>
+<% end -%>
+
+h2. Fetch information about a given zone (by passing its id)
+
+<% coderay( :lang => "bash", :line_numbers => "inline" ) do -%>
+https://manager.webbynode.com/api/xml/dns/:id
+<% end -%>
+
+Data retuned:
+
+* id
+* domain
+* status
+* ttl
+
+Example:
+
+<% coderay( :lang => "bash", :line_numbers => "inline" ) do -%>
+curl -F "email=myemail@example.com" -F "token=mytokengoeshere"
+  https://manager.webbynode.com/api/xml/dns/14
+<?xml version="1.0" encoding="UTF-8"?>
+<hash>
+  <zone>
+    <domain>agreatdomain.com.</domain>
+    <status>Active</status>
+    <id type="integer">14</id>
+    <ttl type="integer">86400</ttl>
+  </zone>
+</hash>
+<% end -%>
+
+h2. Fetch records for a given DNS zone (using zone id)
+
+<% coderay( :lang => "bash", :line_numbers => "inline" ) do -%>
+https://manager.webbynode.com/api/xml/dns/:id/records
+<% end -%>
+
+Data returned:
+
+* id
+* type
+* name
+* data
+* aux
+* ttl
+
+Example:
+
+<% coderay( :lang => "bash", :line_numbers => "inline" ) do -%>
+curl -F "email=myemail@example.com" -F "token=mytokengoeshere"
+  https://manager.webbynode.com/api/xml/dns/14/records
+<?xml version="1.0" encoding="UTF-8"?>
+<hash>
+  <records type="array">
+    <record>
+      <type>A</type>
+      <aux type="integer">0</aux>
+      <name></name>
+      <data>200.100.200.100</data>
+      <id type="integer">51</id>
+      <ttl type="integer">86400</ttl>
+    </record>
+    <record>
+      <type>A</type>
+      <aux type="integer">0</aux>
+      <name>*</name>
+      <data>200.100.200.100</data>
+      <id type="integer">26</id>
+      <ttl type="integer">86400</ttl>
+    </record>
+  </records>
+</hash>
+<% end -%>
+
+h2. DNS Zone management
+
+Adding new zones:
+
+<% coderay( :lang => "bash", :line_numbers => "inline" ) do -%>
+https://manager.webbynode.com/api/xml/dns/new
+<% end -%>
+
+Get or update information about a given zone:
+
+<% coderay( :lang => "bash", :line_numbers => "inline" ) do -%>
+https://manager.webbynode.com/api/xml/dns/:id
+<% end -%>
+
+Delete records:
+
+<% coderay( :lang => "bash", :line_numbers => "inline" ) do -%>
+https://manager.webbynode.com/api/xml/dns/:id/delete
+<% end -%>
+
+Parameters (* = required)
+
+* zone[id]
+* zone[domain]*
+* zone[ttl]*
+* zone[status]=Active|Inactive
+
+Examples:
+
+<% coderay( :lang => "bash", :line_numbers => "inline" ) do -%>
+curl -F "email=myemail@example.com" -F "token=mytokengoeshere"
+  https://manager.webbynode.com/api/xml/dns/new
+  -F "zone[domain]=sweetnewdomain.com" -F "zone[ttl]=86400"
+<?xml version="1.0" encoding="UTF-8"?>
+<hash>
+  <domain>sweetnewdomain.com.</domain>
+  <status>Active</status>
+  <id type="integer">50</id>
+  <ttl type="integer">86400</ttl>
+</hash>
+<% end -%>
+
+Please note that we add the trailing "." to a domain to make it comply with how DNS works. But you can add it yourself:
+
+<% coderay( :lang => "bash", :line_numbers => "inline" ) do -%>
+curl -F "email=myemail@example.com" -F "token=mytokengoeshere"
+  https://manager.webbynode.com/api/xml/dns/new
+  -F "zone[domain]=thisalreadyendswithadot.com." -F "zone[ttl]=86400"
+<?xml version="1.0" encoding="UTF-8"?>
+<hash>
+  <domain>thisalreadyendswithadot.com.</domain>
+  <status>Active</status>
+  <id type="integer">51</id>
+  <ttl type="integer">86400</ttl>
+</hash>
+<% end -%>
+
+We also do content validation:
+
+<% coderay( :lang => "bash", :line_numbers => "inline" ) do -%>
+curl -F "email=myemail@example.com" -F "token=mytokengoeshere"
+  https://manager.webbynode.com/api/xml/dns/new
+  -F "zone[domain]=invaliddomain.com." -F "zone[ttl]=invalid-value"
+<?xml version="1.0" encoding="UTF-8"?>
+<hash>
+  <errors>ttl is not a number</errors>
+</hash>
+<% end -%>
+
+And check if all the mandatory parameters are present:
+
+<% coderay( :lang => "bash", :line_numbers => "inline" ) do -%>
+curl -F "email=myemail@example.com" -F "token=mytokengoeshere"
+  https://manager.webbynode.com/api/xml/dns/new
+  -F "zone[ttl]=86400"
+<?xml version="1.0" encoding="UTF-8"?>
+<hash>
+  <errors>domain can't be blank</errors>
+</hash>
+<% end -%>
+
+For fetching information about a given zone, we do:
+
+<% coderay( :lang => "bash", :line_numbers => "inline" ) do -%>
+curl -F "email=myemail@example.com" -F "token=mytokengoeshere"
+  https://manager.webbynode.com/api/xml/dns/51
+<?xml version="1.0" encoding="UTF-8"?>
+<hash>
+  <zone>
+    <domain>thisalreadyendswithadot.com.</domain>
+    <status>Active</status>
+    <id type="integer">51</id>
+    <ttl type="integer">86400</ttl>
+  </zone>
+</hash>
+<% end -%>
+
+And to update, we do the very same thing, passing parameters we want to change:
+
+<% coderay( :lang => "bash", :line_numbers => "inline" ) do -%>
+curl -F "email=myemail@example.com" -F "token=mytokengoeshere"
+  https://manager.webbynode.com/api/xml/dns/51
+  -F "zone[status]=Inactive"
+<?xml version="1.0" encoding="UTF-8"?>
+<hash>
+  <domain>thisalreadyendswithadot.com.</domain>
+  <status>Inactive</status>
+  <id type="integer">51</id>
+  <ttl type="integer">86400</ttl>
+</hash>
+<% end -%>
+
+And finally, to delete a zone:
+
+<% coderay( :lang => "bash", :line_numbers => "inline" ) do -%>
+curl -F "email=myemail@example.com" -F "token=mytokengoeshere"
+  https://manager.webbynode.com/api/xml/dns/51/delete
+<?xml version="1.0" encoding="UTF-8"?>
+<hash>
+  <success type="boolean">true</success>
+</hash>
+<% end -%>
+
+h2. DNS Record management
+
+Adding new records:
+
+<% coderay( :lang => "bash", :line_numbers => "inline" ) do -%>
+https://manager.webbynode.com/api/xml/dns/:id/records/new
+<% end -%>
+
+Get or update information about one record:
+
+<% coderay( :lang => "bash", :line_numbers => "inline" ) do -%>
+https://manager.webbynode.com/api/xml/records/:id
+<% end -%>
+
+Delete records:
+
+<% coderay( :lang => "bash", :line_numbers => "inline" ) do -%>
+https://manager.webbynode.com/api/xml/records/:id/delete
+<% end -%>
+
+Parameters (* = required)
+
+* record[id]
+* record[type]*
+* record[name]
+* record[data]*
+* record[aux]
+* record[ttl]
+
+Examples:
+
+In the beginning, we don't have any records:
+
+<% coderay( :lang => "bash", :line_numbers => "inline" ) do -%>
+curl -F "email=myemail@example.com" -F "token=mytokengoeshere"
+  https://manager.webbynode.com/api/xml/dns/50/records
+<?xml version="1.0" encoding="UTF-8"?>
+<hash>
+  <records type="array"/>
+</hash>
+<% end -%>
+
+So let's add one:
+
+<% coderay( :lang => "bash", :line_numbers => "inline" ) do -%>
+curl -F "email=myemail@example.com" -F "token=mytokengoeshere"
+  https://manager.webbynode.com/api/xml/dns/50/records/new
+  -F "record[type]=A" -F "record[data]=200.100.200.100"
+<?xml version="1.0" encoding="UTF-8"?>
+<hash>
+<record>
+  <type>A</type>
+  <aux type="integer">0</aux>
+  <name></name>
+  <data>200.100.200.100</data>
+  <id type="integer">116</id>
+  <ttl type="integer">86400</ttl>
+</record>
+</hash>
+<% end -%>
+
+And then let's fetch information about this record we just added:
+
+<% coderay( :lang => "bash", :line_numbers => "inline" ) do -%>
+curl -F "email=myemail@example.com" -F "token=mytokengoeshere"
+  https://manager.webbynode.com/api/xml/records/116
+<?xml version="1.0" encoding="UTF-8"?>
+<hash>
+  <record>
+    <type>A</type>
+    <aux type="integer">0</aux>
+    <name></name>
+    <data>200.100.200.100</data>
+    <id type="integer">116</id>
+    <ttl type="integer">86400</ttl>
+  </record>
+</hash>
+<% end -%>
+
+Please note that we don't need to use the	/dns/:id part, because once you have the record id, it doesn't matter to which DNS zone it belongs.
+
+Also, the same URL used for fetching information about a given record can receive parameters to update the record, like this:
+
+<% coderay( :lang => "bash", :line_numbers => "inline" ) do -%>
+curl -F "email=myemail@example.com" -F "token=mytokengoeshere"
+  https://manager.webbynode.com/api/xml/records/116
+  -F "record[data]=100.200.0.110"
+<?xml version="1.0" encoding="UTF-8"?>
+<hash>
+  <record>
+    <type>A</type>
+    <aux type="integer">0</aux>
+    <name></name>
+    <data>100.200.0.110</data>
+    <id type="integer">116</id>
+    <ttl type="integer">86400</ttl>
+  </record>
+</hash>
+<% end -%>
+
+Finally, you can delete a record by using:
+
+<% coderay( :lang => "bash", :line_numbers => "inline" ) do -%>
+curl -F "email=myemail@example.com" -F "token=mytokengoeshere"
+  https://manager.webbynode.com/api/xml/records/116/delete
+<?xml version="1.0" encoding="UTF-8"?>
+<hash>
+  <success type="boolean">true</success>
+</hash>
+<% end -%>
