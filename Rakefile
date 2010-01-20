@@ -1,4 +1,4 @@
 desc 'Publishes the output'
 task :publish do
-  exec "webby build && cd output && git add . && git commit -m \"Latest changes\" && git push"
+  exec "log=`git log --format=\"%s\" | head -1` && webby build && cd output && git add . && git commit -m \"$log\" && git push"
 end
