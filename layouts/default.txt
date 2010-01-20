@@ -7,6 +7,7 @@ filter:
 %html{ "xml:lang" => "en", :lang => "en-us", :xmlns => "http://www.w3.org/1999/xhtml" }
   %head
     %meta{ :content => "text/html; charset=utf-8", "http-equiv" => "content-type" }
+    %meta{ :name => "google-site-verification", :content => "Z_wF3a4y6_g8W7oFyGyuXoS8q4dTgshb0bDplfKsevc" }
     %title
       = @page.title
     %meta{ :name => "author", :content => "<%= @page.author %>" }
