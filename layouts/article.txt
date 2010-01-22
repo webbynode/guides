@@ -21,7 +21,7 @@ filter:
       #header
         .inner
           .right
-            %form#cse-search-box{ :action => "http://www.google.com/cse", :target => "_blank" }
+            %form#cse-search-box{ :action => "http://www.google.com/cse" }
               Search:
               %br/
               %input{ :name => "cx", :type => "hidden", :value => "012923036574958016342:li5hnoda-l4" }
