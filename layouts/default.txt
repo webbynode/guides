@@ -69,7 +69,7 @@ filter:
                 We'll be giving out great prizes!
 
               %p.last
-                <a href="/contribute/index.html">Read more...</a>
+                <a href="http://forum.webbynode.com/topic.php?id=92&replies=1#post-313">Share what you have in mind...</a>
 
     #footer
       .inner

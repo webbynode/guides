@@ -98,7 +98,7 @@ Once it's done, you have to initialize your app. The first piece of information 
 
 <img src="images/mywebbies-ip.jpg">
 
-Now that you know the IP, you need to know weather you want this application's virtual host to respond to an already registered and configured domain or if you want to get a *.webbyapp.com subdomain (if you are in doubt, go with the second option). If you don't have a domain, leave the second parameter blank below.
+Now that you know the IP, you need to know whether you want this application's virtual host to respond to an already registered and configured domain or if you want to get a *.webbyapp.com subdomain (if you are in doubt, go with the second option). If you don't have a domain, leave the second parameter blank below.
 
 Let's say you have created a Rails app called <code>myapp</code>. If you don't specify the domain name during initialization, your app will respond to http://myapp.webbyapp.com.
 
