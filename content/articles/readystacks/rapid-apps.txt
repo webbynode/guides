@@ -183,6 +183,123 @@ And that's it. The same process will happen again.
 
 This very same process can be done for Rack applications, as long as you have the necessary gems installed during the preparation of your Webby.
 
+h2. <a name="workflow"> </a>Workflow
+
+Please note that using the Webbynode gem does not replace the need for keeping your source under a control versioning system. 
+
+h4. Source Control Workflow
+
+You need to keep the same workflow for your source control. If you are using <code>git</code> for instance, continue applying the usual workflow:
+
+<% coderay(:lang => "bash") do -%>
+... changes ...
+$ git add .
+$ git commit -m "Summary of changes"
+... repeat commit cycles as needed ...
+$ git merge
+... etc ...
+$ git push
+... repeat ...
+<% end -%>
+
+When your application is tested and ready to be updated in your Webby, use the Deployment Workflow below
+
+h4. Deployment Workflow
+
+After you finish your regular Source Code Workflow, perform all the merges (if applicable), you can now push your changes to Webbynode and publish them.
+
+Taking into consideration the workflow above, all you have to do, in addition to the latest <code>git push</code> is:
+
+<% coderay(:lang => "bash") do -%>
+# last git push
+$ git push
+
+# now we'll deploy
+$ webbynode push
+Publishing myapp to Webbynode...
+mkdir: created directory `myapp'
+Counting objects: 86, done.
+Delta compression using up to 2 threads.
+Compressing objects: 100% (72/72), done.
+Writing objects: 100% (86/86), 82.72 KiB, done.
+Total 86 (delta 11), reused 0 (delta 0)
+Checked out master branch
+
+----------------------------
+  Webbynode git deployment 
+----------------------------
+(...)
+<% end -%>
+
+After deploying, you should start a new Source Control Workflow, until time comes to publish again.
+
+h4. Distributed Teams
+
+A common advice for distributed teams is to have the role of a Deployment Manager. This team member is usually responsible for merging all the changes from other developers, testing them and finally deploying them.
+
+Assuming this is something you want to do and also assuming you're using <code>git</code> here is an example of a possible workflow:
+
+*Developer 1*
+
+<% coderay(:lang => "bash") do -%>
+# creates a feature branch
+$ git checkout -b feature_1
+
+# adds and commits the changes
+$ git add .
+$ git commit -m "Implemented Feature 1"
+
+# perform and tests all the changes
+$ git checkout master
+
+# merges feature
+$ git merge --no-ff feature_1
+
+# pushes to source control server
+$ git push
+<% end -%>
+
+*Developer 2*
+
+<% coderay(:lang => "bash") do -%>
+# creates a feature branch
+$ git checkout -b feature_2
+
+# adds and commits the changes
+$ git add .
+$ git commit -m "Implemented Feature 2"
+
+# perform and tests all the changes
+$ git checkout master
+
+# merges feature
+$ git merge --no-ff feature_2
+
+# pushes to source control server
+$ git push
+<% end -%>
+
+*Deployer (or Configuration Manager)*
+
+<% coderay(:lang => "bash") do -%>
+# checks out the branch to deploy
+$ git checkout release
+
+# merges feature_1
+$ git merge --no-ff feature_1
+
+# tests...
+
+# merges feature_x
+$ git merge --no-ff feature_x
+
+# optional: tag the release
+$ git tag release_abcdef_102
+
+# deploys to Webbynode
+$ webbynode push
+<% end -%>
+
 h2. <a name="troubleshooting"> </a>Troubleshooting
 
 *Problem:* I have deployed my application just fine but when I make changes and do a <code>webbynode push</code> nothing changes on the website.
