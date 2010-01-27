@@ -202,7 +202,7 @@ $ git push
 ... repeat ...
 <% end -%>
 
-When your application is tested and ready to be updated in your Webby, use the Deployment Workflow below
+When your application is tested and ready to be updated on your Webby, use the Deployment Workflow below
 
 h4. Deployment Workflow
 
@@ -231,13 +231,13 @@ Checked out master branch
 (...)
 <% end -%>
 
-After deploying, you should start a new Source Control Workflow, until time comes to publish again.
+After deploying, you should start a new Source Control Workflow, until it comes time to publish again.
 
 h4. Distributed Teams
 
-A common advice for distributed teams is to have the role of a Deployment Manager. This team member is usually responsible for merging all the changes from other developers, testing them and finally deploying them.
+Some advice for distributed teams is to have the role of a Deployment Manager. This team member is usually responsible for merging all the changes from other developers, testing them and finally deploying them.
 
-Assuming this is something you want to do and also assuming you're using <code>git</code> here is an example of a possible workflow:
+Assuming this is something you want to do and also assuming you're using <code>git</code> here is one example of a possible workflow:
 
 *Developer 1*
 
