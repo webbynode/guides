@@ -185,7 +185,7 @@ This very same process can be done for Rack applications, as long as you have th
 
 h2. <a name="workflow"> </a>Workflow
 
-Please note that using the Webbynode gem does not replace the need for keeping your source under a control versioning system. 
+Please note that using the Webbynode gem does not replace the need for keeping your source under a version control system. 
 
 h4. Source Control Workflow
 
