@@ -206,7 +206,7 @@ When your application is tested and ready to be updated in your Webby, use the D
 
 h4. Deployment Workflow
 
-After you finish your regular Source Code Workflow, perform all the merges (if applicable), you can now push your changes to Webbynode and publish them.
+After you finish your regular Source Control Workflow, perform all the merges (if applicable), you can now push your changes to Webbynode and publish them.
 
 Taking into consideration the workflow above, all you have to do, in addition to the latest <code>git push</code> is:
 
