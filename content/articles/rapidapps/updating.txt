@@ -1,0 +1,239 @@
+---
+title:      Rapid Application Deployment Engine
+created_at: 2010-01-14 00:36:35.278020 -02:00
+layout:     rapid
+filter:
+  - erb
+  - textile
+---
+h1. <%= h(@page.title) %>
+
+h2. Updating
+
+To update an already published app, you just have to follow the git workflow you're probably already used to. 
+
+After your changes have been saved, you'll have to commit them:
+
+<% coderay(:lang => "bash") do -%>
+$ git add .
+$ git commit -m "My lovely changeset"
+<% end -%>
+
+And then, again:
+
+<% coderay(:lang => "bash") do -%>
+$ webbynode push
+Publishing myapp to Webbynode...
+mkdir: created directory `myapp'
+Counting objects: 86, done.
+...
+<% end -%>
+
+And that's it. The same process will happen again.
+
+However, we have a safety system in place. Let's say you made a lot of changes but forgot to commit them using <code>git</code>. The Webbynode gem will give you a nice warning:
+
+<% coderay(:lang => "bash") do -%>
+$ wn push
+Cannot push because you have pending changes. Do a git commit or add changes 
+to .gitignore.
+<% end -%>
+
+At this point you should choose what to do. Run the <code>git status</code> to check what changes are pending:
+
+<% coderay(:lang => "bash") do -%>
+$ git status
+# On branch master
+# Changed but not updated:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#       modified:   README
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#       temp/
+no changes added to commit (use "git add" and/or "git commit -a")
+<% end -%>
+
+In this case, we have two changes it seems. I want to commit the <code>README</code> but not the <code>temp/</code> folder. So I just add the folder to the .gitignore file:
+
+<% coderay(:lang => "bash") do -%>
+$ echo "\ntemp/" >> .gitignore
+$ git status
+# On branch master
+# Changed but not updated:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#       modified:   .gitignore
+#       modified:   README
+#
+no changes added to commit (use "git add" and/or "git commit -a")
+<% end -%>
+
+And now it looks good. So do a <code>git commit</code> and we're ready to push again:
+
+<% coderay(:lang => "bash") do -%>
+$ git commit -am "Fixed README and added temp to .gitignore" 
+[master 7d63ae9] Fixed README and added temp to .gitignore
+ 2 files changed, 4 insertions(+), 1 deletions(-)
+ 
+$ wn push
+[imac] fcoury:~/Projects/sampleapp [git:master] → wn push
+[Webbynode] Pushing sampleapp
+
+(...)
+
+----------------------------
+  Webbynode git deployment 
+----------------------------
+
+Nginx+Passenger webserver detected...
+Setting up DNS...
+
+Deploying application sampleapp as sampleapp.webbyapp.com...
+
+(...)
+
+sampleapp deployed successfully.
+
+Created http://sampleapp.webbyapp.com/
+
+To git@67.23.79.32:sampleapp
+   eeaa391..7d63ae9  master -> master
+
+[Webbynode] Finished pushing sampleapp
+<% end -%>
+
+This enforcement of a clean git repo before publishing can be overridden by the <code>--dirty</code> clause, like seen on <code>push</code>'s command help:
+
+<% coderay(:lang => "bash") do -%>
+$ wn push --help
+Sends pending changes on the current application to your Webby
+Usage: webbynode push [options]
+Options:
+    --dirty             Allows pushing even if the current application has git 
+                        changes pending
+<% end %>
+    
+
+This very same process can be done for Rack applications, as long as you have the necessary gems installed during the preparation of your Webby.
+
+h2. <a name="workflow"> </a>Workflow
+
+Please note that using the Webbynode gem does not replace the need for keeping your source under a version control system. 
+
+h4. Source Control Workflow
+
+You need to keep the same workflow for your source control. If you are using <code>git</code> for instance, continue applying the usual workflow:
+
+<% coderay(:lang => "bash") do -%>
+... changes ...
+$ git add .
+$ git commit -m "Summary of changes"
+... repeat commit cycles as needed ...
+$ git merge
+... etc ...
+$ git push
+... repeat ...
+<% end -%>
+
+When your application is tested and ready to be updated on your Webby, use the Deployment Workflow below
+
+h4. Deployment Workflow
+
+After you finish your regular Source Control Workflow, perform all the merges (if applicable), you can now push your changes to Webbynode and publish them.
+
+Taking into consideration the workflow above, all you have to do, in addition to the latest <code>git push</code> is:
+
+<% coderay(:lang => "bash") do -%>
+# last git push
+$ git push
+
+# now we'll deploy
+$ wn push
+Publishing myapp to Webbynode...
+mkdir: created directory `myapp'
+Counting objects: 86, done.
+Delta compression using up to 2 threads.
+Compressing objects: 100% (72/72), done.
+Writing objects: 100% (86/86), 82.72 KiB, done.
+Total 86 (delta 11), reused 0 (delta 0)
+Checked out master branch
+
+----------------------------
+  Webbynode git deployment 
+----------------------------
+(...)
+<% end -%>
+
+After deploying, you should start a new Source Control Workflow, until it comes time to publish again.
+
+h4. Distributed Teams
+
+Some advice for distributed teams is to have the role of a Deployment Manager. This team member is usually responsible for merging all the changes from other developers, testing them and finally deploying them.
+
+Assuming this is something you want to do and also assuming you're using <code>git</code> here is one example of a possible workflow:
+
+*Developer 1*
+
+<% coderay(:lang => "bash") do -%>
+# creates a feature branch
+$ git checkout -b feature_1
+
+# adds and commits the changes
+$ git add .
+$ git commit -m "Implemented Feature 1"
+
+# perform and tests all the changes
+$ git checkout master
+
+# merges feature
+$ git merge --no-ff feature_1
+
+# pushes to source control server
+$ git push
+<% end -%>
+
+*Developer 2*
+
+<% coderay(:lang => "bash") do -%>
+# creates a feature branch
+$ git checkout -b feature_2
+
+# adds and commits the changes
+$ git add .
+$ git commit -m "Implemented Feature 2"
+
+# perform and tests all the changes
+$ git checkout master
+
+# merges feature
+$ git merge --no-ff feature_2
+
+# pushes to source control server
+$ git push
+<% end -%>
+
+*Deployer (or Configuration Manager)*
+
+<% coderay(:lang => "bash") do -%>
+# checks out the branch to deploy
+$ git checkout release
+
+# merges feature_1
+$ git merge --no-ff feature_1
+
+# tests...
+
+# merges feature_x
+$ git merge --no-ff feature_x
+
+# optional: tag the release
+$ git tag release_abcdef_102
+
+# deploys to Webbynode
+$ webbynode push
+<% end -%>

@@ -1,0 +1,100 @@
+---
+title:      Rapid Application Deployment Engine
+created_at: 2010-01-14 00:36:35.278020 -02:00
+layout:     rapid
+filter:
+  - erb
+  - textile
+---
+h1. <%= h(@page.title) %>
+
+h2. Bootstrapping
+
+Before deploying your application, you need to specify a couple of configuration options. The first and most important is
+where you'll want to install it.
+
+In order to do that, you'll need to install the Webbynode's RubyGem, by executing the following command:
+
+<% coderay(:lang => "bash") do -%>
+$ sudo gem install webbynode
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+      Webbynode Rapid Deployment Gem
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+This deployment engine is highly experimental and
+should be considered beta code for now.
+
+For a quickstart:
+http://guides.webbynode.com/articles/readystacks/rapid-apps.html
+
+Successfully installed webbynode-0.2.0
+1 gem installed
+<% end -%>
+
+Once it's done, you have to initialize your app by running the <code>init</code> command and indicating to which Webby you want to deploy your app. 
+
+In case you don't remember your Webbies by name or IP, you can use the <code>webbies</code> command to get a list:
+
+<% coderay(:lang => "bash") do -%>
+$ wn webbies
+Fetching list of your Webbies...
+
+  Webbies         IP              Node      Plan            Status         
+  webby3067       61.21.71.31     miami-b02 Webbybeta       on
+  sandbox         201.81.121.201  miami-b15 Webbybeta       on
+
+<% end -%>
+
+For this example, let's say I want to install to <code>sandbox</code>. 
+
+Now that we know where to deploy, we run the <code>init</code> command. Besides the Webby, you can specify the DNS you want your app to respond to.
+
+When in doubt about any command of the Webbynode Gem, you can use the <code>--help</code> option and a nice explanation of the command and it's options will be displayed. Here's the help for the init command we're going to run:
+
+<% coderay(:lang => "bash") do -%>
+$ wn init --help
+
+Prepares the application on current folder for deployment
+Usage: webbynode init webby [dns] [options]
+Parameters:
+    webby               Name or IP of the Webby to deploy to
+    dns                 The DNS used for this application, optional
+Options:
+    --adddns            Creates the DNS entries for the domain
+    --engine            Sets the application engine for the app
+<% end -%>
+
+If you don't specify the domain name during initialization, the Rapid App Engine will assign a temporary one, so you can use your website and even share it without having to buy a domain.
+
+However, if you already own an domain and considering its Name Servers are already pointing to Webbynode's Name Servers (<a href="/articles/webbymanager/dns-setup.html">check this guide to make sure</a>), the gem can even create the appropriate configuration entries for you. If that's what you want, just use the <code>--adddns</code> option.
+
+OK, so let's say you have created a Rails app called <code>sampleapp</code>. If we don't don't provide the domain option as described above, it will respond to <code>sampleapp.webbyapp.com</code> (it's always <em>name-of-app</em><code>.webbyapp.com</code> -- in case your app's name is already taken, we'll add numeric suffixes -- like 1, 2, ... -- until we find an unique name for you). 
+
+So let's try it:
+
+<% coderay(:lang => "bash") do -%>
+$ cd ~/dev/sampleapp
+$ wn init sandbox
+[Webbynode] Initializing application sampleapp with dns sampleapp
+            Retrieving IP for Webby sandbox...
+            Initializing directory structure...
+            Initializing git and applying initial commit...
+            Adding webbynode as git remote...
+
+[Webbynode] Application sampleapp ready for Rapid Deployment
+<% end -%>
+
+Here's a summary of what just happened:
+
+* <em>If your application doesn't have a git repo</em>, we'll create one for you. After that, we'll create a new remote source for this new git repo called <code>webbynode</code> pointing to your Webby's IP;
+
+* <em>Now, if you app already has a git repo</em>, we'll just create the new remote as described above;
+
+* We add a couple of configuration files to your repository;
+
+* And we create a new commit for this change.
+
+And your app is now ready to be published. Congratulations!
+
+<a href="publishing.html">Continue with Publishing...</a>

@@ -1,0 +1,27 @@
+---
+title:       Rapid Application Deployment Engine
+created_at:  2008-08-02 14:06:40.000000 -06:00
+layout:      rapid
+filter:
+  - erb
+  - haml
+---
+%h1 <%= h(@page.title) %>
+
+%p
+  Our <em>Rapid Application Deployment</em> stack allows you to deploy any Rails or Rack application as easy as pushing a git change you made. You just have to install Webbynode's gem and run a couple of commands, based on the same git workflow you're used to.    
+   
+%p
+  Once you submit your app for deployment, all the dirty work will be done behind the scenes for you.
+
+%h2 Requirements
+
+%ul
+  %li Webbynode account _(don't tell me!)_
+  %li Unix-based system: Linux, Mac OS X, ..., but *not windows* (yet)
+  %li Ruby, RubyGems, Rails. Yes, the full gang!
+  %li git
+
+Start out with the
+%a{ :href => "preparation.html" } Preparation
+section

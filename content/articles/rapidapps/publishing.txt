@@ -1,0 +1,71 @@
+---
+title:      Rapid Application Deployment Engine
+created_at: 2010-01-14 00:36:35.278020 -02:00
+layout:     rapid
+filter:
+  - erb
+  - textile
+---
+h1. <%= h(@page.title) %>
+
+h2. Publishing
+
+When publishing your application, the Rapid App Engine will transfer all the code to your Webby, set up the database, the DNS entries (if applicable), configure the Web Server (Apache2 or nginx) and setup additional features (like backup) that we'll see later.
+
+Before starting your first publishing there's something you can do to make upcoming deployments a little easier. You can add your SSH key to your Webby's deployment user.
+
+Hard? Not really. We have a command for that: <code>add_key</code>. Just go ahead and run this:
+
+<% coderay(:lang => "bash") do -%>
+$ wn add_key
+Enter your deployment password for xx.xx.xx.xx: 
+Your local SSH Key has been added to your webby!
+<% end -%>
+
+With that done, it should be the last time we prompt you for a password (at least until you change to another machine).
+
+Let's now deploy the application with the <code>push</code> command:
+
+<% coderay(:lang => "bash") do -%>
+$ webbynode push
+[Webbynode] Pushing sampleapp
+mkdir: created directory `sampleapp'
+Counting objects: 88, done.
+Delta compression using up to 2 threads.
+Compressing objects: 100% (73/73), done.
+Writing objects: 100% (88/88), 80.80 KiB, done.
+Total 88 (delta 11), reused 0 (delta 0)
+Checked out master branch
+
+----------------------------
+  Webbynode git deployment 
+----------------------------
+
+Nginx+Passenger webserver detected...
+Setting up DNS...
+
+Deploying application sampleapp as sampleapp.webbyapp.com...
+
+Configuring Rails application...
+  => Configuring nginx vHost...
+  => Configuring database...
+  => Configuring database.yml...
+  => Installing missing gems...
+  => Migrating database...
+/var/rails/sampleapp/.git
+
+Restarting nginx
+
+sampleapp deployed successfully.
+
+Created http://sampleapp.webbyapp.com/
+
+To git@67.23.79.32:sampleapp
+ * [new branch]      master -> master
+
+[Webbynode] Finished pushing sampleapp
+<% end %>
+
+At this point you should be able to open your browser and visit http://sample.webbyapp.com and get your Rails app default page. Win!
+
+<a href="updating.html">Continue with Updating...</a>

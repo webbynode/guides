@@ -196,6 +196,18 @@ p.title
 #content
   margin-top: 20px
   
+#toc
+  float: right
+  border: 1px
+  background-color: #FCF1FB
+  margin: 5px
+  margin-left: 20px
+  
+  .inner
+    padding: 10px
+    padding-bottom: 0
+    font-size: 0.8em
+  
 #sidebar
   margin-top: 0
   font-size: 0.8em
