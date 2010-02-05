@@ -17,11 +17,19 @@ filter:
 %h2 Requirements
 
 %ul
-  %li Webbynode account _(don't tell me!)_
+  %li 
+    Webbynode account
+    %em (don't tell me!)
   %li Unix-based system: Linux, Mac OS X, ..., but *not windows* (yet)
   %li Ruby, RubyGems, Rails. Yes, the full gang!
   %li git
 
 Start out with the
 %a{ :href => "preparation.html" } Preparation
-section
+section.
+
+%br/
+%br/
+
+%p
+  And now, what you're waiting for? Get on the deploy early bandwagon!

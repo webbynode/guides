@@ -1,0 +1,21 @@
+---
+title:      Rapid Application Deployment Engine
+created_at: 2010-01-14 00:36:35.278020 -02:00
+layout:     rapid
+filter:
+  - erb
+  - textile
+---
+h1. <%= h(@page.title) %>
+
+h2. Deleting apps
+
+If by any chance you want to remove a running app, it's just a matter of logging into your Webby and using the <code>delete_app</code> script, as illustrated here:
+
+<% coderay(:lang => "bash") do -%>
+$ wn delete 
+Do you really want to delete application sampleapp (y/n)? y
+Deleting app at /var/rails/sampleapp...
+Removing vHost for sampleapp (sampleapp.webbyapp.com)...
+Restarting nginx...
+<% end -%>

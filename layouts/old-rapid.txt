@@ -36,39 +36,25 @@ filter:
             %a{ :href => "/" }
               Webbynode Guides
 
-      #content.article.rapidapp
-        .inner
-          .column.span-15.first
-            :preserve
-              #{@content}
-
-        #sidebar.column.span-6.prepend-1.last
-          .box
-            %p.title
-              %b
-                Basic Topics
+      #content.article
+        #toc.column.span-6
+          .inner
+            %h4
+              Rapid App Topics
             %ul
               %li <a href="index.html">Index</a>
               %li <a href="preparation.html">Preparation</a>
               %li <a href="bootstrapping.html">Bootstrapping</a>
               %li <a href="publishing.html">Publishing</a>
               %li <a href="updating.html">Updating</a>
-              %li <a href="workflow.html">Workflow</a>
-              %li <a href="troubleshooting.html">Troubleshooting</a>
-              %li <a href="deleting.html">Deleting</a>
-                
-          .box
-            %p.title
-              %b
-                Advanced Topics
-            %ul
-              %li <a href="engines.html">Alternative Engines</a>
-              %li <a href="backup.html">Backup</a>
-              %li <a href="dns.html">Handling DNS</a>
-              %li <a href="webbyops.html">Start/Stop/Reboot</a>
-              %li <a href="hooks.html">Deployment Hooks</a>
-              %li <a href="remote.html">Remote Commands</a>
-              %li <a href="aliases.html">Aliases</a>
+              %li <a href="troubleshooting.html">Troubleshoot</a>
+
+        .inner
+          :preserve
+            #{@content}
+          %p &nbsp;
+          %p &nbsp;
+          %p &nbsp;
 
     #footer
       .inner

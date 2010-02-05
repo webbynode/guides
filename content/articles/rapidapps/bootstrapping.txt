@@ -40,9 +40,9 @@ In case you don't remember your Webbies by name or IP, you can use the <code>web
 $ wn webbies
 Fetching list of your Webbies...
 
-  Webbies         IP              Node      Plan            Status         
-  webby3067       61.21.71.31     miami-b02 Webbybeta       on
-  sandbox         201.81.121.201  miami-b15 Webbybeta       on
+  Webbies         IP              Node      Plan        Status         
+  webby3067       61.21.71.31     miami-b02 Webbybeta   on
+  sandbox         201.81.121.201  miami-b15 Webbybeta   on
 
 <% end -%>
 
@@ -78,12 +78,52 @@ $ cd ~/dev/sampleapp
 $ wn init sandbox
 [Webbynode] Initializing application sampleapp with dns sampleapp
             Retrieving IP for Webby sandbox...
+
+Webbynode API Token
+
+For optimal usage of all the features provided by the Webbynode Gem, we need to
+interact with your account.
+
+Please provide below the email you use to login on Webbymanager and your API 
+Token. The API token can be found on the Account section of Webbymanager. For 
+more instructions, visit this link:
+
+  http://guides.webbynode.com/articles/rapidapps/bootstrapping.html
+
+Please provide your credentials below.
+
+Login email:
+<% end -%>
+
+h4. Interacting with Webbynode API
+
+In order to interact with your account, the Webbynode Gem will need the email and API Token you use in Webbymanager. In case you don't know where it is, open manager and click the Account tab, like shown below:
+
+<img src="images/rapidapp-account.png">
+
+And then copy the token under your account Overview section:
+
+<img src="images/rapidapp-apitoken.png">
+
+From this point on you won't have to input this information again, since it's now stored on a file called <code>.webbynode</code> under your home directory.
+
+After entering your email and API token, the process continues:
+
+<% coderay(:lang => "bash") do -%>
+
+Please provide your credentials below.
+
+Login email: fcoury@me.com
+API token:   c818f....
+
             Initializing directory structure...
             Initializing git and applying initial commit...
             Adding webbynode as git remote...
 
 [Webbynode] Application sampleapp ready for Rapid Deployment
 <% end -%>
+
+And now your application is ready for deployment.
 
 Here's a summary of what just happened:
 

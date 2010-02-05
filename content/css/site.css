@@ -196,6 +196,13 @@ p.title
 #content
   margin-top: 20px
   
+.rapidapp 
+  .CodeRay pre
+    font-size: 0.7em
+    
+  p.title
+    margin-bottom: 0
+  
 #toc
   float: right
   border: 1px
