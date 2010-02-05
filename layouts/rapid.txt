@@ -41,13 +41,13 @@ filter:
           .inner
             %h4
               Rapid App Topics
-
             %ul
               %li <a href="index.html">Index</a>
               %li <a href="preparation.html">Preparation</a>
               %li <a href="bootstrapping.html">Bootstrapping</a>
               %li <a href="publishing.html">Publishing</a>
               %li <a href="updating.html">Updating</a>
+              %li <a href="troubleshooting.html">Troubleshoot</a>
 
         .inner
           :preserve

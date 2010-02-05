@@ -207,6 +207,9 @@ p.title
     padding: 10px
     padding-bottom: 0
     font-size: 0.8em
+    
+    h4
+      margin-bottom: 5px
   
 #sidebar
   margin-top: 0

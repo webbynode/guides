@@ -1,0 +1,102 @@
+---
+title:      Rapid Application Deployment Engine
+created_at: 2010-01-14 00:36:35.278020 -02:00
+layout:     rapid
+filter:
+  - erb
+  - textile
+---
+h1. <%= h(@page.title) %>
+
+h2. Troubleshooting
+
+*Problem:* I have deployed my application just fine but when I make changes and do a <code>webbynode push</code> nothing changes on the website.
+
+*Resolution:* 
+
+Sometimes you may have forgotten to commit your changes and try a <code>webbynode push</code>. 
+
+In order to make sure, try issuing the <code>git status</code> command. If you have made no changes since your last commit, here's what you should see:
+
+<% coderay(:lang => "bash") do -%>
+$ git status
+# On branch master
+nothing to commit (working directory clean)
+<% end -%>
+
+However, if you find that you still have changes - and specially new files:
+
+<% coderay(:lang => "bash") do -%>
+$ git status
+# On branch master
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#       this_is_a_new_file.txt
+nothing added to commit but untracked files present (use "git add" to track)
+<% end -%>
+
+If that's your case, it's just a matter of adding the new file and committing the change. You'll see that after that you'll <code>get nothing to commit</code>:
+
+<% coderay(:lang => "bash") do -%>
+$ git add .  
+
+$ git commit -m "Added this_new_file"
+[master d30cb5b] Added this_new_file
+ 1 files changed, 1 insertions(+), 0 deletions(-)
+ create mode 100644 this_is_a_new_file.txt
+ 
+$ git status
+# On branch master
+nothing to commit (working directory clean)
+<% end -%>
+
+Another <code>webbynode push</code> should take care of your problem.
+
+However, sometimes Apache (or nginx) can choke upon restarting. This problem is usually solved by logging into your Webby and manually restarting them:
+
+<% coderay(:lang => "bash") do %>
+$ /etc/init.d/apache2 stop
+* Stopping web server apache2
+... waiting
+
+$ /etc/init.d/apache2 start
+* Starting web server apache2 
+<% end %>
+
+or
+
+<% coderay(:lang => "bash") do %>
+$ /etc/init.d/nginx stop
+* Stopping Nginx Server...                     [ OK ]
+ 
+$ /etc/init.d/nginx start
+* Starting Nginx Server...                     [ OK ]
+<% end %>
+
+If none of the above approaches solve your problem, log into your Webby, delete the app and start over (see next section for information about how to do it).
+
+<hr/>
+
+*Problem:* After deploying a Rack application with _Sinatra / Merb / Ramaze / Rango_ framework, my website doesn't load.
+
+*Resolution:* 
+
+This is usually caused because you don't have a <code>public</code> directory inside your Rack app. In order to successfully deploy to Apache/nginx + Passenger, such folder is mandatory - as can be seen on the passenger docs <a href="http://www.modrails.com/documentation/Users%20guide%20Apache.html#_deploying_a_rack_based_ruby_application">here</a> and <a href="http://www.modrails.com/documentation/Users%20guide%20Nginx.html#deploying_a_rack_app">here</a>.
+
+Try adding the public folder (and any contents into it, so <code>git</code> allows you to commit a change) and pushing again.
+ 
+h2. Deleting apps
+
+If by any chance you want to remove a running app, it's just a matter of logging into your Webby and using the <code>delete_app</code> script, as illustrated here:
+
+<% coderay(:lang => "bash") do -%>
+$ delete_app myapp
+This will delete your app myapp and restart Apache.
+Are you sure? (y/n) y
+Deleting app at /var/rails/myapp...
+Removing vHost for myapp (myapp.webbyapp.com)...
+Restarting Apache...
+<% end -%>
+
+And now, what you're waiting for? Get on the deploy early bandwagon.
