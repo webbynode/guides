@@ -10,9 +10,9 @@ filter:
   <center><img src="images/rapp.png"></center>
 
 %p
-  Our <em>Rapid Application Deployment</em>, now being nicknamed as only
+  Our <em>Rapid Application Deployment</em> stack, now being nicknamed as only
   ="<b>rapp</b>,"
-  stack allows you to deploy any Rails or Rack application as easy as pushing a git change you made. You just have to install Webbynode's gem and run a couple of commands, based on the same git workflow you're used to.    
+  allows you to deploy any Rails or Rack application as easy as pushing a git change you made. You just have to install Webbynode's gem and run a couple of commands, based on the same git workflow you're used to.    
    
 %p
   Once you submit your app for deployment, all the dirty work will be done behind the scenes for you.
