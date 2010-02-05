@@ -91,6 +91,7 @@ h3. Changing the backup retention
 In order to change the backup retention days, just use the <code>--retain</code> option, like below:
 
 <% coderay(:lang => "bash") do -%>
+$ wn add_backup --retain=15
 [Webbynode] Configuring backup for sampleapp...
 Adding backup for sampleapp
   => Configuring backup script with 15 days retention...
