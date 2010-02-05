@@ -62,7 +62,7 @@ If you're planning on deploying some Sinatra, Ramaze, Rango or Merb apps, it may
 
 h4. Rails 3.0 beta
 
-Rails 3.0 beta was release February 4, and we're already supporting deployment of apps built using this framework. Apps using this framework can be deployed _in parallel_ to Rails 2.3.x and PHP apps. In order to enable this option, just check the checkbox below the Rails version dropdown:
+Rails 3.0 beta was released February 4, and we're already supporting deployment of apps built using this framework. Apps using this framework can be deployed _in parallel_ to Rails 2.3.x and PHP apps. In order to enable this option, just check the checkbox below the Rails version dropdown:
 
 <img src="images/rapidapp-rails30.png">
 
