@@ -24,4 +24,4 @@ $ wn push
 
 Release Candidate 1 is full of good stuff, like S3 Backups, side-by-side Rails 3, Rails 2, Rack and PHP applications, DNS handling, and much more... 
 
-<a href="articles/readystacks/rapid-apps.html">Read more...</a>
+<a href="articles/rapidapps">Read more...</a>
