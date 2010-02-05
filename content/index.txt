@@ -11,15 +11,17 @@ Follow our step by step guides on a wide range of different subjects. From basic
 
 h2. Featured Article
 
-h3. <a href="articles/readystacks/rapid-apps.html">Rapid App Deployment</a>
+h3. <a href="articles/rapidapps">Rapid App Deployment RC1</a>
 
 Learn how to prepare your Webby so you can deploy your Rails or Rack applications from the comfort of your command line and with nothing more than a few commands, tightly integrated to your everyday git workflow:
 
 <% coderay( :lang => "bash", :line_numbers => "inline" ) do -%>
 $ sudo gem install webbynode
 $ cd /path/to/app
-$ webbynode init [webby_ip]
-$ webbynode push
+$ wn init webby www.mydomain.com
+$ wn push
 <% end -%>
+
+Release Candidate 1 is full of good stuff, like S3 Backups, side-by-side Rails 3, Rails 2, Rack and PHP applications, DNS handling, and much more... 
 
 <a href="articles/readystacks/rapid-apps.html">Read more...</a>

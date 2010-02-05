@@ -49,7 +49,7 @@ filter:
             %ul
               %li <a href="/articles/quickstart/index.html">Quick Start</a>
               %li <a href="/articles/webbymanager/index.html">Webbymanager</a>
-              %li <a href="/articles/readystacks/index.html">ReadyStacks</a>
+              %li <a href="/articles/rapidapps">Rapid Apps</a>
               %li <a href="/articles/security/index.html">Security</a>
 
             .box
