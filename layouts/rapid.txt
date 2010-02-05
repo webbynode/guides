@@ -41,6 +41,20 @@ filter:
           .column.span-15.first
             :preserve
               #{@content}
+          
+            .master-separator
+              .separator-wrapper
+                .separator-label Comments
+
+            #disqus_thread
+            %script{ :src => "http://disqus.com/forums/webbynodeguides/embed.js", :type => "text/javascript" }
+            %noscript
+              %a{ :href => "http://disqus.com/forums/webbynodeguides/?url=ref" }
+                View the discussion thread.
+            %a.dsq-brlink{ :href => "http://disqus.com" }
+              blog comments powered by
+              %span.logo-disqus
+                Disqus
 
         #sidebar.column.span-6.prepend-1.last
           .box
@@ -69,7 +83,7 @@ filter:
               %li <a href="hooks.html">Deployment Hooks</a>
               %li <a href="remote.html">Remote Commands</a>
               %li <a href="aliases.html">Aliases</a>
-
+              
     #footer
       .inner
         Copyright &copy; 2010-2020 Webbynode 
