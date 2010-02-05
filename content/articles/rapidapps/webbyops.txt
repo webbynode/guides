@@ -1,0 +1,22 @@
+---
+title:      Rapid Application Deployment Engine
+created_at: 2010-01-14 00:36:35.278020 -02:00
+layout:     rapid
+filter:
+  - erb
+  - textile
+---
+h1. <%= h(@page.title) %>
+
+h2. Start/Stop/Reboot
+
+You can easily perform this operations on the Webby where your application is deployed:
+
+<% coderay(:lang => "bash") do -%>
+$ wn reboot
+Are you sure you wish to restart your webby? (y/n)
+y
+webby3067 will now be rebooted!
+<% end -%>
+
+The same can be done for <code>stop</code> and <code>start</code> commands.

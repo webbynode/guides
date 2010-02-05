@@ -1,0 +1,36 @@
+---
+title:      Rapid Application Deployment Engine
+created_at: 2010-01-14 00:36:35.278020 -02:00
+layout:     rapid
+filter:
+  - erb
+  - textile
+---
+h1. <%= h(@page.title) %>
+
+h2. Handling DNS
+
+You can change the DNS your Application responds to at any given time. That's done using the <code>change_dns</code> command. 
+
+Here's how it's used:
+
+<% coderay(:lang => "bash") do -%>
+$ wn change_dns rubyista.info
+[Webbynode] Changing DNS to rubyista.info...
+            Creating DNS entries for www.rubyista.info and 
+              rubyista.info...
+            Your application will start responding to rubyista.info 
+              after next deployment.
+<% end -%>
+
+Note that, if you use a domain, it will setup both domain.com and www.domain.com. Now with a subdomain, that won't happen:
+
+<% coderay(:lang => "bash") do -%>
+$ wn change_dns subdomain.rubyista.info
+[Webbynode] Changing DNS to subdomain.rubyista.info...
+            Creating DNS entry for subdomain.rubyista.info...
+            Your application will start responding to 
+              subdomain.rubyista.info after next deployment.
+<% end -%>
+
+And next time you push your app, it will start responding to this new DNS entry.
