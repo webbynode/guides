@@ -10,7 +10,7 @@ h1. <%= h(@page.title) %>
 
 h2. Deleting apps
 
-If by any chance you want to remove a running app, it's just a matter of logging into your Webby and using the <code>delete_app</code> script, as illustrated here:
+If by any chance you want to remove a running app, just use the <code>delete</code> command, as illustrated here:
 
 <% coderay(:lang => "bash") do -%>
 $ wn delete 
