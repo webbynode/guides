@@ -10,4 +10,40 @@ h1. <%= h(@page.title) %>
 
 h2. Deployment Hooks
 
-Will be available soon.
+You can define tasks to be executed before pushing (locally) and after pushing (remotely) for each application. In order to do that, we use the <code>tasks</code> command.
+
+This command takes three arguments:
+
+<% coderay(:lang => "bash") do -%>
+$ wn tasks --help
+Manages tasks executed before or after you push your changes
+Usage: webbynode tasks action type [command]
+Parameters:
+    action              add, remove or show
+    type                before_push or after_push
+    command             task to perform, optional
+<% end -%>
+
+h4. Adding a new task
+
+To add a new local task, you just have to use the <code>add</code> action of the <code>before_push</code> type. Let's say we want to run <a href="http://documentcloud.github.com/jammit/">Jammit</a> to package our assets and upload it to our Webby:
+
+<% coderay(:lang => "bash") do -%>
+$ wn tasks add before_push jammit
+Before push task added.
+Current tasks for "Before push":
+1. jammit
+<% end %>
+
+and
+
+<% coderay(:lang => "bash") do -%>
+$ wn tasks add before_push scp -r public/assets ↩
+    #{remote_app_path}/public
+
+Before push task added.
+
+Current tasks for "Before push":
+1. jammit
+2. scp -r public/assets #{remote_app_path}/public
+<% end %>
