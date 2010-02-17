@@ -76,7 +76,7 @@ h2. Running locally
 To run toto locally, just run config.ru:
 
 <% coderay(:lang => "bash") do -%>
-$ rack
+$ rackup
 <% end -%>
 
 If all went well, you should see that toto started:
