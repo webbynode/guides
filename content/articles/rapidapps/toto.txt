@@ -105,7 +105,7 @@ Title: Webbynode Rapp is dah best
 
 <% end -%>
 
-And just edit the resulting file on your favorite editor.
+And just edit the resulting file in your favorite editor.
 
 h2. Deploying
 
