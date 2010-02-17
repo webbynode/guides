@@ -129,7 +129,7 @@ $ wn init webby3067
 [Webbynode] Application my_blog ready for Rapid Deployment
 <% end -%>
 
-Not commit your changes and push:
+Now commit your changes and push:
 
 <% coderay(:lang => "bash") do -%>
 $ git add .
