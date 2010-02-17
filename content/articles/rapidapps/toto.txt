@@ -1,0 +1,186 @@
+---
+title:      From Zero to Blog in minutes with toto
+created_at: 2010-02-16 23:23:00 -03:00
+layout:     article
+filter:
+  - erb
+  - textile
+---
+
+h1. <%= @page.title %>
+
+Let's deploy a blog to your Webby using the amazingly easy <code>toto</code> engine (<a href="http://cloudhead.io/toto">webpage</a> and <a href="http://github.com/cloudhead/toto">GitHub</a>).
+
+h2. Installing <code>toto</code>
+
+The first step is to install the <code>toto</code> gem locally:
+
+<% coderay(:lang => "bash") do -%>
+$ sudo gem install rack toto
+<% end -%>
+
+<small>NOTE: _If you're using <code>rvm</code>, don't use <code>sudo</code>_</small>
+
+h2. Getting <code>dorothy</code>
+
+There's a great template for <code>toto</code> called <b>dorothy</b>. You just have to clone it using git, giving your blog name:
+
+<% coderay(:lang => "bash") do -%>
+$ git clone git://github.com/cloudhead/dorothy.git my_blog
+$ cd my_blog
+<% end -%>
+
+h2. Configuring your blog
+
+After cloning <code>dorothy</code>, edit the file <code>config.ru</code> in the root of the newly created folder and configure your blog:
+
+<% coderay(:lang => "bash") do -%>
+
+require 'toto'
+
+# Rack config
+use Rack::Static, :urls => ['/css', '/js', '/images', '/favicon.ico'], 
+  :root => 'public'
+use Rack::CommonLogger
+
+if ENV['RACK_ENV'] == 'development'
+  use Rack::ShowExceptions
+end
+
+#
+# Create and configure a toto instance
+#
+toto = Toto::Server.new do
+  #
+  # Add your settings here
+  # set [:setting], [value]
+  # 
+  set :author,    "Felipe Coury"                            # blog author
+  set :title,     Dir.pwd.split('/').last                   # site title
+  set :root,      "index"                                   # page to load on /
+  set :date,      lambda {|now| now.strftime("%d/%m/%Y") }  # date format
+  set :markdown,  :smart                                    # use markdown
+  set :disqus,    false                                     # disqus id, or false
+  set :summary,   :max => 150, :delim => /~/                # length of article 
+  set :ext,       'txt'                                     # file extension
+  set :cache,      28800                                    # cache duration
+
+  set :date, lambda {|now| now.strftime("%B #{now.day.ordinal} %Y") }
+end
+
+run toto
+<% end -%>
+
+h2. Running locally
+
+To run toto locally, just run config.ru:
+
+<% coderay(:lang => "bash") do -%>
+$ rack
+<% end -%>
+
+If all went well, you should see that toto started:
+
+<% coderay(:lang => "bash") do -%>
+[2010-02-16 23:54:13] INFO  WEBrick 1.3.1
+[2010-02-16 23:54:13] INFO  ruby 1.8.7 (2009-12-24) [i686-darwin10.2.0]
+[2010-02-16 23:54:13] INFO  WEBrick::HTTPServer#start: pid=9629 port=9292
+<% end -%>
+
+Now visit <a href="http://localhost:9292/">http://localhost:9292/</a> and you should see your blog:
+
+<img src="images/toto-blog.png">
+
+h2. Creating a new article
+
+To create a new article, just run <code>rake new</code>, like below:
+
+<% coderay(:lang => "bash") do -%>
+$ rake new
+(in /Users/fcoury/Projects/my_blog)
+Title: Webbynode Rapp is dah best
+
+  toto ~ an article was created for you at 
+    articles/2010-02-16-webbynode-rapp-is-dah-best.txt.
+
+<% end -%>
+
+And just edit the resulting file on your favorite editor.
+
+h2. Deploying
+
+To deploy your blog to Webbynode using Rapp is quite easy. 
+
+First, install the toto gem:
+
+<% coderay(:lang => "bash") do -%>
+$ wn remote sudo gem install toto
+<% end -%>
+
+And then deploy your blog:
+
+<% coderay(:lang => "bash") do -%>
+$ wn init webby3067
+[Webbynode] Initializing application my_blog with dns my_blog
+            Retrieving IP for Webby webby3067...
+            Initializing directory structure...
+            Adding webbynode as git remote...
+
+[Webbynode] Application my_blog ready for Rapid Deployment
+<% end -%>
+
+Not commit your changes and push:
+
+<% coderay(:lang => "bash") do -%>
+$ git add .
+
+$ git commit -m "Initial commit"
+[master 3b89caa] Initial commit
+ 4 files changed, 47 insertions(+), 35 deletions(-)
+ create mode 100644 .gitignore
+ create mode 100755 .pushand
+ create mode 100644 .webbynode/aliases
+ create mode 100644 .webbynode/config
+ create mode 100644 .webbynode/tasks/after_push
+ create mode 100644 .webbynode/tasks/before_push
+ create mode 100644 articles/2010-02-16-webbynode-rapp-is-dah-best.txt
+ rewrite config.ru (64%)
+
+$ wn push
+ [Webbynode] Pushing my_blog
+ mkdir: created directory `my_blog'
+ Counting objects: 183, done.
+ Delta compression using up to 2 threads.
+ Compressing objects: 100% (95/95), done.
+ Writing objects: 100% (183/183), 20.41 KiB, done.
+ Total 183 (delta 74), reused 173 (delta 72)
+ Checked out master branch
+
+ ----------------------------
+   Webbynode git deployment 
+ ----------------------------
+
+ Nginx+Passenger webserver detected...
+ Setting up DNS...
+
+ Deploying application my_blog as my_blog.webbyapp.com...
+
+ Configuring Rack application...
+   => Configuring nginx vHost...
+   => Configuring database...
+
+ Restarting nginx
+
+ my_blog deployed successfully.
+
+ Created http://my_blog.webbyapp.com/
+
+ To git@208.88.124.89:my_blog
+  * [new branch]      master -> master
+
+ [Webbynode] Finished pushing my_blog
+<% end -%>
+
+And voilà, your blog is ready to go:
+
+<img src="images/toto-blog-final.png">

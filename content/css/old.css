@@ -1,0 +1,262 @@
+---
+extension: css
+filter:    
+  - erb
+  - sass
+layout:    nil   # no layout
+
+color:
+  border:      "#ddd"
+  header:      "#111"
+  link:        "#125AA7"
+  link-hover:  "#125AA7"
+  blockquote:  "#666"
+  box-bg:      "#eee"
+  highlight:   "#B2CCFF"
+  quiet:       "#666"
+  alt:         "#666"
+  toplinks:    "#000"
+---
+
+body
+  line-height: 1.5em
+  font-size: 17px
+  font-family: helvetica,arial,freesans,clean,sans-serif
+
+html, body
+  height: 100%
+  
+  //font-family: Georgia,"Times New Roman",Times,serif
+  //font-size: 24px
+
+h2, h3, h4, h5, h6
+  color: <%= @page.color['header'] %>
+  
+h1
+  border-bottom: 1px solid #333333
+  display: block
+  font-size: 1.6em
+  width: 100%
+  font-weight: bold
+  
+h2
+  font-size: 1.4em
+  font-weight: bold
+  border-bottom: 1px solid #333333
+
+.article
+  h1
+    font-size: 1.8em
+    margin-bottom: 20px
+  h1, h2
+    border-bottom: 0
+
+h3
+  font-size: 1.2em
+  font-weight: bold
+  
+  a
+    text-decoration: none
+
+a
+  color: <%= @page.color['link'] %>
+
+  &:hover
+    color: <%= @page.color['link-hover'] %>
+
+
+blockquote
+  color: <%= @page.color['blockquote'] %>
+
+
+pre
+  background: <%= @page.color['box-bg'] %>
+  border: 1px solid <%= @page.color['border'] %>
+
+
+hr
+  background: <%= @page.color['highlight'] %>
+  color: <%= @page.color['highlight'] %>
+
+
+table
+  border-top: 1px solid <%= @page.color['border'] %>
+  border-left: 1px solid <%= @page.color['border'] %>
+
+
+th, td
+  border-bottom: 1px solid <%= @page.color['border'] %>
+  border-right: 1px solid <%= @page.color['border'] %>
+
+
+p.quiet
+  color: <%= @page.color['quiet'] %>
+
+
+.alt
+  color: <%= @page.color['alt'] %>
+
+
+p.title
+  color: #111
+  font-size: 2em
+  margin-bottom: 0.75em
+  font-weight: bold
+  
+.box
+  padding: 0.8em
+  
+  p.title
+    font-size: 1.2em
+    font-height: bold
+    padding-bottom: 10px
+    
+  p.last
+    font-size: 1em
+    font-height: normal
+    line-height: 1.5em
+  
+.CodeRay 
+  .no
+    display: none
+    
+  pre
+    font-size: 0.9em
+    line-height: 1.4em
+
+
+#main
+  height: auto !important
+  margin: 0 auto -104px
+  min-height: 100%
+  
+#header
+  align: center
+  background-color: #6CA1CB
+  padding-top: 20px
+  min-width: 950px
+  height: 80px
+  margin: 0
+  border-bottom: 4px solid #5E8FBB
+  
+  .inner
+    width: 870px
+    margin: 0 auto
+  
+#content
+  width: 870px
+  margin: 0 auto
+
+  .inner
+    margin: 0 auto
+    
+#force
+  height: 100px
+  padding-bottom: 4em
+
+#footer
+  -moz-background-clip: border
+  -moz-background-inline-policy: continuous
+  -moz-background-origin: padding
+  overflow: hidden
+  align: center
+  background-color: #5E8FBB
+  padding-top: 10px
+  padding-bottom: 10px
+  min-width: 950px
+  height: 80px
+  margin: 0
+  border-top: 4px solid #6CA1CB
+  
+  .inner
+    color: white
+    width: 870px
+    margin: 0 auto
+    text-align: center
+
+#header p.title
+  font-size: 2.4em
+  line-height: 1
+  margin-bottom: 0.5em
+  
+  a
+    color: #111
+    text-decoration: none
+
+#header p.right
+  float: right
+  color: <%= @page.color['toplinks'] %>
+  padding-right: 10px
+
+.right
+  float: right
+  color: <%= @page.color['toplinks'] %>
+  padding-right: 10px
+
+#content
+  margin-top: 20px
+  
+.rapidapp 
+  .CodeRay pre
+    font-size: 0.7em
+    
+  p.title
+    margin-bottom: 0
+  
+#toc
+  float: right
+  border: 1px
+  background-color: #FCF1FB
+  margin: 5px
+  margin-left: 20px
+  
+  .inner
+    padding: 10px
+    padding-bottom: 0
+    font-size: 0.8em
+    
+    h4
+      margin-bottom: 5px
+  
+#sidebar
+  margin-top: 0
+  font-size: 0.8em
+  
+  h4
+    margin-bottom: 0.75em
+
+.master-separator 
+  width: 100%
+  clear: both
+  border-bottom: 2px dashed #cdcdcd
+  margin-bottom: 20px
+  margin-top: 20px
+
+
+.master-separator .separator-wrapper 
+  width: 90px
+  background-color: white
+  padding: 0px 0px
+  position: relative
+  top: 15px
+  left: 20px
+
+
+.master-separator .separator-label 
+  color: #cdcdcd
+  font-weight: bold
+  padding: 2px 10px
+  font-size: 14px
+
+div#footer_wrapper 
+  background: #000
+
+div#content_inner_wrapper, div#footer_inner_wrapper 
+  text-align: center
+
+div#content_inner_wrapper 
+  background-color: #5E8FBB
+  height: 400px
+
+div#footer_inner_wrapper 
+  color: #ffffff

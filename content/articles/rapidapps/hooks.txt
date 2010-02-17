@@ -1,5 +1,5 @@
 ---
-title:      Rapid Application Deployment Engine
+title:      rapp
 created_at: 2010-01-14 00:36:35.278020 -02:00
 layout:     rapid
 filter:
@@ -38,8 +38,8 @@ Current tasks for "Before push":
 and
 
 <% coderay(:lang => "bash") do -%>
-$ wn tasks add before_push scp -r public/assets ↩
-    #{remote_app_path}/public
+$ wn tasks add before_push scp -r public/assets #{remote_app_path}/↩
+public
 
 Before push task added.
 
@@ -47,3 +47,9 @@ Current tasks for "Before push":
 1. jammit
 2. scp -r public/assets #{remote_app_path}/public
 <% end %>
+
+h4. Listing current tasks
+
+To check what tasks are currently configured before and after the deploy, use the <code>show</code> action:
+
+$ wn tasks show

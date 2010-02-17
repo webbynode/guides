@@ -1,0 +1,123 @@
+---
+extension: css
+filter:    
+  - erb
+  - sass
+layout:    nil   # no layout
+
+color:
+  border:      "#ddd"
+  header:      "#111"
+  link:        "#125AA7"
+  link-hover:  "#125AA7"
+  blockquote:  "#666"
+  box-bg:      "#eee"
+  highlight:   "#B2CCFF"
+  quiet:       "#666"
+  alt:         "#666"
+  toplinks:    "#000"
+---
+
+body
+  line-height: 1.5em
+  font-size: 17px
+  font-family: helvetica,arial,freesans,clean,sans-serif
+
+h2, h3, h4, h5, h6
+  color: <%= @page.color['header'] %>
+
+h1
+  border-bottom: 1px solid #333333
+  display: block
+  font-size: 1.6em
+  width: 100%
+  font-weight: bold
+  
+h2
+  font-size: 1.4em
+  font-weight: bold
+  border-bottom: 1px solid #333333
+
+h3
+  font-size: 1.2em
+  font-weight: bold
+
+  a
+    text-decoration: none
+
+p.title
+  color: #111
+  font-size: 2em
+  margin-bottom: 0.75em
+  font-weight: bold
+
+#header
+  align: center
+  background-color: #6CA1CB
+  padding-top: 20px
+  min-width: 950px
+  height: 80px
+  margin: 0
+  border-bottom: 4px solid #5E8FBB
+  margin-bottom: 20px
+  
+  .inner
+    width: 870px
+    margin: 0 auto
+  
+  .right
+    float: right
+    color: <%= @page.color['toplinks'] %>
+    padding-right: 10px
+
+  p.title
+    font-size: 2.4em
+    line-height: 1
+    margin-bottom: 0.5em
+
+    a
+      color: #111
+      text-decoration: none
+      
+#sidebar
+  margin-top: 0
+  font-size: 0.8em
+  
+  h4
+    margin-bottom: 0.75em
+
+.box
+  padding: 0.8em
+
+  p.title
+    font-size: 1.2em
+    font-height: bold
+    padding-bottom: 10px
+
+  p.last
+    font-size: 1em
+    font-height: normal
+    line-height: 1.5em
+
+.CodeRay 
+  .no
+    display: none
+
+  pre
+    font-size: 0.9em
+    line-height: 1.4em
+
+#footer_wrapper
+  background-color: #5E8FBB
+//  border-top: 4px solid #6CA1CB
+  
+#footer_inner_wrapper
+  #border
+    border-top: 4px solid #6CA1CB
+    .inner
+      background-color: #5E8FBB
+      color: white
+      width: 870px
+      margin: 0 auto
+      text-align: center
+  

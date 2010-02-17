@@ -1,12 +1,12 @@
 ---
-title:      Rapid Application Deployment Engine
+title       Preparation - rapp
 created_at: 2010-01-14 00:36:35.278020 -02:00
 layout:     rapid
 filter:
   - erb
   - textile
 ---
-h1. <%= h(@page.title) %>
+h1. rapp
 
 h2. Preparation
 
