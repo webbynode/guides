@@ -1,0 +1,160 @@
+---
+title:      rapp
+created_at: 2010-01-14 00:36:35.278020 -02:00
+layout:     rapid
+filter:
+  - erb
+  - textile
+---
+h1. <%= h(@page.title) %>
+
+h2. Deploying Django Applications
+
+Deploy your Django 1.2.1 applications using git and git alone.
+
+h4. Preparing settings.template.py
+
+Only step is required in preparation: copy your original <code>setting.py</code> as <code>settings.template.py</code> and add a few placeholders:
+
+<% coderay(:lang => "bash") do -%>
+$ cp settings.py settings.template.py
+<% end -%>
+
+Now edit the newly created file with your favorite editor and change the database configuration section you may already have:
+
+<% coderay(:lang => "bash") do -%>
+  DATABASES = {
+      'default': {
+          'ENGINE': 'django.db.backends.mysql', 
+          'NAME': 'django_app',                      
+          'USER': 'django_user',                      
+          'PASSWORD': 'secret',                  
+          'HOST': '',                      
+          'PORT': '',                      
+      }
+  }
+<% end -%>
+
+Replacing the values for each setting with <code>@</code> placeholders:
+
+<% coderay(:lang => "bash") do -%>
+  DATABASES = {
+      'default': {
+          'ENGINE': '@app_engine@', 
+          'NAME': '@app_name@',                      
+          'USER': '@app_name@',                      
+          'PASSWORD': '@app_pwd@',                  
+          'HOST': '@db_host@',                      
+          'PORT': '@db_port@',                      
+      }
+  }
+<% end -%>
+
+And also add <code>'@app_dir@/templates'</code> to your TEMPLATE_DIRS section:
+
+<% coderay(:lang => "bash") do -%>
+  TEMPLATE_DIRS = (
+      '@app_dir@/templates'
+  )
+<% end -%>
+
+This will assume your templates are inside your app's <code>templates</code> subfolder, but you can configure it as you please, even referencing other external folders.
+
+h4. Adding Rapp support
+
+Once your app's settings are taken care of, you're ready to add Rapp support. By running the command below, you'll be either adding git support to your application, or adding a new git remote if you're app already uses git for source control. 
+
+On top of that, a few files will be created and an initial commit will be created for the changeset. Please note that if your app already had git support and the local repository was in a dirty state (with changes pending), an error message will be displayed:
+
+<% coderay(:lang => "bash") do -%>
+  $ wn init myserver                    
+  Cannot initialize: git has pending changes. Execute a git 
+  commit or add changes to .gitignore and try again.
+<% end -%>
+
+Take care of the pending changes and try again. If, on the other hand, everything works, you should see the following output:
+
+<% coderay(:lang => "bash") do -%>
+  [imac27] fcoury:~/Projects/dude [git:master] → wn init webby3519
+  [Webbynode] Initializing application dude with dns dude
+              Retrieving IP for Webby webby3519...
+              Initializing directory structure...
+              Adding webbynode as git remote...
+
+  [Webbynode] Application dude ready for Rapid Deployment
+<% end -%>
+
+h4. Deploying
+
+Now we're ready to push our application to our server. Here's what you need to do:
+
+<% coderay(:lang => "bash") do -%>
+  $ wn push
+  [Webbynode] Pushing dude
+  Counting objects: 83, done.
+  Delta compression using up to 2 threads.
+  Compressing objects: 100% (75/75), done.
+  Writing objects: 100% (83/83), 8.79 KiB, done.
+  Total 83 (delta 41), reused 0 (delta 0)
+  Checked out master branch
+
+  ----------------------------
+    Webbynode git deployment 
+  ----------------------------
+
+  Apache webserver detected...
+  Setting up DNS...
+
+  Deploying application dude as dude1.webbyapp.com...
+
+  Configuring Django application...
+    => Configuring apache vHost...
+       WARN: Missing django_username setting, assuming 'admin'
+       WARN: Missing django_email setting, assuming 'admin@example.org'
+    => Configuring database...
+    => Configuring server side settings.py...
+    => Sync'ing database...
+  Creating table auth_permission
+  Creating table auth_group_permissions
+  Creating table auth_group
+  Creating table auth_user_user_permissions
+  Creating table auth_user_groups
+  Creating table auth_user
+  Creating table auth_message
+  Creating table django_content_type
+  Creating table django_session
+  Creating table django_site
+  Creating table django_admin_log
+  Creating table polls_poll
+  Creating table polls_choice
+  Installing index for auth.Permission model
+  Installing index for auth.Group_permissions model
+  Installing index for auth.User_user_permissions model
+  Installing index for auth.User_groups model
+  Installing index for auth.Message model
+  Installing index for admin.LogEntry model
+  Installing index for polls.Choice model
+  No fixtures found.
+    => Creating Django superuser...
+
+  Restarting apache
+
+  dude deployed successfully.
+
+  Created http://dude1.webbyapp.com/
+
+  To git@208.88.124.41:dude
+   * [new branch]      master -> master
+
+  [Webbynode] Finished pushing dude
+<% end -%>
+
+As you can see, we setup quite a few things: 
+
+# Transfered all application files to the remote server;
+# Created a new dns in the format <code>appname.webbyapp.com</code>;
+# Added a new vHost to the WebServer (nginx or Apache);
+# Created a new database and database user for your app (MySQL or PostgreSQL);
+# Merged the app-specific settings into a new settings.py file, exclusive for server-side;
+# Synchronized the database for newly created models;
+# Created an admin superuser;
