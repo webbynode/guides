@@ -120,6 +120,4 @@ Options:
                         has git changes pending
 <% end %>
     
-
-This very same process can be done for Rack applications, as long as you have the necessary gems installed during the preparation of your Webby.
-
+Please note that if you force a dirty push, only changes made up to the last git commit will be pushed.

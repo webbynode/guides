@@ -14,8 +14,6 @@ h4. Quick reference
 
 * <a href="#problem1">I have deployed my application just fine but when I make changes and do a <code>webbynode push</code> nothing changes on the website.</a>
 
-* <a href="#problem2">After deploying a Rack application with _Sinatra / Merb / Ramaze / Rango_ framework, my website doesn't load.</a>
-
 h4. Problems
 
 <a name="problem1"> </a>*Problem:* I have deployed my application just fine but when I make changes and do a <code>webbynode push</code> nothing changes on the website.
@@ -48,13 +46,3 @@ Performing the requested remote command...
 <% end %>
 
 If none of the above approaches solve your problem, log into your Webby, delete the app and start over (see next section for information about how to do it).
-
-<hr/>
-
-<a name="problem2"> </a>*Problem:* After deploying a Rack application with _Sinatra / Merb / Ramaze / Rango_ framework, my website doesn't load.
-
-*Resolution:* 
-
-This is usually caused because you don't have a <code>public</code> directory inside your Rack app. In order to successfully deploy to Apache/nginx + Passenger, such folder is mandatory - as can be seen on the passenger docs <a href="http://www.modrails.com/documentation/Users%20guide%20Apache.html#_deploying_a_rack_based_ruby_application">here</a> and <a href="http://www.modrails.com/documentation/Users%20guide%20Nginx.html#deploying_a_rack_app">here</a>.
-
-Try adding the public folder (and any contents into it, so <code>git</code> allows you to commit a change) and pushing again.

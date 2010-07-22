@@ -1,5 +1,5 @@
 ---
-title:      rapp
+title:      Rapid Application Deployment Engine
 created_at: 2010-01-14 00:36:35.278020 -02:00
 layout:     rapid
 filter:
@@ -14,28 +14,9 @@ Deploy your Django 1.2.1 applications using git and git alone.
 
 h4. Preparing settings.template.py
 
-Only step is required in preparation: copy your original <code>setting.py</code> as <code>settings.template.py</code> and add a few placeholders:
+When you initialize your Django application, we'll copy your original <code>setting.py</code> as <code>settings.template.py</code> and add a few placeholders:
 
-<% coderay(:lang => "bash") do -%>
-$ cp settings.py settings.template.py
-<% end -%>
-
-Now edit the newly created file with your favorite editor and change the database configuration section you may already have:
-
-<% coderay(:lang => "bash") do -%>
-  DATABASES = {
-      'default': {
-          'ENGINE': 'django.db.backends.mysql', 
-          'NAME': 'django_app',                      
-          'USER': 'django_user',                      
-          'PASSWORD': 'secret',                  
-          'HOST': '',                      
-          'PORT': '',                      
-      }
-  }
-<% end -%>
-
-Replacing the values for each setting with <code>@</code> placeholders:
+You can edit the newly created file with your favorite editor and change the database configuration section you may already have:
 
 <% coderay(:lang => "bash") do -%>
   DATABASES = {
@@ -50,7 +31,7 @@ Replacing the values for each setting with <code>@</code> placeholders:
   }
 <% end -%>
 
-And also add <code>'@app_dir@/templates'</code> to your TEMPLATE_DIRS section:
+We also add <code>'@app_dir@/templates'</code> to your TEMPLATE_DIRS section:
 
 <% coderay(:lang => "bash") do -%>
   TEMPLATE_DIRS = (
@@ -114,27 +95,29 @@ Now we're ready to push our application to our server. Here's what you need to d
     => Configuring database...
     => Configuring server side settings.py...
     => Sync'ing database...
-  Creating table auth_permission
-  Creating table auth_group_permissions
-  Creating table auth_group
-  Creating table auth_user_user_permissions
-  Creating table auth_user_groups
-  Creating table auth_user
-  Creating table auth_message
-  Creating table django_content_type
-  Creating table django_session
-  Creating table django_site
-  Creating table django_admin_log
-  Creating table polls_poll
-  Creating table polls_choice
-  Installing index for auth.Permission model
-  Installing index for auth.Group_permissions model
-  Installing index for auth.User_user_permissions model
-  Installing index for auth.User_groups model
-  Installing index for auth.Message model
-  Installing index for admin.LogEntry model
-  Installing index for polls.Choice model
-  No fixtures found.
+
+       Creating table auth_permission
+       Creating table auth_group_permissions
+       Creating table auth_group
+       Creating table auth_user_user_permissions
+       Creating table auth_user_groups
+       Creating table auth_user
+       Creating table auth_message
+       Creating table django_content_type
+       Creating table django_session
+       Creating table django_site
+       Creating table django_admin_log
+       Creating table polls_poll
+       Creating table polls_choice
+       Installing index for auth.Permission model
+       Installing index for auth.Group_permissions model
+       Installing index for auth.User_user_permissions model
+       Installing index for auth.User_groups model
+       Installing index for auth.Message model
+       Installing index for admin.LogEntry model
+       Installing index for polls.Choice model
+       No fixtures found.
+
     => Creating Django superuser...
 
   Restarting apache

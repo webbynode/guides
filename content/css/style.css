@@ -22,6 +22,9 @@ body
   line-height: 1.5em
   font-size: 17px
   font-family: helvetica,arial,freesans,clean,sans-serif
+  
+code
+  background: #e0e0e0
 
 h2, h3, h4, h5, h6
   color: <%= @page.color['header'] %>

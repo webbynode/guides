@@ -10,21 +10,9 @@ h1. <%= h(@page.title) %>
 
 h2. Publishing
 
-When publishing your application, the Rapid App Engine will transfer all the code to your Webby, set up the database, the DNS entries (if applicable), configure the Web Server (Apache2 or nginx) and setup additional features (like backup) that we'll see later.
+When publishing your application, Rapp will transfer all your application code to your Webby, set up the database, the DNS entries (if applicable), configure the Web Server (Apache2 or nginx) and setup additional features (like backup or add-ons) that we'll see later.
 
-Before starting your first publishing there's something you can do to make upcoming deployments a little easier. You can add your SSH key to your Webby's deployment user.
-
-Hard? Not really. We have a command for that: <code>add_key</code>. Just go ahead and run this:
-
-<% coderay(:lang => "bash") do -%>
-$ wn add_key
-Enter your deployment password for xx.xx.xx.xx: 
-Your local SSH Key has been added to your webby!
-<% end -%>
-
-With that done, it should be the last time we prompt you for a password (at least until you change to another machine).
-
-Let's now deploy the application with the <code>push</code> command:
+Let's deploy our application with the <code>push</code> command:
 
 <% coderay(:lang => "bash") do -%>
 $ webbynode push
@@ -66,6 +54,12 @@ To git@67.23.79.32:sampleapp
 [Webbynode] Finished pushing sampleapp
 <% end %>
 
-At this point you should be able to open your browser and visit http://sample.webbyapp.com and get your Rails app default page. Win!
+As you can see, this is the typical output you'll get when deploying a Rails application. If you're using a different engine, such as Django, Rack, PHP or even Rails 3, you mileage may vary.
+
+Now that your app is available at the indicated address - http://sample.webbyapp.com - you can use the open command to open it in your default Web Browser:
+
+<% coderay(:lang => "bash") do -%>
+$ wn open
+<% end -%>
 
 <a href="updating.html">Continue with Updating...</a>

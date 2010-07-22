@@ -1,5 +1,5 @@
 ---
-title:      rapp
+title:      Rapid Application Deployment Engine
 created_at: 2010-01-14 00:36:35.278020 -02:00
 layout:     rapid
 filter:
@@ -8,13 +8,37 @@ filter:
 ---
 h1. <%= h(@page.title) %>
 
-h2. Alternative Engines
+h2. Supported Engines
 
-We allow you to deploy more than just Rails and Rack Applications. We have enabled Rails 3.0beta and PHP support to this Release Candidate.
+As of the last release of Rapp, we support 5 different engines:
+
+* Django
+* PHP
+* Rack
+* Rails 2
+* Rails 3
+
+Rails 2, Rails 3 and Rack applications are usually auto detected. If by any reason the auto detection fails, you'll be presented with a menu for selecting the engine you want your app to use:
+
+<% coderay(:lang => "bash") do -%>
+$ cd /path/to/my_php_app
+$ wn init
+[Webbynode] Initializing application my_php_app with dns my_php_app
+
+Supported engines:
+
+  1. Django
+  2. PHP
+  3. Rack
+  4. Rails 2
+  5. Rails 3
+
+Select the engine your app uses:
+<% end -%>
 
 h4. Rails 3.0beta
 
-In order to enable Rails 3.0beta support, you have to mark the *Install Rails  3.0beta* checkbox, on the Rails section when deploying the Rapid App ReadyStack to your Webby:
+In order to enable Rails 3.0beta support, you have to mark the *Install Rails 3.0beta* checkbox, on the Rails section when deploying the Rapid App ReadyStack to your Webby:
 
 <img src="images/rapidapp-rails30.png">
 
@@ -31,9 +55,13 @@ $ wn init webby3067 --engine=rails3
 [Webbynode] Application testr3 ready for Rapid Deployment
 <% end -%>
 
+h4. Django 1.2.1
+
+For more information about deploying a Django 1.2.1 application, please refer to the <a href="django.html">dedicated page</a>.
+
 h4. PHP
 
-In order to deploy a PHP application, you need to use the <code>--engine=php</code> option, like below:
+In order to deploy a PHP application, you need either choose the to use PHP on the engines menu (see above), or use <code>--engine=php</code> option, like below:
 
 <% coderay(:lang => "bash") do -%>
 $ wn init webby3067 --engine=php                            
@@ -46,7 +74,7 @@ $ wn init webby3067 --engine=php
 [Webbynode] Application phpapp ready for Rapid Deployment
 <% end -%>
 
-When you are ready to deploy and issue the <code>push</code> command, PHP support will be installed on the fly. This is good because it avoids the possible PHP bloat if you're not using it.
+If you didn't select PHP Engine when you first deployed, it will be installed on the fly. 
 
 <% coderay(:lang => "bash") do -%>
 $ wn push
@@ -89,4 +117,4 @@ To git@67.23.79.32:phpapp
 [Webbynode] Finished pushing phpapp
 <% end -%>
 
-And that's it: your PHP app is ready to go.
+And that's it: your PHP app is ready to go. One nice feature of the PHP engine is that no reload or restart of the Web Server is necessary, once your vHost is setup, so each push will be instantly applied and will cause no downtime.

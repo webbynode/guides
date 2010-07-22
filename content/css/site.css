@@ -115,6 +115,12 @@ p.title
     font-size: 1em
     font-height: normal
     line-height: 1.5em
+    
+code
+  background: #e0e0e0
+  font-size: 0.9em
+  padding: 2px
+  white-space: nowrap
   
 .CodeRay 
   .no

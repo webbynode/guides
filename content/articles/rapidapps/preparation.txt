@@ -6,7 +6,7 @@ filter:
   - erb
   - textile
 ---
-h1. rapp
+h1. Rapid Application Deployment Engine
 
 h2. Preparation
 

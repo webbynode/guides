@@ -76,7 +76,8 @@ filter:
               %b
                 Advanced Topics
             %ul
-              %li <a href="engines.html">Alternative Engines</a>
+              %li <a href="engines.html">Supported Engines</a>
+              %li <a href="addons.html">Add-ons</a>
               %li <a href="backup.html">S3 Backup</a>
               %li <a href="dns.html">Handling DNS</a>
               %li <a href="webbyops.html">Start/Stop/Reboot</a>

@@ -2,9 +2,15 @@
   padding: 0.5em;
   margin-bottom: 1.3em;
   background-color: #eee;
-  border: 1px solid #aaa;
+  border: 1px solid #ddd;
   font: 1.1em Monaco, 'Courier New', 'Terminal', monospace;
   color: #100;
+  box-shadow: 3px 3px 3px #888;
+  -moz-box-shadow: 3px 3px 3px #888;
+  -webkit-box-shadow: 3px 3px 3px #888;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
 }
 .CodeRay pre {
   padding: 0px;
