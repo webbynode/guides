@@ -39,7 +39,7 @@ Cannot push because you have pending changes. Do a git commit or add
 changes to .gitignore.
 <% end -%>
 
-At this point you should choose what to do. Run the <code>git status</code> to check what changes are pending:
+At this point you should choose what to do. Use <code>git status</code> to check pending changes:
 
 <% coderay(:lang => "bash") do -%>
 $ git status
@@ -58,7 +58,7 @@ directory)
 no changes added to commit (use "git add" and/or "git commit -a")
 <% end -%>
 
-In this case, we have two changes it seems. I want to commit the <code>README</code> but not the <code>temp/</code> folder. So I just add the folder to the .gitignore file:
+In this case, we have two changes. I want to commit the <code>README</code> file, but not the <code>temp/</code> folder. So I just add the folder to the .gitignore file:
 
 <% coderay(:lang => "bash") do -%>
 $ echo "\ntemp/" >> .gitignore
@@ -121,3 +121,19 @@ Options:
 <% end %>
     
 Please note that if you force a dirty push, only changes made up to the last git commit will be pushed.
+
+At this point you have finished the deployment lifecycle.
+
+You can now:
+
+* check a <a href="workflow.html">suggested workflow</a> for your deployments
+* check the <a href="troubleshooting.html">troubleshooting information</a>
+* learn how to <a href="deleting.html">delete a deployed app</a>
+
+And if you're interested in more features, you can learn about:
+
+* the <a href="engines.html">engines Rapp support</a>
+* installing <a href="addons.html">add-ons</a> like MongoDB, or Beanstalkd
+* how to enable <a href="backup.html">automated backups</a> for your application code and database
+* <a href="webbyops.html">interact with your Webby</a>
+* and how to setup <a href="hooks.html">deployment hooks</a> for your app

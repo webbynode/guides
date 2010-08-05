@@ -54,7 +54,7 @@ To git@67.23.79.32:sampleapp
 [Webbynode] Finished pushing sampleapp
 <% end %>
 
-As you can see, this is the typical output you'll get when deploying a Rails application. If you're using a different engine, such as Django, Rack, PHP or even Rails 3, you mileage may vary.
+As you can see, this is the typical output you'll get when deploying a Rails application. If you're using a different engine, such as Django, Rack, PHP or even Rails 3, your mileage may vary. You can learn more about engines in the <a href="engines.html">Supported Engine</a> sections.
 
 Now that your app is available at the indicated address - http://sample.webbyapp.com - you can use the open command to open it in your default Web Browser:
 

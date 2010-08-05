@@ -33,7 +33,7 @@ Successfully installed webbynode-1.0.1
 1 gem installed
 <% end -%>
 
-Previous versions of our gem required you to inform your Webby name during initialization. This new version, however, will automatically get your Webby name if you only have one. Otherwise, you can check your Webbies by using the <code>webbies</code> command:
+Previous versions of our gem required you to specify your Webby name during initialization. This new version, however, will automatically get your Webby name if you only have one. Otherwise, you can check your Webbies by using the <code>webbies</code> command:
 
 <% coderay(:lang => "bash") do -%>
 $ wn webbies
@@ -47,7 +47,7 @@ Fetching list of your Webbies...
 
 For this example, let's say I want to install to <code>sandbox</code>. 
 
-Now that we know where to deploy, we run the <code>init</code> command. Besides the Webby, you can specify the DNS you want your app to respond to.
+Now that you know where to deploy, just run the <code>init</code> command. Besides the Webby, you can specify the DNS entry you want your app to respond to.
 
 When in doubt about any command of the Webbynode Gem, you can use the <code>--help</code> option and a nice explanation of the command and it's options will be displayed. Here's the help for the init command we're going to run:
 
@@ -76,7 +76,7 @@ However, if you already own an domain and considering its Name Servers are alrea
 
 h4. Application engine
 
-The Webbynode gem will try to autodetect the engine your application uses, and can reliably identify Rails, Rack and Rails 3 applications. However, for PHP and Django apps (and all applications that fails to be autodetected), you'll be presented with a menu:
+The Webbynode gem will try to autodetect the engine your application uses, and can reliably identify Rails, Rack and Rails 3 applications. However, for PHP and Django apps (and all applications that fail to be autodetected), you'll be presented with a menu:
 
 <% coderay(:lang => "bash") do -%>
 $ wn init
@@ -95,7 +95,7 @@ Select the engine your app uses:
 
 Once you select the engine, the process continues...
 
-Let's say you have created a Rails app called <code>sampleapp</code>. If we don't don't provide the domain option as described above, it will respond to <code>sampleapp.webbyapp.com</code> (it's always <em>name-of-app</em><code>.webbyapp.com</code> -- in case your app's name is already taken, we'll add numeric suffixes -- like 1, 2, ... -- until we find an unique name for you). 
+Let's say you have created a Rails app called <code>sampleapp</code>. If a domain option isn't provided as described above, your app will respond to <code>sampleapp.webbyapp.com</code> (it's always <code>name-of-app.webbyapp.com</code> -- in case your app's name is already taken, we'll add numeric suffixes -- like 1, 2, ... -- until we find an unique name for you). 
 
 So let's try it:
 
@@ -131,7 +131,7 @@ And then copy the token under your account Overview section:
 
 <img src="images/rapidapp-apitoken.png">
 
-From this point on you won't have to input this information again, since it's now stored on a file called <code>.webbynode</code> under your home directory.
+From this point on you won't have to enter this information again, since it's now stored in a file called <code>.webbynode</code> under your home directory.
 
 After entering your email and API token, the process continues:
 
@@ -151,13 +151,13 @@ Adding webbynode as git remote...
 Enter your deployment password for 208.88.124.145: 
 <% end -%>
 
-Now you'll have to provide the deployment password you chose when deploying. Once you do, your SSH key will be added to the server, so we don't ask it again.
+Now you'll have to provide the deployment password you chose when deploying. Once you do, your SSH key will be added to the server and you won't have to enter it again.
 
 Once you enter it, your application will be ready for deployment.
 
 Here's a summary of what just happened:
 
-* <em>If your application didn't have a git repo</em>, we created one for you. 
+* <em>If your application didn't have a git repo</em>, one was created one for you. 
 
 * Added a new remote source for the git repo called <code>webbynode</code> pointing to your Webby's IP;
 
@@ -167,8 +167,8 @@ Here's a summary of what just happened:
 
 * Added some configuration files to your repository;
 
-* And finally, we created a new git commit for all those changes.
+* And finally, a new git commit for all those changes was created.
 
-And your app is now ready to be published. Congratulations!
+Now your app is ready to be published. Congratulations!
 
 <a href="publishing.html">Continue with Publishing...</a>
