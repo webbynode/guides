@@ -13,7 +13,7 @@ h2. Featured Article
 
 h3. <a href="articles/rapidapps">Rapp - Rapid App Deployment</a>
 
-Rapp is now live and public available. Get it while it's hot...
+Rapp is now live and publicly available. Get it while it's hot...
 
 Learn how to prepare your Webby so you can deploy your Rails or Rack applications from the comfort of your command line and with nothing more than a few commands, tightly integrated to your everyday git workflow:
 
