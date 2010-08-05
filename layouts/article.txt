@@ -14,8 +14,8 @@ filter:
     /[if IE]
       %link{ :href => "/css/blueprint/print.css", :rel => "stylesheet", :type => "text/css", :media => "print" }
     %link{ :href => "/css/blueprint/ie.css", :type => "text/css", :media => "screen, projection" }
-    %link{ :href => "/css/coderay.css", :rel => "stylesheet", :type => "text/css" }
-    %link{ :href => "/css/site.css", :rel => "stylesheet", :type => "text/css", :media => "screen, projection" }
+    %link{ :href => "/css/coderay.css?id=1", :rel => "stylesheet", :type => "text/css" }
+    %link{ :href => "/css/site.css?id=1", :rel => "stylesheet", :type => "text/css", :media => "screen, projection" }
   %body
     #main
       #header
