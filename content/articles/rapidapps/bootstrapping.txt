@@ -29,7 +29,7 @@ the comfort of your command line.
 Please read our guide for a quickstart:
 http://guides.webbynode.com/articles/readystacks/rapid-apps.html
 
-Successfully installed webbynode-0.2.5
+Successfully installed webbynode-1.0.1
 1 gem installed
 <% end -%>
 

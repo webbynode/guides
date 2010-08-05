@@ -1,0 +1,105 @@
+---
+title:      Rapid Application Deployment Engine
+created_at: 2010-01-14 00:36:35.278020 -02:00
+layout:     rapid
+filter:
+  - erb
+  - textile
+---
+h1. <%= h(@page.title) %>
+
+h2. Installing Add-ons
+
+This new Rapp version allows installation of some Add-ons while deploying your application. 
+
+To manage the add-ons your application will install, you use the addons command. When no parameters are provided, a list of available and installed addons will be provided:
+
+<% coderay(:lang => "bash") do -%>
+wn addons
+Available add-ons:
+
+   Key          Name        Description
+  ------------ ----------- ------------------------
+   beanstalkd   Beanstalk   Simple, fast workqueue service
+   memcached    Memcached   Distributed memory object caching system
+   mongodb      MongoDB     Document based database engine
+   redis        Redis       Advanced key-value store
+
+No add-ons currently selected. Use 'wn addons add <name>' to add.
+<% end -%>
+
+h4. Adding a new add-on
+
+To add a new add-on as a requirement to your application, just use the <code>addon add</code> command. 
+
+Let's say you want to use MongoDB in your app. Just do as follows:
+
+<% coderay(:lang => "bash") do -%>
+$ wn addons add mongodb
+Add-on 'mongodb' added
+<% end -%>
+
+And if you run the addons command again:
+
+<% coderay(:lang => "bash") do -%>
+wn addons
+Available add-ons:
+
+   Key          Name        Description
+  ------------ ----------- ------------------------
+   beanstalkd   Beanstalk   Simple, fast workqueue service
+   memcached    Memcached   Distributed memory object caching system
+   mongodb      MongoDB     Document based database engine
+   redis        Redis       Advanced key-value store
+
+Currently selected add-ons:
+
+   mongodb
+
+<% end -%>
+
+It indicates that MongoDB was successfully added to your application. However all this commands does is marking MongoDB as a dependency. The actual installation of MongoDB will take place on your next push:
+
+<% coderay(:lang => "bash") do -%>
+$ wn push
+[Webbynode] Pushing php
+Counting objects: 13, done.
+Delta compression using up to 2 threads.
+Compressing objects: 100% (8/8), done.
+Writing objects: 100% (13/13), 991 bytes, done.
+Total 13 (delta 1), reused 0 (delta 0)
+Checked out master branch
+
+----------------------------
+  Webbynode git deployment 
+----------------------------
+
+Nginx+Passenger webserver detected...
+Setting up DNS...
+
+Deploying application php as php3.webbyapp.com...
+
+Configuring addons...
+  => Installing addon MongoDB
+     Adding 10gen repository...
+     Acquiring 10gen gpg aptitude key...
+     Installing MongoDB...
+     This may take a few minutes, please wait...
+     Done.
+
+Configuring PHP application...
+  => Configuring nginx vHost...
+  => Configuring database...
+/var/rapp/php/.git
+
+Restarting nginx
+
+php deployed successfully.
+
+Created http://php3.webbyapp.com/
+
+To ssh://git@208.88.124.145:22/var/rapp/php
+ * [new branch]      master -> master
+
+[Webbynode] Finished pushing php
+<% end -%>
