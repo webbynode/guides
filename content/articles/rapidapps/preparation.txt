@@ -12,6 +12,8 @@ h2. Preparation
 
 In order to use the Rapid App Deployment, you have to redeploy your Webby with this stack, but this just has to be done once. After that, you'll be able to add new apps on the fly, without loosing what's already configured on your Webby.
 
+<div class="callout">*Important:* If you are using Windows, there are a few prerequisites that you need to install before using Rapp. Check out the <a href="windows.html">Rapp on Windows</a> article for more information and a screencast to walk you through.</div>
+
 Here's a step-by-step guide of the options you need to choose:
 
 h4. Choose Rapid Application Deployment Engine

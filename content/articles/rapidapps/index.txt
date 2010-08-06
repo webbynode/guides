@@ -23,7 +23,7 @@ filter:
   %li 
     Webbynode account
     %em (don't tell me!)
-  %li Unix-based system: Linux, Mac OS X, ..., but *not windows* (yet)
+  %li Linux, Mac OS X or Windows (tested on XP+)
   %li Ruby, RubyGems, Rails. Yes, the full gang!
   %li git
 
