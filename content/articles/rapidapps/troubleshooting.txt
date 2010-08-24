@@ -12,11 +12,26 @@ h2. Troubleshooting
 
 h4. Quick reference
 
-* <a href="#problem1">I have deployed my application just fine but when I make changes and do a <code>webbynode push</code> nothing changes on the website.</a>
+* <a href="#problem1">I'm getting "Your credentials didn't match any Webbynode account." error when I try to initialize my application with <code>wn init</code>.</a>
+
+* <a href="#problem2">I have deployed my application just fine but when I make changes and do a <code>webbynode push</code> nothing changes on the website.</a>
 
 h4. Problems
 
-<a name="problem1"> </a>*Problem:* I have deployed my application just fine but when I make changes and do a <code>webbynode push</code> nothing changes on the website.
+<a name="problem1"> </a>*Problem:* I'm getting "Your credentials didn't match any Webbynode account." error when I try to initialize my application with <code>wn init</code>.
+
+*Resolution:* 
+
+This happens because you probably changed some personal information and it affected your Token. Try running <code>wn config<code> and, if it doesn't work delete the file <code>.webbynode</code> in your home folder:
+
+<% coderay(:lang => "bash") do -%>
+$ rm ~/.webbynode
+$
+<% end -%>
+
+<hr/>
+
+<a name="problem2"> </a>*Problem:* I have deployed my application just fine but when I make changes and do a <code>webbynode push</code> nothing changes on the website.
 
 *Resolution:* 
 
