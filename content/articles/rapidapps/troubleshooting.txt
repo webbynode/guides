@@ -22,7 +22,7 @@ h4. Problems
 
 *Resolution:* 
 
-This happens because you probably changed some personal information and it affected your Token. Try running <code>wn config<code> and, if it doesn't work delete the file <code>.webbynode</code> in your home folder:
+This happens because you probably changed some personal information and it affected your Token. Try running <code>wn config</code> and, if it doesn't work delete the file <code>.webbynode</code> in your home folder:
 
 <% coderay(:lang => "bash") do -%>
 $ rm ~/.webbynode
