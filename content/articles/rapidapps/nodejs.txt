@@ -1,0 +1,127 @@
+---
+title:      Rapid Application Deployment Engine
+created_at: 2010-01-14 00:36:35.278020 -02:00
+layout:     rapid
+filter:
+  - erb
+  - textile
+---
+h1. <%= h(@page.title) %>
+
+h2. Deploying Node.js Applications
+
+<div class="callout">*Important:* Our current Node.js support is experimental. You should not rely on Rapp for deploying a production Node.js application yet.</div>
+
+Deploy your Node.js applications using git and git alone, with our without Web Server proxying.
+
+h4. Preparing 
+
+When you initialize Rapp on your Node.js application, we'll always look for a <code>server.js</code> file. If it's missing, deployment won't work. With that said, it's mandatory that you stick to this best practice.
+
+When you run <code>wn init</code> for the first time, Rapp will try to search inside your <code>server.js</code> file for the Node.js listening port. It searches for the <code>/listen\((\d+)\)/</code> regular expression that matches the usual code. For instance, if you have this:
+
+<% coderay(:lang => "bash") do -%>
+http.createServer(function (request, response) {
+  response.writeHead(200, {"Content-Type": "text/html"});
+  response.write("<html><head><title>Node, node, node</title>
+    </head>\n");
+  response.write("<body>\n");
+  response.write("<a href='http://www.youtube.com/watch?v=C526lxeHo-M'>
+    Node, Node, Node!</a>\n");
+  response.write("</body>\n");
+  response.write("</html>\n");
+  response.end();
+}).listen(1234);
+<% end -%>
+
+When you initialize, it will default to port 1234, as can be seen below:
+
+<% coderay(:lang => "bash") do -%>
+$ wn init
+Webbynode Rapp - http://rapp.webbynode.com
+
+Current Webbies in your account:
+
+  1. hasmany.info (208.88.124.89)
+  2. sandbox (208.88.125.207)
+  3. wbno.de (208.88.125.65)
+  4. wcdcompany (208.88.124.171)
+
+Which Webby do you want to deploy to:
+4
+
+Set deployment Webby to wcdcompany.
+[Webbynode] Initializing application nodeapp with dns nodeapp
+
+Configure NodeJS Application
+
+  Proxy requests (Y/n) [Y]? 
+     Listening port [1234]:
+<% end -%>
+
+In case we don't have a match, or a wrong match, you can always override the value yourself. 
+
+The other question we ask when initializing is whether you want to proxy your Node.js app or not. If you do, we'll make sure that the Web Server maps your requests from port 80 and a given domain (for instance, <code>nodeapp.webbyapp.com</code>) to your app port. This way you can deploy multiple Node.js applications in the same server and make it work parallel to Rails, Rack, and other apps you want.
+
+h4. Publishing
+
+To publish your app, just run the usual <code>wn push</code> command:
+
+<% coderay(:lang => "bash") do -%>
+$ wn push
+[Webbynode] Pushing napp
+Counting objects: 18, done.
+Delta compression using up to 2 threads.
+Compressing objects: 100% (14/14), done.
+Writing objects: 100% (18/18), 1.71 KiB, done.
+Total 18 (delta 4), reused 0 (delta 0)
+remote: Checked out master branch
+remote: 
+remote: ----------------------------
+remote:   Webbynode git deployment 
+remote: ----------------------------
+remote: 
+remote: Nginx+Passenger webserver detected...
+remote: Setting up DNS...
+remote: 
+remote: Deploying application napp as napp.webbyapp.com...
+remote: 
+remote: Configuring addons...
+remote: 
+remote: Configuring node.js application...
+remote:   => Configuring nginx vHost...
+remote:   => Configuring database...
+remote:   => Configuring monit...
+remote:   => Starting app...
+remote: 
+remote: napp deployed successfully.
+remote: 
+remote: Created http://napp.webbyapp.com/
+remote: 
+To ssh://git@208.88.124.171:22/var/rapp/napp
+ * [new branch]      master -> master
+
+[Webbynode] Finished pushing napp
+<% end -%>
+
+h4. Lifecycle
+
+During deployment, we installed and configured a monit service for your application. So, if for any reason your application halts, it will be automatically restarted. You can also stop or start your application from command line, using:
+
+<% coderay(:lang => "bash") do -%>
+# wn remote sudo monit stop napp.webbyapp.com
+Performing the requested remote command..
+
+# wn remote sudo monit start napp.webbyapp.com
+Performing the requested remote command..
+<% end -%>
+
+h4. Summary
+
+As you can see, we do all the heavy lifting for you. Here's a summary of what we did for you when deploying:
+
+# Transfered all application files to the remote server;
+# Created a new dns in the format <code>appname.webbyapp.com</code>;
+# If you answered <code>Y</code> to proxy, we added a new vHost to the WebServer (nginx or Apache), pointing to your Node.js app;
+# Created a new database and database user for your app (MySQL or PostgreSQL);
+# Created a monit service for monitoring, stopping and starting your Node.js app;

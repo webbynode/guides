@@ -10,13 +10,17 @@ h1. <%= h(@page.title) %>
 
 h2. Supported Engines
 
-As of the last release of Rapp, we support 5 different engines:
+As of the last release of Rapp, we support the following engines:
 
 * Django
 * PHP
 * Rack
 * Rails 2
 * Rails 3
+* WSGI
+* Node.js
+
+WSGI and Node.js engines are still experimental. If you want to experiment deploying a Node.js app, you may want to read our <a href="nodejs.html">dedicated Node.js section</a>.
 
 Rails 2, Rails 3 and Rack applications are usually auto detected. If by any reason the auto detection fails, you'll be presented with a menu for selecting the engine you want your app to use:
 
