@@ -1,0 +1,103 @@
+---
+title:      Rapp Trial
+created_at: 2010-01-14 00:36:35.278020 -02:00
+layout:     rapid
+filter:
+  - erb
+  - textile
+---
+h1. <%= h(@page.title) %>
+
+h2. Deploy your app to Rapp Trial server
+
+Do you have an application and you are thinking of deploying it to Webbynode? Now you can try deploying it before you sign up, with Rapp Trial.
+
+<div class="callout">*Warning:* All Trial apps run on a shared server and we have an automated deletion job that runs daily, so your app will be up for 24 hours tops.</div>
+
+h4. Install Webbynode gem
+
+The first step is to install the Webbynode gem
+
+<% coderay(:lang => "bash") do -%>
+$ sudo gem install webbynode
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+      Webbynode Rapid Deployment Gem
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+Thank you for installing Webbynode gem. You're now
+able to deploy and manage your applications from
+the comfort of your command line.
+
+Please read our guide for a quickstart:
+http://guides.webbynode.com/articles/rapidapps/
+
+Successfully installed webbynode-1.0.3
+1 gem installed
+<% end -%>
+
+<div class="callout">*Important:* Make sure you have the version 1.0.3 installed. You can double check running <code>wn version</code>.</div>
+
+h4. Create a Rapp trial user 
+
+First step is to create a user to be used during the deployment. Use the <code>wn user add</code> command as below:
+
+<% coderay(:lang => "bash") do -%>
+$ wn user add     
+Rapp Trial - http://rapp.webbynode.com
+
+Rapp Trial is a good way to try Webbynode's Rapp Engine without being a subscriber.
+You can deploy your application and it will be online for up to 24 hours. We delete
+all applications at 2AM EST, but your user will remain valid.
+
+Please enter your email below.
+
+Email: felipe@webbynode.com
+
+Enter an username and password to start using Rapp Trial.
+
+         Username: felipe
+Choose a password: ********
+   Enter it again: ********
+
+User felipe created
+<% end -%>
+
+The user name is now saved in a settings file called <code>~/.webbynode</code> and will be used for trial deployments. If you already have a Webbynode account, don't worry: this user is kept completely separated from your regular user.
+
+h4. Initialize your application
+
+To initialize your application, refer to the <a href="bootstrapping.html">bootstrapping</a> section, however always run the <code>wn init</code> command with the <code>--trial</code> option:
+
+You will be prompted for your trial user password only once. All subsequent pushes will be handled without the need of typing a password.
+
+<% coderay(:lang => "bash") do -%>
+$ wn init --trial
+Webbynode Rapp - http://rapp.webbynode.com
+[Webbynode] Initializing application php with dns php
+
+Supported engines:
+
+  1. Django
+  2. WSGI
+  3. PHP
+  4. Rack
+  5. Rails 2
+  6. Rails 3
+  7. NodeJS
+
+Select the engine your app uses:
+3
+
+Initializing with PHP engine...
+
+Initializing directory structure...
+
+Initializing git and applying initial commit...
+Adding webbynode as git remote...
+Enter your deployment password for felipe@trial.webbyapp.com: 
+
+[Webbynode] Application php ready for Rapid Deployment
+<% end -%>
+
+And now your app is deployed. To open it just run <code>wn open</code>, as usual.
