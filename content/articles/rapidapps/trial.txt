@@ -46,9 +46,10 @@ First step is to create a user to be used during the deployment. Use the <code>w
 $ wn user add     
 Rapp Trial - http://rapp.webbynode.com
 
-Rapp Trial is a good way to try Webbynode's Rapp Engine without being a subscriber.
-You can deploy your application and it will be online for up to 24 hours. We delete
-all applications at 2AM EST, but your user will remain valid.
+Rapp Trial is a good way to try Webbynode's Rapp Engine without 
+being a  subscriber. You can deploy your application and it will 
+be online for up  to 24 hours. We delete all applications at 2AM 
+EST, but your user will remain valid.
 
 Please enter your email below.
 
