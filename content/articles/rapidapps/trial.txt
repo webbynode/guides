@@ -70,7 +70,7 @@ h4. Initialize your application
 
 To initialize your application, refer to the <a href="bootstrapping.html">bootstrapping</a> section, however always run the <code>wn init</code> command with the <code>--trial</code> option:
 
-You will be prompted for your trial user password only once. All subsequent pushes will be handled without the need of typing a password.
+You will be prompted for your trial user password only once. 
 
 <% coderay(:lang => "bash") do -%>
 $ wn init --trial
@@ -101,4 +101,47 @@ Enter your deployment password for felipe@trial.webbyapp.com:
 [Webbynode] Application php ready for Rapid Deployment
 <% end -%>
 
-And now your app is deployed. To open it just run <code>wn open</code>, as usual.
+Then, just deploy your app as you would do normally with Rapp:
+
+<% coderay(:lang => "bash") do -%>
+$ wn push
+[Webbynode] Pushing php
+Counting objects: 10, done.
+Delta compression using up to 2 threads.
+Compressing objects: 100% (6/6), done.
+Writing objects: 100% (10/10), 776 bytes, done.
+Total 10 (delta 0), reused 0 (delta 0)
+remote: Checked out master branch
+remote: 
+remote: ----------------------------
+remote:   Webbynode git deployment 
+remote: ----------------------------
+remote: 
+remote: Nginx+Passenger webserver detected...
+remote: Setting up DNS...
+remote: 
+remote: Deploying application php as php5.webbyapp.com...
+remote: 
+remote: Configuring addons...
+remote: 
+remote: Configuring PHP application...
+remote:   => Configuring nginx vHost...
+remote:      Already configured!
+remote:   => Configuring database...
+remote: /home/felipe/php/.git
+remote: 
+remote: Restarting nginx
+remote: 
+remote: php deployed successfully.
+remote: 
+remote: Created http://php5.webbyapp.com/
+remote: 
+To ssh://felipe@trial.webbyapp.com:22/home/felipe/php
+ * [new branch]      master -> master
+
+[Webbynode] Finished pushing php
+<% end -%>
+
+And now your app is deployed. To open it just run <code>wn open</code>, as usual. 
+
+For more information about Rapp in general, check out the <a href="/articles/rapidapps">complete guide</a>.
