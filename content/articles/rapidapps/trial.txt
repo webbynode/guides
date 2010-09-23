@@ -40,7 +40,7 @@ Successfully installed webbynode-1.0.3
 
 h4. Create a Rapp trial user 
 
-First step is to create a user to be used during the deployment. Use the <code>wn user add</code> command as below:
+Now, you need to create a user to be used during the deployment. Use the <code>wn user add</code> command as below:
 
 <% coderay(:lang => "bash") do -%>
 $ wn user add     
