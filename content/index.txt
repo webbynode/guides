@@ -20,7 +20,7 @@ Learn how to prepare your Webby so you can deploy your Rails or Rack application
 <% coderay( :lang => "bash", :line_numbers => "inline" ) do -%>
 $ sudo gem install webbynode
 $ cd /path/to/app
-$ wn init webby www.mydomain.com
+$ wn init webby --dns=www.hellorapp.com
 $ wn push
 <% end -%>
 
