@@ -8,17 +8,23 @@ filter:
 ---
 h1. <%= h(@page.title) %>
 
-h2. Deploying Node.js Applications
+h2. Deploying node.js Applications
 
-<div class="callout">*Important:* Our current Node.js support is experimental. You should not rely on Rapp for deploying a production Node.js application yet.</div>
+<div class="callout">
+  *Important: node.js support is experimental and only works with nginx.*
+  <br/>
+  This means that if you have a Rapp server with Apache, node.js won't work yet. Also, you should not rely on Rapp for deploying a production node.js application yet.
+</div>
 
-Deploy your Node.js applications using git and git alone, with our without Web Server proxying.
+Deploy your node.js applications using git and git alone, with our without Web Server proxying.
 
 h4. Preparing 
 
-When you initialize Rapp on your Node.js application, we'll always look for a <code>server.js</code> file. If it's missing, deployment won't work. With that said, it's mandatory that you stick to this best practice.
+When you initialize Rapp on your node.js application, we'll always look for a <code>server.js</code> file. If this file is not found, the deployment will fail.
 
-When you run <code>wn init</code> for the first time, Rapp will try to search inside your <code>server.js</code> file for the Node.js listening port. It searches for the <code>/listen\((\d+)\)/</code> regular expression that matches the usual code. For instance, if you have this:
+When you run <code>wn init</code> for the first time, Rapp will try to search inside your <code>server.js</code> file for the node.js listening port. 
+
+It searches for the <code>/listen\((\d+)\)/</code> regular expression that matches the usual code. For instance, if you have this:
 
 <% coderay(:lang => "bash") do -%>
 http.createServer(function (request, response) {
@@ -61,7 +67,7 @@ Configure NodeJS Application
 
 In case we don't have a match, or a wrong match, you can always override the value yourself. 
 
-The other question we ask when initializing is whether you want to proxy your Node.js app or not. If you do, we'll make sure that the Web Server maps your requests from port 80 and a given domain (for instance, <code>nodeapp.webbyapp.com</code>) to your app port. This way you can deploy multiple Node.js applications in the same server and make it work parallel to Rails, Rack, and other apps you want.
+The other question we ask when initializing is whether you want to proxy your node.js app or not. If you do, we'll make sure that the Web Server maps your requests from port 80 and a given domain (for instance, <code>nodeapp.webbyapp.com</code>) to your app port. This way you can deploy multiple node.js applications in the same server and make it work parallel to Rails, Rack, and other apps you want.
 
 h4. Publishing
 
@@ -122,6 +128,6 @@ As you can see, we do all the heavy lifting for you. Here's a summary of what we
 
 # Transfered all application files to the remote server;
 # Created a new dns in the format <code>appname.webbyapp.com</code>;
-# If you answered <code>Y</code> to proxy, we added a new vHost to the WebServer (nginx or Apache), pointing to your Node.js app;
+# If you answered <code>Y</code> to proxy, we added a new vHost to the WebServer (nginx or Apache), pointing to your node.js app;
 # Created a new database and database user for your app (MySQL or PostgreSQL);
-# Created a monit service for monitoring, stopping and starting your Node.js app;
+# Created a monit service for monitoring, stopping and starting your node.js app;
