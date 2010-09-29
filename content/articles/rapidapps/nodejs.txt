@@ -112,22 +112,39 @@ To ssh://git@208.88.124.171:22/var/rapp/napp
 
 h4. Lifecycle
 
-During deployment, we installed and configured a monit service for your application. So, if for any reason your application halts, it will be automatically restarted. You can also stop or start your application from command line, using:
+After your application is pushed to the server, we create a upstart script to start and stop your app quickly, and also make sure you app gets started between reboots. 
+
+Whenever you want to stop it, you can run this from the command line:
 
 <% coderay(:lang => "bash") do -%>
-# wn remote sudo monit stop napp.webbyapp.com
-Performing the requested remote command..
+$ wn remote sudo stop napp
+<% end -%>
 
-# wn remote sudo monit start napp.webbyapp.com
-Performing the requested remote command..
+And then start it again:
+
+<% coderay(:lang => "bash") do -%>
+$ wn remote sudo start napp
+<% end -%>
+
+We also install and configure monit service for each application. So, if for any reason your application halts, it will be automatically restarted. 
+
+h4. Installing npm packages
+
+To install npm packages, just run:
+
+<% coderay(:lang => "bash") do -%>
+$ wn remote npm install [package]
 <% end -%>
 
 h4. Summary
 
-As you can see, we do all the heavy lifting for you. Here's a summary of what we did for you when deploying:
+As you can see, we do all the heavy lifting for you. When you first push a node.js app, we install and configure node.js and all its dependencies, along with monit and npm.
 
-# Transfered all application files to the remote server;
-# Created a new dns in the format <code>appname.webbyapp.com</code>;
-# If you answered <code>Y</code> to proxy, we added a new vHost to the WebServer (nginx or Apache), pointing to your node.js app;
-# Created a new database and database user for your app (MySQL or PostgreSQL);
-# Created a monit service for monitoring, stopping and starting your node.js app;
+And here's a summary of what takes place when deploying each app:
+
+# Transfers all application files to the remote server;
+# Creates a new dns in the format <code>appname.webbyapp.com</code>;
+# If you answer <code>Y</code> to proxy, adds a new vHost to the WebServer (nginx or Apache), pointing to your node.js app;
+# Creates a new database and database user for your app (MySQL or PostgreSQL) -- this will become optional soon;
+# Creates an upstart script for stopping and starting your node.js app;
+# Creates a monit service for monitoring your node.js app;
