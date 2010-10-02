@@ -12,11 +12,21 @@ h2. Troubleshooting
 
 h4. Quick reference
 
+* <a href="#problem3">When I try to add SSL support to my site using Rapp, I get an error <code>[emerg]: unknown directive "ssl"</code>.</a>
+
 * <a href="#problem1">I'm getting "Your credentials didn't match any Webbynode account." error when I try to initialize my application with <code>wn init</code>.</a>
 
 * <a href="#problem2">I have deployed my application just fine but when I make changes and do a <code>webbynode push</code> nothing changes on the website.</a>
 
 h4. Problems
+
+<a name="problem3"> </a>*Problem:* When I try to add SSL support to my site using Rapp, I get an error <code>[emerg]: unknown directive "ssl"</code>.
+
+*Resolution:* 
+
+Check out <a href="ssl.html">this article</a> for a simple fix to this problem.
+
+<hr/>
 
 <a name="problem1"> </a>*Problem:* I'm getting "Your credentials didn't match any Webbynode account." error when I try to initialize my application with <code>wn init</code>.
 
