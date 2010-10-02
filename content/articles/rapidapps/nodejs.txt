@@ -10,12 +10,6 @@ h1. <%= h(@page.title) %>
 
 h2. Deploying node.js Applications
 
-<div class="callout">
-  *Important: node.js support is experimental and only works with nginx.*
-  <br/>
-  This means that if you have a Rapp server with Apache, node.js won't work yet.
-</div>
-
 Deploy your node.js applications using git and git alone, with our without Web Server proxying.
 
 h4. Preparing 

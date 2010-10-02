@@ -156,6 +156,10 @@ code
   .inner
     width: 870px
     margin: 0 auto
+    
+.node
+  margin-top: 10px
+  margin-bottom: 20px
   
 #content
   width: 870px

@@ -11,18 +11,14 @@ Follow our step by step guides on a wide range of different subjects. From basic
 
 h2. Featured Article
 
-h3. <a href="articles/rapidapps">Rapp - Rapid App Deployment</a>
+h3. <a href="articles/rapidapps/nodejs.html">Node.js Rapid Deployment</a>
 
-Rapp is now live and publicly available. Get it while it's hot...
+<div class='node'>
+  <img src="http://nodejs.org/logo.png"/>
+</div>
 
-Learn how to prepare your Webby so you can deploy your Rails or Rack applications from the comfort of your command line and with nothing more than a few commands, tightly integrated to your everyday git workflow:
+Deploy your node.js applications using git and git alone, with our without Web Server proxying.
 
-<% coderay( :lang => "bash", :line_numbers => "inline" ) do -%>
-$ sudo gem install webbynode
-$ cd /path/to/app
-$ wn init webby --dns=www.hellorapp.com
-$ wn push
-<% end -%>
+For more information and a screencast, check out our <a href="http://wbno.de/node">blog post about it</a>.
 
-
-<a href="articles/rapidapps">Read more...</a>
+<a href="articles/rapidapps/nodejs.html">Read more...</a>
