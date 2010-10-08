@@ -42,25 +42,6 @@ h4. Node.js
 
 For detailed information about deploying a Node.js app, you may want to read our <a href="nodejs.html">dedicated Node.js section</a>.
 
-h4. Rails 3.0beta
-
-In order to enable Rails 3.0beta support, you have to mark the *Install Rails 3.0beta* checkbox, on the Rails section when deploying the Rapid App ReadyStack to your Webby:
-
-<img src="images/rapidapp-rails30.png">
-
-And when initializing your app, you need to use the <code>--engine=rails3</code> option:
-
-<% coderay(:lang => "bash") do -%>
-$ wn init webby3067 --engine=rails3                            
-[Webbynode] Initializing application testr3 with dns testr3
-            Retrieving IP for Webby webby3067...
-            Initializing directory structure...
-            Initializing git and applying initial commit...
-            Adding webbynode as git remote...
-
-[Webbynode] Application testr3 ready for Rapid Deployment
-<% end -%>
-
 h4. Django 1.2.1
 
 For more information about deploying a Django 1.2.1 application, please refer to the <a href="django.html">dedicated page</a>.
