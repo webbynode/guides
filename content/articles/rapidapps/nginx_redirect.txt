@@ -1,0 +1,27 @@
+---
+title:      Adding a redirect to nginx and Rapp
+created_at: 2010-01-14 00:36:35.278020 -02:00
+layout:     rapid
+filter:
+  - erb
+  - textile
+---
+h1. <%= h(@page.title) %>
+
+Log into your Webby using the <code>git</code> user (the user you normally use to deploy). And go to the following directory:
+
+<% coderay(:lang => "bash") do -%>
+cd /opt/nginx/phd-sites
+<% end -%>
+
+Let's assume you want to redirect the domain mydomain.us to mydomain.com. You'll have to create a file called <code>mydomain.us</code> with the following contents:
+
+<% coderay(:lang => "bash") do -%>
+server {
+    listen              80;
+    server_name         mydomain.us;
+    rewrite             ^/(.*) http://mydomain.com/$1 permanent;
+}
+<% end -%>
+
+And then when you visit any URL in mydomain.us, it should redirect to the same URL in mydomain.com.
