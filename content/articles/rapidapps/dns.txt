@@ -1,5 +1,5 @@
 ---
-title:      rapp
+title:      Handling DNS with Rapp
 created_at: 2010-01-14 00:36:35.278020 -02:00
 layout:     rapid
 filter:
@@ -77,3 +77,7 @@ remote:      Setting up wildcard alias...
 <% end -%>
 
 After that, your application will start responding to anything that ends with the domain you specified, in this case <code>rubyista.com</code>.
+
+h2. Redirection
+
+If you're using nginx and you want to redirect one domain to another, <a href="nginx_redirect.html">take a look at this guide</a>.
