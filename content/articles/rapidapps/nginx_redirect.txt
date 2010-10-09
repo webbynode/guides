@@ -24,4 +24,10 @@ server {
 }
 <% end -%>
 
+Restart nginx:
+
+<% coderay(:lang => "bash") do -%>
+/etc/init.d/nginx restart
+<% end -%>
+
 And then when you visit any URL in mydomain.us, it should redirect to the same URL in mydomain.com.
