@@ -12,6 +12,8 @@ h2. Troubleshooting
 
 h4. Quick reference
 
+* <a href="#deployment_password">I forgot my deployment password. What can I do about it?</code>.</a>
+
 * <a href="#problem3">When I try to add SSL support to my site using Rapp, I get an error <code>[emerg]: unknown directive "ssl"</code>.</a>
 
 * <a href="#problem1">I'm getting "Your credentials didn't match any Webbynode account." error when I try to initialize my application with <code>wn init</code>.</a>
@@ -19,6 +21,23 @@ h4. Quick reference
 * <a href="#problem2">I have deployed my application just fine but when I make changes and do a <code>webbynode push</code> nothing changes on the website.</a>
 
 h4. Problems
+
+<a name="deployment_password"> </a>*Problem:* I forgot my deployment password. What can I do about it?</code>.
+
+*Resolution:* 
+
+Just log into your Webby via SSH using the root user and reset your <code>git</code> user password:
+
+<% coderay(:lang => "bash") do -%>
+$ passwd git
+Enter new UNIX password: 
+Retype new UNIX password: 
+passwd: password updated successfully
+<% end -%>
+
+In case you can't remember you root password either, go to the Webby Manager and click your Webby's Dashboard then Root Password.
+
+<hr/>
 
 <a name="problem3"> </a>*Problem:* When I try to add SSL support to my site using Rapp, I get an error <code>[emerg]: unknown directive "ssl"</code>.
 
