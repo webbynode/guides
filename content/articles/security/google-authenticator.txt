@@ -58,7 +58,7 @@ sudo chmod 755 /lib/security/pam_google_authenticator.so              \
 
 h2. Configuring Google Authenticator
 
-First, edit <code>/etc/ssh/sshd_config</code> and change the <code>ChallengeResponseAuthentication</code> from <code>yes</code> to <code>no</code>, here:
+First, edit <code>/etc/ssh/sshd_config</code> and change the <code>ChallengeResponseAuthentication</code> from <code>no</code> to <code>yes</code>, here:
 
 <% coderay(:lang => "bash") do -%>
 # Change to yes to enable challenge-response passwords (beware issues with
@@ -116,9 +116,9 @@ Now, copy and paste the generated URL to your browser and a QRCode will be gener
 <div style="text-align:center; display:block: width:100%;">
 <img src="images/qrcode.png">
 </div>
-Open the Google Authenticator app on your phone, choose Scan Barcode and point the camera to your browser. A new key should be added automatically to your list. That key's code will change every 30 seconds.
+Open the Google Authenticator app on your phone, choose Scan Barcode and point the camera to your browser. A new key should be added automatically to your list. This code will change every 30 seconds.
 
-If you're still unsure how to user your phone's app, please check this <a href="http://www.google.com/support/accounts/bin/answer.py?hl=en&answer=1066447">step by step instructions</a> on Google Accounts help: it will walk you through the steps for your phone.
+If you're still unsure how to use your phone's app, please check this <a href="http://www.google.com/support/accounts/bin/answer.py?hl=en&answer=1066447">step by step instructions</a> on Google Accounts help.
 
 Also, save the scratch codes, they can be used when you don't have your phone available.
 
@@ -164,4 +164,4 @@ h3. Further reference
 For further reference, you can visit:
 
 * <a href="http://code.google.com/p/google-authenticator/">Google Authenticator</a> page on Google Code;
-* <http://www.google.com/support/accounts/bin/answer.py?hl=en&answer=1066447">Turning on 2-step verification: Installing Google Authenticator Share Print</a> on Google Accounts help;
+* <a href="http://www.google.com/support/accounts/bin/answer.py?hl=en&answer=1066447">Turning on 2-step verification: Installing Google Authenticator</a> on Google Accounts help;
