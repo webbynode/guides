@@ -28,8 +28,7 @@ Before starting, go download and install the Google Authenticator in your phone.
 
 h2. Installing Google Authenticator on Ubuntu 10.04
 
-First you need to install three prerequisites: gcc, mercurial and libpam0g-dev (make sure you either execute this steps
-as <code>root</code> or use <code>sudo</code>):
+First you need to install three prerequisites: gcc, mercurial and libpam0g-dev (make sure you either execute this steps as <code>root</code> or use <code>sudo</code>):
 
 <% coderay(:lang => "bash") do -%>
 $ apt-get update
