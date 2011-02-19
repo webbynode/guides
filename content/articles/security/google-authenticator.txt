@@ -1,0 +1,167 @@
+---
+title:      Two factor user authentication with Google Authenticator
+created_at: 2010-01-14 00:36:35.278020 -02:00
+layout:     article
+filter:
+  - erb
+  - textile
+---
+h1. <%= @page.title %>
+
+<img src="images/google-authenticator-logo.png" align="right">
+
+Google just made its Google Authenticator widely available, so it's a good way to make your Webby extra secure with <a href="http://en.wikipedia.org/wiki/Two-factor_authentication">two factor authentication</a>.
+
+In case you're not familiar with the term, this form of authentication requires something you have (in this case your mobile phone) and something you know (your password).
+
+You'll need either an iPhone, an Android enabled device or a Blackberry.<br/><br/>
+
+
+<div style="text-align:center; display:block: width:100%;">
+  <img src="images/phones.png"/>
+</div>
+<br/><br/>
+
+h2. Prerequisites
+
+Before starting, go download and install the Google Authenticator in your phone.
+
+h2. Installing Google Authenticator on Ubuntu 10.04
+
+First you need to install three prerequisites: gcc, mercurial and libpam0g-dev (make sure you either execute this steps
+as <code>root</code> or use <code>sudo</code>):
+
+<% coderay(:lang => "bash") do -%>
+$ apt-get update
+$ apt-get -yy install gcc mercurial libpam0g-dev
+<% end -%>
+
+Now let's clone the repo and install it:
+
+<% coderay(:lang => "bash") do -%>
+$ cd ~
+$ hg clone https://google-authenticator.googlecode.com/hg/ \
+  google-authenticator
+$ cd google-authenticator/libpam
+$ make install
+<% end -%>
+
+You should see something like this:
+
+<% coderay(:lang => "bash") do -%>
+(...)
+cp pam_google_authenticator.so /lib/security
+cp google-authenticator /usr/local/bin
+sudo chmod 755 /lib/security/pam_google_authenticator.so              \
+	       /usr/local/bin/google-authenticator
+<% end -%>
+
+h2. Configuring Google Authenticator
+
+First, edit <code>/etc/ssh/sshd_config</code> and change the <code>ChallengeResponseAuthentication</code> from <code>yes</code> to <code>no</code>, here:
+
+<% coderay(:lang => "bash") do -%>
+# Change to yes to enable challenge-response passwords (beware issues with
+# some PAM modules and threads)
+ChallengeResponseAuthentication yes
+<% end -%>
+
+It should now be:
+
+<% coderay(:lang => "bash") do -%>
+# Change to yes to enable challenge-response passwords (beware issues with
+# some PAM modules and threads)
+ChallengeResponseAuthentication no
+<% end -%>
+
+Now, change the PAM configuration to include the Google Authenticator module. Edit <code>/etc/pam.d/common-auth</code> and insert a new line after this comment:
+
+<% coderay(:lang => "bash") do -%>
+# here are the per-package modules (the "Primary" block)
+auth    [success=1 default=ignore]      pam_unix.so nullok_secure
+# here's the fallback if no module succeeds
+<% end -%>
+
+Leaving it this way:
+
+<% coderay(:lang => "bash") do -%>
+# here are the per-package modules (the "Primary" block)
+auth    required                        pam_google_authenticator.so
+auth    [success=1 default=ignore]      pam_unix.so nullok_secure
+# here's the fallback if no module succeeds
+<% end -%>
+
+h2. User Configuration
+
+Create a configuration for the current shell user:
+
+<% coderay(:lang => "bash") do -%>
+$ google-authenticator
+https://www.google.com/chart?chs=200x200&chld=M|0&cht=qr&chl=otpauth://totp/root@
+some#some%3Fsecret%3DPKRTA4H5GLN7OTLA
+Your new secret key is: PKRTA4H5GLN7OTLA
+Your verification code is 613177
+Your emergency scratch codes are:
+  80419043
+  52322813
+  46557473
+  35541313
+  66835603
+
+Do you want me to update your "~/.google_authenticator" file (y/n) y
+<% end -%>
+
+Now, copy and paste the generated URL to your browser and a QRCode will be generated:
+
+<div style="text-align:center; display:block: width:100%;">
+<img src="images/qrcode.png">
+</div>
+Open the Google Authenticator app on your phone, choose Scan Barcode and point the camera to your browser. A new key should be added automatically to your list. That key's code will change every 30 seconds.
+
+If you're still unsure how to user your phone's app, please check this <a href="http://www.google.com/support/accounts/bin/answer.py?hl=en&answer=1066447">step by step instructions</a> on Google Accounts help: it will walk you through the steps for your phone.
+
+Also, save the scratch codes, they can be used when you don't have your phone available.
+
+You can repeat this steps for each user you want to add two factor authentication to.
+
+h2. Restarting ssh
+
+Now save and exit your editor and restart ssh daemon. <span style="font-size: 0.9em;"><b>IMPORTANT:</b> <em>do not</em> close this ssh session after restarting the ssh service.</span>
+
+<% coderay(:lang => "bash") do -%>
+$ /etc/init.d/ssh restart
+ * Restarting OpenBSD Secure Shell server sshd      [ OK ]
+<% end -%>
+
+Now open <em>another</em> ssh session and try to log in. You should now be prompted for the Verification code and your Password. Enter the code as it appears on your phone, and your usual password for the user:
+
+<% coderay(:lang => "bash") do -%>
+$ ssh root@100.200.100.200
+Verification code: 
+Password: 
+Linux ahost 2.6.32-24-generic-pae #39-Ubuntu SMP Wed Jul 28 07:39:26 UTC 2010 i686
+Ubuntu 10.04.1 LTS
+
+Welcome to Ubuntu!
+ * Documentation:  https://help.ubuntu.com/
+
+  System information as of Sat Feb 19 01:06:03 EST 2011
+
+  System load:  0.0               Processes:           105
+  Usage of /:   30.6% of 4.85GB   Users logged in:     1
+  Memory usage: 44%               IP address for eth0: 100.200.100.200
+  Swap usage:   3%
+
+  Graph this data and manage this system at https://landscape.canonical.com/
+
+root@ahost:~#
+<% end -%>
+
+If by any chance the authentication failed after a couple of tries, it's recommended that you undo the changes you've made to <code>/etc/ssh/sshd_config</code> and to <code>/etc/pam.d/common-auth</code>, and restart SSH one more time. The authentication method should revert to password-only (or publickey, depending on what you had before).
+
+h3. Further reference
+
+For further reference, you can visit:
+
+* <a href="http://code.google.com/p/google-authenticator/">Google Authenticator</a> page on Google Code;
+* <http://www.google.com/support/accounts/bin/answer.py?hl=en&answer=1066447">Turning on 2-step verification: Installing Google Authenticator Share Print</a> on Google Accounts help;
