@@ -48,7 +48,7 @@ $ make install
 You should see something like this:
 
 <% coderay(:lang => "bash") do -%>
-(...)
+... some gcc compilation output ...
 cp pam_google_authenticator.so /lib/security
 cp google-authenticator /usr/local/bin
 sudo chmod 755 /lib/security/pam_google_authenticator.so              \
