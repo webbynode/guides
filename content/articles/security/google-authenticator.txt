@@ -62,7 +62,7 @@ First, edit <code>/etc/ssh/sshd_config</code> and change the <code>ChallengeResp
 <% coderay(:lang => "bash") do -%>
 # Change to yes to enable challenge-response passwords (beware issues with
 # some PAM modules and threads)
-ChallengeResponseAuthentication yes
+ChallengeResponseAuthentication no
 <% end -%>
 
 It should now be:
@@ -70,7 +70,7 @@ It should now be:
 <% coderay(:lang => "bash") do -%>
 # Change to yes to enable challenge-response passwords (beware issues with
 # some PAM modules and threads)
-ChallengeResponseAuthentication no
+ChallengeResponseAuthentication yes
 <% end -%>
 
 Now, change the PAM configuration to include the Google Authenticator module. Edit <code>/etc/pam.d/common-auth</code> and insert a new line after this comment:
