@@ -108,6 +108,11 @@ Your emergency scratch codes are:
   66835603
 
 Do you want me to update your "~/.google_authenticator" file (y/n) y
+
+Do you want to disallow multiple uses of the same authentication
+token? This restricts you to one login about every 30s, but it in
+creases your chances to notice or even prevent man-in-the-middle
+attacks (y/n) y
 <% end -%>
 
 Now, copy and paste the generated URL to your browser and a QRCode will be generated:
