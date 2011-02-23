@@ -83,8 +83,19 @@ filter:
               %li <a href="dns.html">Handling DNS</a>
               %li <a href="webbyops.html">Start/Stop/Reboot</a>
               %li <a href="hooks.html">Deployment Hooks</a>
-              / %li <a href="remote.html">Remote Commands</a>
+              %li <a href="remote.html">Remote Commands</a>
               / %li <a href="aliases.html">Aliases</a>
+
+          .box
+            %p.title
+              %b
+                Additional Info
+            %ul
+              %li <a href="nodejs.html">Node.js</a>
+              %li <a href="django.html">Django</a>
+              %li <a href="windows.html">Rapp on Windows</a>
+              %li <a href="ssl.html">SSL with nginx</a>
+              %li <a href="toto.html">Blog with Rapp and toto</a>
               
     #footer
       .inner

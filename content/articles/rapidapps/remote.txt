@@ -10,4 +10,20 @@ h1. <%= h(@page.title) %>
 
 h2. Remote Commands
 
-Will be available soon.
+You can execute remote commands from your local terminal with the <code>wn remote</code> command. It's as simple as it sounds:
+
+<% coderay(:lang => "bash") do -%>
+[imac27] fcoury:~/Projects/nodeapp [git:master] wn remote ls -la
+Performing the requested remote command...
+total 28
+drwxr-xr-x 4 git git      4096 2011-02-23 11:18 .
+drwxr-xr-x 6 git www-data 4096 2011-02-23 09:50 ..
+drwxr-xr-x 8 git git      4096 2011-02-23 11:18 .git
+-rwxr-xr-x 1 git git        36 2011-02-22 23:15 .pushand
+-rw-r--r-- 1 git www-data  531 2011-02-22 23:15 server.js
+drwxr-xr-x 3 git git      4096 2011-02-23 01:26 .webbynode
+-rw-r--r-- 1 git www-data   52 2011-02-23 11:18 x
+
+[imac27] fcoury:~/Projects/nodeapp [git:master] $
+<% end -%>
+
