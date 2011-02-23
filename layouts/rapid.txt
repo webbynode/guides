@@ -76,6 +76,7 @@ filter:
               %b
                 Advanced Topics
             %ul
+              %li <a href="security.html">Security</a>
               %li <a href="engines.html">Supported Engines</a>
               %li <a href="addons.html">Add-ons</a>
               %li <a href="backup.html">S3 Backup</a>

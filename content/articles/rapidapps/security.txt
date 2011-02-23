@@ -1,0 +1,87 @@
+---
+title:      Rapid Application Deployment Engine
+created_at: 2010-01-14 00:36:35.278020 -02:00
+layout:     rapid
+filter:
+  - erb
+  - textile
+---
+h1. <%= h(@page.title) %>
+
+h2. Security
+
+We recently decided to change our default security policy when using Rapp. From now on, the first time you publish an application using <code>wn push</code>, it will disallow root logins using SSH:
+
+<% coderay(:lang => "bash") do -%>
+...
+remote: Security: Preventing root login...
+remote: 
+remote: --------------------------------------------------------------
+remote:  
+remote:  IMPORTANT: Rapp now will disable root SSH access by default. 
+remote: 
+remote:  If you want to overwrite this setting follow this steps:
+remote: 
+remote:  1. Make sure you have the latest gem version (1.0.4)
+remote:  
+remote:     $ wn version
+remote:     [Webbynode] Rapid Deployment Gem v1.0.4
+remote: 
+remote:  2. If needed, update your gem
+remote: 
+remote:     $ gem install webbynode
+remote: 
+remote:  3. Set the allow_root setting to true
+remote: 
+remote:     $ wn settings add allow_root true
+remote:  
+remote:  4. Run 'wn push' and root will be allowed again.
+remote:  
+remote: --------------------------------------------------------------
+...
+<% end %>
+
+The steps above sums up what you need to do if you want to reestablish root login, but we advise you don't. Instead of using the <code>root</code> user, you can safely use the <code>git</code> user that is created specially for the Rapp engine. 
+
+This user has sudo privileges, so you can do anything you used to do with <code>root</code>.
+
+To login using <code>git</code>, just use ssh normally:
+
+<% coderay(:lang => "bash") do -%>
+$ ssh git@100.200.10.1
+Linux sandbox 2.6.32-24-generic-pae #39-Ubuntu SMP Wed Jul 28 07:39:26
+Ubuntu 10.04.1 LTS
+
+Welcome to Ubuntu!
+ * Documentation:  https://help.ubuntu.com/
+
+  System information as of Wed Feb 23 11:22:28 EST 2011
+
+  System load:  0.0                Processes:           107
+  Usage of /:   11.2% of 11.81GB   Users logged in:     1
+  Memory usage: 32%                IP address for eth0: 100.200.10.1
+  Swap usage:   0%
+
+  Graph this data and manage this system at 
+  https://landscape.canonical.com/
+
+<% end -%>
+
+If you deployed a Rapp application to your server before, it's likely that a password won't be prompted, since we use the safer public key authorization.
+
+Also remember you can use the <code>wn remote</code> commands to issue sporadic commands from your prompt, without logging into your Webby:
+
+<% coderay(:lang => "bash") do -%>
+[imac27] fcoury:~/Projects/nodeapp [git:master] wn remote ls -la
+Performing the requested remote command...
+total 28
+drwxr-xr-x 4 git git      4096 2011-02-23 11:18 .
+drwxr-xr-x 6 git www-data 4096 2011-02-23 09:50 ..
+drwxr-xr-x 8 git git      4096 2011-02-23 11:18 .git
+-rwxr-xr-x 1 git git        36 2011-02-22 23:15 .pushand
+-rw-r--r-- 1 git www-data  531 2011-02-22 23:15 server.js
+drwxr-xr-x 3 git git      4096 2011-02-23 01:26 .webbynode
+-rw-r--r-- 1 git www-data   52 2011-02-23 11:18 x
+
+[imac27] fcoury:~/Projects/nodeapp [git:master] $
+<% end -%>
