@@ -130,6 +130,12 @@ To install npm packages, just run:
 $ wn remote npm install [package]
 <% end -%>
 
+h4. The goodness
+
+Along with your application, we created an upstart script (so your application is always started when your Webby reboots) and a monit script, so if your application goes down, we attempt to restart it.
+
+The monit script is always installed to <code>/etc/monit/services/your_app_name</code> and the upstart script to <code>/etc/init/your_app.conf</code>, in case you need to customize them for your needs.
+
 h4. Summary
 
 As you can see, we do all the heavy lifting for you. When you first push a node.js app, we install and configure node.js and all its dependencies, along with monit and npm.
