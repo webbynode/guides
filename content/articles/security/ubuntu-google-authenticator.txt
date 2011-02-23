@@ -24,7 +24,7 @@ You'll need either an iPhone, an Android enabled device or a Blackberry.<br/><br
 
 h2. Prerequisites
 
-Before starting, go download and install the Google Authenticator in your phone.
+Before starting, go download and install the Google Authenticator to your phone.
 
 h2. Installing Google Authenticator on Ubuntu 10.04
 
@@ -73,7 +73,7 @@ It should now be:
 ChallengeResponseAuthentication yes
 <% end -%>
 
-Now, change the PAM configuration to include the Google Authenticator module. Edit <code>/etc/pam.d/common-auth</code> and insert a new line after this comment:
+Now, change the PAM configuration to include the Google Authenticator module. Edit <code>/etc/pam.d/common-auth</code> and insert a new line between the comment and the first auth line:
 
 <% coderay(:lang => "bash") do -%>
 # here are the per-package modules (the "Primary" block)
@@ -120,17 +120,17 @@ Now, copy and paste the generated URL to your browser and a QRCode will be gener
 <div style="text-align:center; display:block: width:100%;">
 <img src="images/qrcode.png">
 </div>
-Open the Google Authenticator app on your phone, choose Scan Barcode and point the camera to your browser. A new key should be added automatically to your list. This code will change every 30 seconds.
+Open the Google Authenticator app on your phone, choose Scan Barcode and point the camera to your browser. A new key should be added automatically to your list. This code will change every 30 seconds. Please note that if you don't have a barcode scanner you will be prompted to install one.
 
-If you're still unsure how to use your phone's app, please check this <a href="http://www.google.com/support/accounts/bin/answer.py?hl=en&answer=1066447">step by step instructions</a> on Google Accounts help.
+If you're still unsure how to use your phone's app, please check these <a href="http://www.google.com/support/accounts/bin/answer.py?hl=en&answer=1066447">step by step instructions</a> on Google Accounts help.
 
 Also, save the scratch codes, they can be used when you don't have your phone available.
 
-You can repeat this steps for each user you want to add two factor authentication to.
+You can repeat these steps for each user you want to add two factor authentication for.
 
 h2. Restarting ssh
 
-Now save and exit your editor and restart ssh daemon. <span style="font-size: 0.9em;"><b>IMPORTANT:</b> <em>do not</em> close this ssh session after restarting the ssh service.</span>
+Now save and exit your editor and restart the ssh daemon. <span style="font-size: 0.9em;"><b>IMPORTANT:</b> <em>do not</em> close this ssh session after restarting the ssh service.</span>
 
 <% coderay(:lang => "bash") do -%>
 $ /etc/init.d/ssh restart
@@ -161,7 +161,7 @@ Welcome to Ubuntu!
 root@ahost:~#
 <% end -%>
 
-If by any chance the authentication failed after a couple of tries, it's recommended that you undo the changes you've made to <code>/etc/ssh/sshd_config</code> and to <code>/etc/pam.d/common-auth</code>, and restart SSH one more time. The authentication method should revert to password-only (or publickey, depending on what you had before).
+If by any chance the authentication failed after a couple of tries, it's recommended that you undo the changes you've made to <code>/etc/ssh/sshd_config</code> and to <code>/etc/pam.d/common-auth</code>, and restart the ssh daemon one more time. The authentication method should revert to password-only (or publickey, depending on what you had before).
 
 h3. See also
 
