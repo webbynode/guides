@@ -13,7 +13,7 @@ h2. Bootstrapping
 Before deploying your application, you need to specify a couple of configuration options. The first and most important is
 where you'll want to install it.
 
-In order to do that, you'll need to install the Webbynode's RubyGem, by executing the following command:
+In order to do that, you'll need to install the Webbynode's RubyGem <b>on your local machine</b>, by executing the following command:
 
 <% coderay(:lang => "bash") do -%>
 $ sudo gem install webbynode
