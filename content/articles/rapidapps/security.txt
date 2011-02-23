@@ -10,7 +10,9 @@ h1. <%= h(@page.title) %>
 
 h2. Security
 
-We recently decided to change our default security policy when using Rapp. From now on, the first time you publish an application using <code>wn push</code>, it will disallow root logins using SSH:
+We recently decided to change our default security policy when using Rapp. This will enhance the security of your applications by making hacking attempts a little more difficult. 
+
+From now on, the first time you publish an application using <code>wn push</code>, it will disallow root logins using SSH:
 
 <% coderay(:lang => "bash") do -%>
 ...
