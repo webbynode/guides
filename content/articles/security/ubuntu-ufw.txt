@@ -1,5 +1,5 @@
 ---
-title:      Installing and Configuring <code>ufw</code> Firewall in Ubuntu
+title:      Installing and Configuring ufw (Uncomplicated Firewall)
 created_at: 2010-01-14 00:36:35.278020 -02:00
 layout:     article
 filter:
@@ -16,7 +16,7 @@ In this guide we'll walk you through how to install and configure an easy-to-use
 
 h2. Requirements
 
-This guide was written using Ubuntu 8.10 but should work without changes for Ubuntu 8.04 and 9.04.
+This guide was written using Ubuntu 10.04 but should work without changes for Ubuntu 8.04 or later.
 
 h2. Installation
 

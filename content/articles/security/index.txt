@@ -14,6 +14,6 @@ filter:
   %h3 Ubuntu
   %ul
     %li
-      %a{ :href => "ubuntu-ufw.html" } Installing and Configuring Uncomplicated Firewall (<code>ufw</code>)
+      %a{ :href => "ubuntu-ufw.html" } Installing and Configuring ufw (Uncomplicated Firewall)
     %li
       %a{ :href => "ubuntu-google-authenticator.html" } Two factor authentication with Google Authenticator
