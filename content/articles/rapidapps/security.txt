@@ -43,9 +43,9 @@ remote: --------------------------------------------------------------
 ...
 <% end %>
 
-The steps above sums up what you need to do if you want to reestablish root login, but we advise you don't. Instead of using the <code>root</code> user, you can safely use the <code>git</code> user that is created specially for the Rapp engine. 
+The steps above sum up what you need to do if you want to reestablish root login, but we advise you not to. 
 
-This user has sudo privileges, so you can do anything you used to do with <code>root</code>.
+Instead of using the <code>root</code> user, you can safely use the <code>git</code> user that is created specially for the Rapp engine. This user has sudo privileges, so you can do anything you used to do with <code>root</code>.
 
 To login using <code>git</code>, just use ssh normally:
 
@@ -69,9 +69,9 @@ Welcome to Ubuntu!
 
 <% end -%>
 
-If you deployed a Rapp application to your server before, it's likely that a password won't be prompted, since we use the safer public key authorization.
+If you deployed a Rapp application to your server before, it’s likely that you will not be prompted for a password, since we use the safer public key authorization.
 
-Also remember you can use the <code>wn remote</code> commands to issue sporadic commands from your prompt, without logging into your Webby:
+Also remember you can use <code>wn remote</code> and issue sporadic commands from your local terminal, without logging into your Webby:
 
 <% coderay(:lang => "bash") do -%>
 [imac27] fcoury:~/Projects/nodeapp [git:master] wn remote ls -la
