@@ -163,9 +163,11 @@ root@ahost:~#
 
 If by any chance the authentication failed after a couple of tries, it's recommended that you undo the changes you've made to <code>/etc/ssh/sshd_config</code> and to <code>/etc/pam.d/common-auth</code>, and restart SSH one more time. The authentication method should revert to password-only (or publickey, depending on what you had before).
 
-h3. Further reference
+h3. See also
 
-For further reference, you can visit:
+* <a href="ubuntu-ufw.html">Installing and Configuring ufw</a> for securing your Webby;
+
+h3. Further reference
 
 * <a href="http://code.google.com/p/google-authenticator/">Google Authenticator</a> page on Google Code;
 * <a href="http://www.google.com/support/accounts/bin/answer.py?hl=en&answer=1066447">Turning on 2-step verification: Installing Google Authenticator</a> on Google Accounts help;

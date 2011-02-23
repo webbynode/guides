@@ -11,6 +11,9 @@ filter:
   Here's the list of articles that teach you how to tighten security to prevent Hacking attempts:
 
 #articles
+  %h3 Ubuntu
   %ul
     %li
-      %a{ :href => "ubuntu810-ufw.html" } Installing and Configuring Uncomplicated Firewall (<code>ufw</code>) on Ubuntu 8.10
+      %a{ :href => "ubuntu-ufw.html" } Installing and Configuring Uncomplicated Firewall (<code>ufw</code>)
+    %li
+      %a{ :href => "ubuntu-google-authenticator.html" } Two factor authentication with Google Authenticator

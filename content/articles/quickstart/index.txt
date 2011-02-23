@@ -17,7 +17,7 @@ filter:
 
   %ul
     %li
-      %a{ :href => "/articles/security/ubuntu810-ufw.html" } Installing and Configuring Uncomplicated Firewall (<code>ufw</code>) on Ubuntu 8.10
+      %a{ :href => "/articles/security/ubuntu-ufw.html" } Installing and Configuring Uncomplicated Firewall (<code>ufw</code>) on Ubuntu
 
   %h2 Webbymanager
 

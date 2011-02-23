@@ -1,5 +1,5 @@
 ---
-title:      Installing and Configuring <code>ufw</code> Firewall in Ubuntu 8.10
+title:      Installing and Configuring <code>ufw</code> Firewall in Ubuntu
 created_at: 2010-01-14 00:36:35.278020 -02:00
 layout:     article
 filter:
@@ -108,6 +108,10 @@ To                         Action  From
 22                         ALLOW   Anywhere
 3306                       ALLOW   172.16.0.94
 <% end -%>
+
+h3. See also
+
+* <a href="ubuntu-google-authenticator.html">Two factor user authentication with Google Authenticator</a> for improved security;
 
 h3. Further reference
 
