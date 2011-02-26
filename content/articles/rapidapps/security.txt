@@ -12,38 +12,40 @@ h2. Security
 
 We recently decided to change our default security policy when using Rapp. This will enhance the security of your applications by making hacking attempts a little more difficult. 
 
-From now on, the first time you publish an application using <code>wn push</code>, it will disallow root logins using SSH:
+From now on, the first time you publish an application using <code>wn push</code>, it will block password-based ssh logins attempts for the <code>root</code> user:
 
 <% coderay(:lang => "bash") do -%>
 ...
 remote: Security: Preventing root login...
 remote: 
 remote: --------------------------------------------------------------
-remote:  
-remote:  IMPORTANT: Rapp now will disable root SSH access by default. 
-remote: 
-remote:  If you want to overwrite this setting follow this steps:
-remote: 
-remote:  1. Make sure you have the latest gem version (1.0.4)
-remote:  
-remote:     $ wn version
-remote:     [Webbynode] Rapid Deployment Gem v1.0.4
-remote: 
-remote:  2. If needed, update your gem
-remote: 
-remote:     $ gem install webbynode
-remote: 
-remote:  3. Set the allow_root setting to true
-remote: 
-remote:     $ wn settings add allow_root true
-remote:  
-remote:  4. Run 'wn push' and root will be allowed again.
-remote:  
+remote:                                                               
+remote:  IMPORTANT: Rapp will now disable password-based root SSH     
+remote:             login access by default.                          
+remote:                                                               
+remote:  If you want to access your Webby using root and public key   
+remote:  authentication, follow this steps:                           
+remote:                                                               
+remote:  1. Make sure you have the latest gem version (1.0.4.2)       
+remote:                                                               
+remote:     $ wn version                                              
+remote:     [Webbynode] Rapid Deployment Gem v1.0.4.2                 
+remote:                                                               
+remote:  2. If needed, update your gem                                
+remote:                                                               
+remote:     $ gem install webbynode                                   
+remote:                                                               
+remote:  3. Run the authroot command                                  
+remote:                                                               
+remote:     $ wn authroot                                             
+remote:     Your local SSH Key has been added to your root user       
+remote:                                                               
+remote:  Now youll be able to log into your Webby as root without     
+remote:  typing a password.                                           
+remote:                                                               
 remote: --------------------------------------------------------------
 ...
 <% end %>
-
-The steps above sum up what you need to do if you want to reestablish root login, but we advise you not to. 
 
 Instead of using the <code>root</code> user, you can safely use the <code>git</code> user that is created specially for the Rapp engine. This user has sudo privileges, so you can do anything you used to do with <code>root</code>.
 
@@ -71,6 +73,10 @@ Welcome to Ubuntu!
 
 If you deployed a Rapp application to your server before, it’s likely that you will not be prompted for a password, since we use the safer public key authorization.
 
+However, if you still want to login using <code>root</code>, you can add your existing ssh key (that you already use for deployments) using the Webbynode gem, you can use the <code>authorize_root</code> command, aliased as just <code>authroot</code> for your convenience.
+
+To do that, follow the steps shown above: make sure you have the latest version of the Webbynode gem and run <code>wn authroot</code>. After that you'll be able to login using root and your public key.
+
 Also remember you can use <code>wn remote</code> and issue sporadic commands from your local terminal, without logging into your Webby:
 
 <% coderay(:lang => "bash") do -%>
@@ -87,3 +93,19 @@ drwxr-xr-x 3 git git      4096 2011-02-23 01:26 .webbynode
 
 [imac27] fcoury:~/Projects/nodeapp [git:master] $
 <% end -%>
+
+h2. Restoring password-based root login
+
+We strongly advise that you don't restore password-based authentication, but if you insist, just run:
+
+<% coderay(:lang => "bash") do -%>
+$ wn settings allow_root true
+<% end -%>
+
+And push it:
+
+<% coderay(:lang => "bash") do -%>
+$ wn push
+<% end -%>
+
+And your password-based ssh root access will be restored.
