@@ -11,11 +11,11 @@ h1. Rapid Application Deployment Engine
 
 h2. Running Windows
 
-Check out this tutorial to learn how to deploy using windows:
+Check out below a tutorial to learn how to deploy using windows.
 
 <object width="725" height="480"><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=13947314&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=00ADEF&amp;fullscreen=1&amp;autoplay=0&amp;loop=0" /><embed src="http://vimeo.com/moogaloop.swf?clip_id=13947314&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=00ADEF&amp;fullscreen=1&amp;autoplay=0&amp;loop=0" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="725" height="480"></embed></object>
 
-When you're done, head back to the <a href="preparation.html">Preparation</a> section.
+<b>IMPORTANT:</b> In order to execute your first deployment using Rapp, you need to go through the <a href="preparation.html">Preparation section</a>.
 
 Links:
 
