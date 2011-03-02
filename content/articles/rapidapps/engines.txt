@@ -12,6 +12,7 @@ h2. Supported Engines
 
 As of the last release of Rapp, we support the following engines:
 
+* Static HTML
 * Django
 * PHP
 * Rack
@@ -29,14 +30,19 @@ $ wn init
 
 Supported engines:
 
-  1. Django
-  2. PHP
-  3. Rack
-  4. Rails 2
-  5. Rails 3
+  1. HTML
+  2. Django
+  3. PHP
+  4. Rack
+  5. Rails 2
+  6. Rails 3
 
 Select the engine your app uses:
 <% end -%>
+
+h4. Static HTML
+
+A static HTML deployment won't create any databases, just push the static site contents upstream.
 
 h4. Node.js
 
