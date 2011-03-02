@@ -37,7 +37,7 @@ And next time you push your app, it will start responding to this new DNS entry.
 
 h2. Wildcards
 
-<div class="callout">*Important:* Wildcards support require <a href="http://rubygems.org/gems/webbynode/versions/1.0.3.beta">Webbynode gem version 1.0.3</a> (current in beta) or greater</div>
+<div class="callout">*Important:* Wildcards support require <a href="http://rubygems.org/gems/webbynode/">Webbynode gem version 1.0.3</a> or greater</div>
 
 For applications that uses subdomains, a wildcard domain may be necessary. To use a wildcard DNS with Rapp, just change the DNS using "*.yourdomain.com", like this:
 
