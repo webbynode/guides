@@ -10,4 +10,16 @@ h1. <%= h(@page.title) %>
 
 h2. Aliases
 
-Will be available soon.
+When you have commands that you run on your Webby time and time again, it may be a good idea to make them aliases.
+
+Aliased commands work like any of the Webbynode gem commands you're used to.
+
+Here's an example that will trigger a rake task that clears the cached pages from the filesystem:
+
+$wn alias add clear_cache RAILS_ENV=production bundle exec rake db:load_items
+Alias clear_cache added.
+
+These are your current aliases:
+redo        | RAILS_ENV=production bundle exec rake db:load_items
+kill_cache  | RAILS_ENV=production bundle exec rake cache:sweep
+clear_cache | RAILS_ENV=production bundle exec rake cache:sweep
