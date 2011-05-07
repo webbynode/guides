@@ -24,9 +24,9 @@ And click the <img src="images/rapp-startbutton.jpg"> button.
 
 h4. Choose deployment options
 
-You can now select which Engines you want to support out of the box, the WebServer and the database engine you want to use.
+You can now select which the WebServer and the database engine you want to use.
 
-<img src="images/rapidapp-step2.jpg">
+<img src="images/rapidapp-step2.png">
 
 Click the <img src="images/rapp-continuebutton.jpg"> button to continue to the configuration screen.
 
