@@ -1,0 +1,19 @@
+---
+title:      Upgrading Ruby 1.9.2 to p290
+created_at: 2010-01-14 00:36:35.278020 -02:00
+layout:     rapid
+filter:
+  - erb
+  - textile
+---
+
+h1. <%= h(@page.title) %>
+
+<div class="callout">*Warning:* Upgrading the Ruby version using this script will require you to reinstall all your Gems. If you're using Bundler, a mere <b><code>wn push</code></b> will do it, otherwise you'll have to reinstall them manually.</div>
+
+To upgrade Ruby 1.9.2 to the latest version, execute the following command in your Webby:
+
+<% coderay(:lang => "bash") do -%>
+curl -L wbno.de/rubyupg | bash
+<% end -%>
+
