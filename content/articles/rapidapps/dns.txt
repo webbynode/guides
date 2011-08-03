@@ -78,7 +78,7 @@ remote:      Setting up wildcard alias...
 
 After that, your application will start responding to anything that ends with the domain you specified, in this case <code>rubyista.com</code>.
 
-h2. Aliases
+<a name="aliases"></a><h2>Aliases</h2>
 
 <div class="callout">*Important:* This feature is currently available using the beta5 version of our gem only. To install, use <code>gem install --pre webbynode</code>.</div>
 
