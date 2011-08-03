@@ -124,8 +124,7 @@ Current aliases: subdomain.mywebsite.com
 
 By default, when you push your application, we don't recreate your vhosts file. This happens because we want to allow our users to customize their vhosts and prevent overwriting those customizations every time an user uses the <code>wn push</code> command.
 
-In order to make the server aknowledge your new aliases, you have to push using the <code>--recreate-vhost</code>
-option. Note the message below indicating the recreation of the vhost file:
+In order to make the server aknowledge your new aliases, you have to push using the <code>--recreate-vhost</code> option. Note the message below indicating the recreation of the vhost file:
 
 <% coderay(:lang => "bash") do -%>
 $ wn push --recreate-vhost 
